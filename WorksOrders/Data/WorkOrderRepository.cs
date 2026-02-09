@@ -25,13 +25,14 @@ namespace WorkOrderApp.Data
                 conn.Open();
 
                 string sql = @"INSERT INTO WorkOrders 
-                               (OrderNumber, CustomerName, Address, Phone, Email, Website)
-                               VALUES (@OrderNumber, @CustomerName, @Address, @Phone, @Email, @Website)";
+                               (OrderNumber, CompanyName, ContactName, Address, Phone, Email, Website)
+                               VALUES (@OrderNumber, @CompanyName, @ContactName, @Address, @Phone, @Email, @Website)";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@OrderNumber", order.OrderNumber);
-                    cmd.Parameters.AddWithValue("@CustomerName", order.CustomerName);
+                    cmd.Parameters.AddWithValue("@CompanyName", order.CompanyName);
+                    cmd.Parameters.AddWithValue("@ContactName", order.ContactName);
                     cmd.Parameters.AddWithValue("@Address", order.Address);
                     cmd.Parameters.AddWithValue("@Phone", order.Phone);
                     cmd.Parameters.AddWithValue("@Email", order.Email);
@@ -51,7 +52,7 @@ namespace WorkOrderApp.Data
                 conn.Open();
 
                 string sql = @"SELECT * FROM WorkOrders
-                               WHERE CustomerName LIKE @kw OR Address LIKE @kw
+                               WHERE CompanyName LIKE @kw OR ContactName LIKE @kw OR Address LIKE @kw
                                OR Phone LIKE @kw OR Email LIKE @kw OR Website LIKE @kw";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -65,7 +66,8 @@ namespace WorkOrderApp.Data
                             var order = new WorkOrder();
                             order.Id = Convert.ToInt32(reader["Id"]);
                             order.OrderNumber = reader["OrderNumber"].ToString();
-                            order.CustomerName = reader["CustomerName"].ToString();
+                            order.CompanyName = reader["CompanyName"].ToString();
+                            order.ContactName = reader["ContactName"].ToString();
                             order.Address = reader["Address"].ToString();
                             order.Phone = reader["Phone"].ToString();
                             order.Email = reader["Email"].ToString();
@@ -87,14 +89,15 @@ namespace WorkOrderApp.Data
                 conn.Open();
 
                 string sql = @"UPDATE WorkOrders SET
-                               CustomerName=@CustomerName, Address=@Address,
+                               CompanyName=@CompanyName, ContactName@ContactName, Address=@Address,
                                Phone=@Phone, Email=@Email, Website=@Website
                                WHERE Id=@Id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Id", order.Id);
-                    cmd.Parameters.AddWithValue("@CustomerName", order.CustomerName);
+                    cmd.Parameters.AddWithValue("@CompanyName", order.CompanyName);
+                    cmd.Parameters.AddWithValue("@ContactName", order.ContactName);
                     cmd.Parameters.AddWithValue("@Address", order.Address);
                     cmd.Parameters.AddWithValue("@Phone", order.Phone);
                     cmd.Parameters.AddWithValue("@Email", order.Email);

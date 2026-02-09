@@ -19,7 +19,8 @@ namespace WorksOrders.Forms
 
             if (order != null)
             {
-                txtbx_name.Text = order.CustomerName;
+                txtbx_company_name.Text = order.CompanyName;
+                txtbx_contact_name.Text = order.ContactName;
                 txtbx_address.Text = order.Address;
                 txtbx_phone.Text = order.Phone;
                 txtbx_email.Text = order.Email;
@@ -34,7 +35,8 @@ namespace WorksOrders.Forms
         {
             var order = new WorkOrder();
             order.OrderNumber = OrderNumberGenerator.Generate();
-            order.CustomerName = txtbx_name.Text;
+            order.CompanyName = txtbx_company_name.Text;
+            order.ContactName = txtbx_contact_name.Text;
             order.Address = txtbx_address.Text;
             order.Phone = txtbx_phone.Text;
             order.Email = txtbx_email.Text;
@@ -49,7 +51,8 @@ namespace WorksOrders.Forms
         {
             if (!_isAdmin) return;
 
-            _order.CustomerName = txtbx_name.Text;
+            _order.CompanyName = txtbx_company_name.Text;
+            _order.ContactName = txtbx_contact_name.Text;
             _order.Address = txtbx_address.Text;
             _order.Phone = txtbx_phone.Text;
             _order.Email = txtbx_email.Text;

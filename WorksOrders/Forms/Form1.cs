@@ -8,6 +8,9 @@ namespace WorksOrders
 {
     public partial class Form1 : Form
     {
+        private readonly WorkOrderRepository _repo;
+        private readonly bool _isAdmin;
+
         public Form1(string dbPath, bool isAdmin)
         {
             InitializeComponent();
@@ -16,21 +19,14 @@ namespace WorksOrders
 
             btn_delete.Enabled = isAdmin;
             btn_update.Enabled = isAdmin;
+            btn_add.Enabled = isAdmin;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //LoadSettings(); //load settings from last session
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
-
-
         }
-
-
-
-        private readonly WorkOrderRepository _repo;
-        private readonly bool _isAdmin;
-
 
         private void btn_add_Click(object sender, EventArgs e)
         {
@@ -59,11 +55,13 @@ namespace WorksOrders
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            Close();
+            //Close();
+            Application.Exit(); // this also closes hidden login form
+
         }
 
-        
-       
+
+
     }
 
 }

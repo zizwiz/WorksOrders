@@ -19,7 +19,8 @@ namespace WorkOrderApp.Data
                         CREATE TABLE WorkOrders (
                             Id INTEGER PRIMARY KEY AUTOINCREMENT,
                             OrderNumber TEXT NOT NULL,
-                            CustomerName TEXT NOT NULL,
+                            CompanyName TEXT NOT NULL,
+                            ContactName TEXT NOT NULL,
                             Address TEXT,
                             Phone TEXT,
                             Email TEXT,
