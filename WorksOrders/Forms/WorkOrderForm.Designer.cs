@@ -32,26 +32,32 @@ namespace WorksOrders.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkOrderForm));
             this.lbl_website = new System.Windows.Forms.Label();
             this.lbl_email = new System.Windows.Forms.Label();
-            this.lbl_phone = new System.Windows.Forms.Label();
+            this.lbl__mobile_phone = new System.Windows.Forms.Label();
             this.lbl__address = new System.Windows.Forms.Label();
             this.lbl_company_name = new System.Windows.Forms.Label();
             this.txtbx_website = new System.Windows.Forms.TextBox();
             this.txtbx_email = new System.Windows.Forms.TextBox();
-            this.txtbx_phone = new System.Windows.Forms.TextBox();
-            this.txtbx_address = new System.Windows.Forms.TextBox();
+            this.txtbx_mobile_phone = new System.Windows.Forms.TextBox();
+            this.txtbx_address_line1 = new System.Windows.Forms.TextBox();
             this.txtbx_company_name = new System.Windows.Forms.TextBox();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbl_office_phone = new System.Windows.Forms.Label();
+            this.txtbx_office_phone = new System.Windows.Forms.TextBox();
             this.lbl_contact = new System.Windows.Forms.Label();
             this.txtbx_contact_name = new System.Windows.Forms.TextBox();
+            this.txtbx_address_line2 = new System.Windows.Forms.TextBox();
+            this.txtbx_address_line3 = new System.Windows.Forms.TextBox();
+            this.txtbx_town = new System.Windows.Forms.TextBox();
+            this.txtbx_postcode = new System.Windows.Forms.TextBox();
+            this.lbl_postcode = new System.Windows.Forms.Label();
+            this.lbl_town = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_website
             // 
             this.lbl_website.AutoSize = true;
-            this.lbl_website.Location = new System.Drawing.Point(538, 225);
+            this.lbl_website.Location = new System.Drawing.Point(553, 247);
             this.lbl_website.Name = "lbl_website";
             this.lbl_website.Size = new System.Drawing.Size(67, 20);
             this.lbl_website.TabIndex = 24;
@@ -60,20 +66,20 @@ namespace WorksOrders.Forms
             // lbl_email
             // 
             this.lbl_email.AutoSize = true;
-            this.lbl_email.Location = new System.Drawing.Point(96, 222);
+            this.lbl_email.Location = new System.Drawing.Point(111, 244);
             this.lbl_email.Name = "lbl_email";
             this.lbl_email.Size = new System.Drawing.Size(48, 20);
             this.lbl_email.TabIndex = 23;
             this.lbl_email.Text = "Email";
             // 
-            // lbl_phone
+            // lbl__mobile_phone
             // 
-            this.lbl_phone.AutoSize = true;
-            this.lbl_phone.Location = new System.Drawing.Point(96, 190);
-            this.lbl_phone.Name = "lbl_phone";
-            this.lbl_phone.Size = new System.Drawing.Size(105, 20);
-            this.lbl_phone.TabIndex = 22;
-            this.lbl_phone.Text = "Mobile Phone";
+            this.lbl__mobile_phone.AutoSize = true;
+            this.lbl__mobile_phone.Location = new System.Drawing.Point(111, 212);
+            this.lbl__mobile_phone.Name = "lbl__mobile_phone";
+            this.lbl__mobile_phone.Size = new System.Drawing.Size(105, 20);
+            this.lbl__mobile_phone.TabIndex = 22;
+            this.lbl__mobile_phone.Text = "Mobile Phone";
             // 
             // lbl__address
             // 
@@ -95,31 +101,31 @@ namespace WorksOrders.Forms
             // 
             // txtbx_website
             // 
-            this.txtbx_website.Location = new System.Drawing.Point(651, 222);
+            this.txtbx_website.Location = new System.Drawing.Point(666, 244);
             this.txtbx_website.Name = "txtbx_website";
             this.txtbx_website.Size = new System.Drawing.Size(297, 26);
             this.txtbx_website.TabIndex = 19;
             // 
             // txtbx_email
             // 
-            this.txtbx_email.Location = new System.Drawing.Point(209, 219);
+            this.txtbx_email.Location = new System.Drawing.Point(224, 241);
             this.txtbx_email.Name = "txtbx_email";
             this.txtbx_email.Size = new System.Drawing.Size(297, 26);
             this.txtbx_email.TabIndex = 18;
             // 
-            // txtbx_phone
+            // txtbx_mobile_phone
             // 
-            this.txtbx_phone.Location = new System.Drawing.Point(209, 187);
-            this.txtbx_phone.Name = "txtbx_phone";
-            this.txtbx_phone.Size = new System.Drawing.Size(297, 26);
-            this.txtbx_phone.TabIndex = 17;
+            this.txtbx_mobile_phone.Location = new System.Drawing.Point(224, 209);
+            this.txtbx_mobile_phone.Name = "txtbx_mobile_phone";
+            this.txtbx_mobile_phone.Size = new System.Drawing.Size(297, 26);
+            this.txtbx_mobile_phone.TabIndex = 17;
             // 
-            // txtbx_address
+            // txtbx_address_line1
             // 
-            this.txtbx_address.Location = new System.Drawing.Point(224, 81);
-            this.txtbx_address.Name = "txtbx_address";
-            this.txtbx_address.Size = new System.Drawing.Size(297, 26);
-            this.txtbx_address.TabIndex = 16;
+            this.txtbx_address_line1.Location = new System.Drawing.Point(224, 81);
+            this.txtbx_address_line1.Name = "txtbx_address_line1";
+            this.txtbx_address_line1.Size = new System.Drawing.Size(739, 26);
+            this.txtbx_address_line1.TabIndex = 16;
             // 
             // txtbx_company_name
             // 
@@ -148,21 +154,21 @@ namespace WorksOrders.Forms
             this.btn_update.UseVisualStyleBackColor = true;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
-            // label1
+            // lbl_office_phone
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(538, 193);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 20);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Office Phone";
+            this.lbl_office_phone.AutoSize = true;
+            this.lbl_office_phone.Location = new System.Drawing.Point(553, 215);
+            this.lbl_office_phone.Name = "lbl_office_phone";
+            this.lbl_office_phone.Size = new System.Drawing.Size(101, 20);
+            this.lbl_office_phone.TabIndex = 28;
+            this.lbl_office_phone.Text = "Office Phone";
             // 
-            // textBox1
+            // txtbx_office_phone
             // 
-            this.textBox1.Location = new System.Drawing.Point(651, 190);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(297, 26);
-            this.textBox1.TabIndex = 27;
+            this.txtbx_office_phone.Location = new System.Drawing.Point(666, 212);
+            this.txtbx_office_phone.Name = "txtbx_office_phone";
+            this.txtbx_office_phone.Size = new System.Drawing.Size(297, 26);
+            this.txtbx_office_phone.TabIndex = 27;
             // 
             // lbl_contact
             // 
@@ -180,26 +186,78 @@ namespace WorksOrders.Forms
             this.txtbx_contact_name.Size = new System.Drawing.Size(297, 26);
             this.txtbx_contact_name.TabIndex = 29;
             // 
+            // txtbx_address_line2
+            // 
+            this.txtbx_address_line2.Location = new System.Drawing.Point(224, 113);
+            this.txtbx_address_line2.Name = "txtbx_address_line2";
+            this.txtbx_address_line2.Size = new System.Drawing.Size(739, 26);
+            this.txtbx_address_line2.TabIndex = 31;
+            // 
+            // txtbx_address_line3
+            // 
+            this.txtbx_address_line3.Location = new System.Drawing.Point(224, 145);
+            this.txtbx_address_line3.Name = "txtbx_address_line3";
+            this.txtbx_address_line3.Size = new System.Drawing.Size(739, 26);
+            this.txtbx_address_line3.TabIndex = 32;
+            // 
+            // txtbx_town
+            // 
+            this.txtbx_town.Location = new System.Drawing.Point(224, 177);
+            this.txtbx_town.Name = "txtbx_town";
+            this.txtbx_town.Size = new System.Drawing.Size(297, 26);
+            this.txtbx_town.TabIndex = 33;
+            // 
+            // txtbx_postcode
+            // 
+            this.txtbx_postcode.Location = new System.Drawing.Point(666, 177);
+            this.txtbx_postcode.Name = "txtbx_postcode";
+            this.txtbx_postcode.Size = new System.Drawing.Size(297, 26);
+            this.txtbx_postcode.TabIndex = 34;
+            // 
+            // lbl_postcode
+            // 
+            this.lbl_postcode.AutoSize = true;
+            this.lbl_postcode.Location = new System.Drawing.Point(553, 180);
+            this.lbl_postcode.Name = "lbl_postcode";
+            this.lbl_postcode.Size = new System.Drawing.Size(76, 20);
+            this.lbl_postcode.TabIndex = 35;
+            this.lbl_postcode.Text = "Postcode";
+            // 
+            // lbl_town
+            // 
+            this.lbl_town.AutoSize = true;
+            this.lbl_town.Location = new System.Drawing.Point(111, 183);
+            this.lbl_town.Name = "lbl_town";
+            this.lbl_town.Size = new System.Drawing.Size(47, 20);
+            this.lbl_town.TabIndex = 36;
+            this.lbl_town.Text = "Town";
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.Controls.Add(this.lbl_town);
+            this.Controls.Add(this.lbl_postcode);
+            this.Controls.Add(this.txtbx_postcode);
+            this.Controls.Add(this.txtbx_town);
+            this.Controls.Add(this.txtbx_address_line3);
+            this.Controls.Add(this.txtbx_address_line2);
             this.Controls.Add(this.lbl_contact);
             this.Controls.Add(this.txtbx_contact_name);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lbl_office_phone);
+            this.Controls.Add(this.txtbx_office_phone);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.lbl_website);
             this.Controls.Add(this.lbl_email);
-            this.Controls.Add(this.lbl_phone);
+            this.Controls.Add(this.lbl__mobile_phone);
             this.Controls.Add(this.lbl__address);
             this.Controls.Add(this.lbl_company_name);
             this.Controls.Add(this.txtbx_website);
             this.Controls.Add(this.txtbx_email);
-            this.Controls.Add(this.txtbx_phone);
-            this.Controls.Add(this.txtbx_address);
+            this.Controls.Add(this.txtbx_mobile_phone);
+            this.Controls.Add(this.txtbx_address_line1);
             this.Controls.Add(this.txtbx_company_name);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WorkOrderForm";
@@ -213,19 +271,25 @@ namespace WorksOrders.Forms
 
         private System.Windows.Forms.Label lbl_website;
         private System.Windows.Forms.Label lbl_email;
-        private System.Windows.Forms.Label lbl_phone;
+        private System.Windows.Forms.Label lbl__mobile_phone;
         private System.Windows.Forms.Label lbl__address;
         private System.Windows.Forms.Label lbl_company_name;
         private System.Windows.Forms.TextBox txtbx_website;
         private System.Windows.Forms.TextBox txtbx_email;
-        private System.Windows.Forms.TextBox txtbx_phone;
-        private System.Windows.Forms.TextBox txtbx_address;
+        private System.Windows.Forms.TextBox txtbx_mobile_phone;
+        private System.Windows.Forms.TextBox txtbx_address_line1;
         private System.Windows.Forms.TextBox txtbx_company_name;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_update;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lbl_office_phone;
+        private System.Windows.Forms.TextBox txtbx_office_phone;
         private System.Windows.Forms.Label lbl_contact;
         private System.Windows.Forms.TextBox txtbx_contact_name;
+        private System.Windows.Forms.TextBox txtbx_address_line2;
+        private System.Windows.Forms.TextBox txtbx_address_line3;
+        private System.Windows.Forms.TextBox txtbx_town;
+        private System.Windows.Forms.TextBox txtbx_postcode;
+        private System.Windows.Forms.Label lbl_postcode;
+        private System.Windows.Forms.Label lbl_town;
     }
 }

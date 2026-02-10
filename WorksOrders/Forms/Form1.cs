@@ -55,9 +55,7 @@ namespace WorksOrders
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            //Close();
             Application.Exit(); // this also closes hidden login form
-
         }
 
 

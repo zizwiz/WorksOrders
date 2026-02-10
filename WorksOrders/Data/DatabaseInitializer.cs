@@ -21,10 +21,15 @@ namespace WorkOrderApp.Data
                             OrderNumber TEXT NOT NULL,
                             CompanyName TEXT NOT NULL,
                             ContactName TEXT NOT NULL,
-                            Address TEXT,
-                            Phone TEXT,
-                            Email TEXT,
-                            Website TEXT
+                            Address_Line1 TEXT NOT NULL,
+                            Address_Line2 TEXT,
+                            Address_Line3 TEXT,
+                            Town TEXT NOT NULL,
+                            Postcode TEXT NOT NULL,
+                            Phone_Mobile TEXT NOT NULL,
+                            Phone_Office TEXT NOT NULL,
+                            Email TEXT NOT NULL,
+                            Website TEXT NOT NULL
                         );
                     ";
 
