@@ -58,8 +58,20 @@ namespace WorksOrders
             Application.Exit(); // this also closes hidden login form
         }
 
+        private void btn_attach_files_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Title = "Select a file to attach";
 
-
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    var currentWorkOrder = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
+                    _repo.AddFile(currentWorkOrder.Id, dlg.FileName);
+                    MessageBox.Show("File attached");
+                }
+            }
+        }
     }
 
 }

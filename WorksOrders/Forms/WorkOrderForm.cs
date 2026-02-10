@@ -19,6 +19,7 @@ namespace WorksOrders.Forms
 
             if (order != null)
             {
+                txtbx_project.Text = order.Project;
                 txtbx_company_name.Text = order.CompanyName;
                 txtbx_contact_name.Text = order.ContactName;
                 txtbx_address_line1.Text = order.Address_Line1;
@@ -40,6 +41,7 @@ namespace WorksOrders.Forms
         {
             var order = new WorkOrder();
             order.OrderNumber = OrderNumberGenerator.Generate();
+            order.Project = txtbx_project.Text;
             order.CompanyName = txtbx_company_name.Text;
             order.ContactName = txtbx_contact_name.Text;
             order.Address_Line1 = txtbx_address_line1.Text;
@@ -61,6 +63,7 @@ namespace WorksOrders.Forms
         {
             if (!_isAdmin) return;
 
+            _order.Project = txtbx_project.Text;
             _order.CompanyName = txtbx_company_name.Text;
             _order.ContactName = txtbx_contact_name.Text;
             _order.Address_Line1 = txtbx_address_line1.Text;
@@ -77,5 +80,21 @@ namespace WorksOrders.Forms
             MessageBox.Show("Updated");
             Close();
         }
+
+        private void btn_attach_files_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Title = "Select a file to attach";
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    _repo.AddFile(_order.Id, dlg.FileName);
+                    MessageBox.Show("File attached");
+                }
+            }
+        }
+
+       
     }
 }

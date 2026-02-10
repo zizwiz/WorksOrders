@@ -38,6 +38,7 @@ namespace WorksOrders
             this.dataGridView_records = new System.Windows.Forms.DataGridView();
             this.lbl_search = new System.Windows.Forms.Label();
             this.txtbx_search = new System.Windows.Forms.TextBox();
+            this.btn_attach_files = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,11 +118,22 @@ namespace WorksOrders
             this.txtbx_search.Size = new System.Drawing.Size(297, 26);
             this.txtbx_search.TabIndex = 17;
             // 
+            // btn_attach_files
+            // 
+            this.btn_attach_files.Location = new System.Drawing.Point(249, 12);
+            this.btn_attach_files.Name = "btn_attach_files";
+            this.btn_attach_files.Size = new System.Drawing.Size(135, 43);
+            this.btn_attach_files.TabIndex = 19;
+            this.btn_attach_files.Text = "Attach Files";
+            this.btn_attach_files.UseVisualStyleBackColor = true;
+            this.btn_attach_files.Click += new System.EventHandler(this.btn_attach_files_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
+            this.Controls.Add(this.btn_attach_files);
             this.Controls.Add(this.lbl_search);
             this.Controls.Add(this.txtbx_search);
             this.Controls.Add(this.dataGridView_records);
@@ -150,6 +162,7 @@ namespace WorksOrders
         private System.Windows.Forms.DataGridView dataGridView_records;
         private System.Windows.Forms.Label lbl_search;
         private System.Windows.Forms.TextBox txtbx_search;
+        private System.Windows.Forms.Button btn_attach_files;
     }
 }
 

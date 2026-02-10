@@ -52,6 +52,9 @@ namespace WorksOrders.Forms
             this.txtbx_postcode = new System.Windows.Forms.TextBox();
             this.lbl_postcode = new System.Windows.Forms.Label();
             this.lbl_town = new System.Windows.Forms.Label();
+            this.btn_attach_files = new System.Windows.Forms.Button();
+            this.lbl_project = new System.Windows.Forms.Label();
+            this.txtbx_project = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbl_website
@@ -232,11 +235,40 @@ namespace WorksOrders.Forms
             this.lbl_town.TabIndex = 36;
             this.lbl_town.Text = "Town";
             // 
+            // btn_attach_files
+            // 
+            this.btn_attach_files.Location = new System.Drawing.Point(12, 546);
+            this.btn_attach_files.Name = "btn_attach_files";
+            this.btn_attach_files.Size = new System.Drawing.Size(110, 44);
+            this.btn_attach_files.TabIndex = 37;
+            this.btn_attach_files.Text = "Attach Files";
+            this.btn_attach_files.UseVisualStyleBackColor = true;
+            this.btn_attach_files.Click += new System.EventHandler(this.btn_attach_files_Click);
+            // 
+            // lbl_project
+            // 
+            this.lbl_project.AutoSize = true;
+            this.lbl_project.Location = new System.Drawing.Point(96, 20);
+            this.lbl_project.Name = "lbl_project";
+            this.lbl_project.Size = new System.Drawing.Size(58, 20);
+            this.lbl_project.TabIndex = 39;
+            this.lbl_project.Text = "Project";
+            // 
+            // txtbx_project
+            // 
+            this.txtbx_project.Location = new System.Drawing.Point(224, 17);
+            this.txtbx_project.Name = "txtbx_project";
+            this.txtbx_project.Size = new System.Drawing.Size(739, 26);
+            this.txtbx_project.TabIndex = 38;
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.Controls.Add(this.lbl_project);
+            this.Controls.Add(this.txtbx_project);
+            this.Controls.Add(this.btn_attach_files);
             this.Controls.Add(this.lbl_town);
             this.Controls.Add(this.lbl_postcode);
             this.Controls.Add(this.txtbx_postcode);
@@ -291,5 +323,8 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.TextBox txtbx_postcode;
         private System.Windows.Forms.Label lbl_postcode;
         private System.Windows.Forms.Label lbl_town;
+        private System.Windows.Forms.Button btn_attach_files;
+        private System.Windows.Forms.Label lbl_project;
+        private System.Windows.Forms.TextBox txtbx_project;
     }
 }

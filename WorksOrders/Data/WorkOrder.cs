@@ -3,6 +3,7 @@
     public class WorkOrder
     {
         public int Id { get; set; }
+        public string Project { get; set; }
         public string OrderNumber { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
