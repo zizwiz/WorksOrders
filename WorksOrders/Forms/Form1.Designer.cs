@@ -39,6 +39,7 @@ namespace WorksOrders
             this.lbl_search = new System.Windows.Forms.Label();
             this.txtbx_search = new System.Windows.Forms.TextBox();
             this.btn_attach_files = new System.Windows.Forms.Button();
+            this.lstbx_attachments = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,11 +102,12 @@ namespace WorksOrders
             this.dataGridView_records.RowTemplate.Height = 28;
             this.dataGridView_records.Size = new System.Drawing.Size(1007, 314);
             this.dataGridView_records.TabIndex = 15;
+            this.dataGridView_records.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_records_CellClick);
             // 
             // lbl_search
             // 
             this.lbl_search.AutoSize = true;
-            this.lbl_search.Location = new System.Drawing.Point(527, 220);
+            this.lbl_search.Location = new System.Drawing.Point(191, 170);
             this.lbl_search.Name = "lbl_search";
             this.lbl_search.Size = new System.Drawing.Size(60, 20);
             this.lbl_search.TabIndex = 18;
@@ -113,9 +115,9 @@ namespace WorksOrders
             // 
             // txtbx_search
             // 
-            this.txtbx_search.Location = new System.Drawing.Point(640, 217);
+            this.txtbx_search.Location = new System.Drawing.Point(257, 167);
             this.txtbx_search.Name = "txtbx_search";
-            this.txtbx_search.Size = new System.Drawing.Size(297, 26);
+            this.txtbx_search.Size = new System.Drawing.Size(216, 26);
             this.txtbx_search.TabIndex = 17;
             // 
             // btn_attach_files
@@ -128,11 +130,22 @@ namespace WorksOrders
             this.btn_attach_files.UseVisualStyleBackColor = true;
             this.btn_attach_files.Click += new System.EventHandler(this.btn_attach_files_Click);
             // 
+            // lstbx_attachments
+            // 
+            this.lstbx_attachments.FormattingEnabled = true;
+            this.lstbx_attachments.ItemHeight = 20;
+            this.lstbx_attachments.Location = new System.Drawing.Point(503, 26);
+            this.lstbx_attachments.Name = "lstbx_attachments";
+            this.lstbx_attachments.Size = new System.Drawing.Size(552, 244);
+            this.lstbx_attachments.TabIndex = 20;
+            this.lstbx_attachments.DoubleClick += new System.EventHandler(this.lstbx_attachments_DoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
+            this.Controls.Add(this.lstbx_attachments);
             this.Controls.Add(this.btn_attach_files);
             this.Controls.Add(this.lbl_search);
             this.Controls.Add(this.txtbx_search);
@@ -163,6 +176,7 @@ namespace WorksOrders
         private System.Windows.Forms.Label lbl_search;
         private System.Windows.Forms.TextBox txtbx_search;
         private System.Windows.Forms.Button btn_attach_files;
+        private System.Windows.Forms.ListBox lstbx_attachments;
     }
 }
 

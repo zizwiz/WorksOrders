@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\WorkOrder.cs" />
+    <Compile Include="Data\WorkOrderFile.cs" />
     <Compile Include="Data\WorkOrderRepository.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>

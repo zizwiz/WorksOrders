@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using WorkOrderApp.Data;
@@ -30,7 +31,7 @@ namespace WorksOrders
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            var form = new WorkOrderForm(_repo, null, _isAdmin);
+            var form = new WorkOrderForm(_repo, null, _isAdmin, false);
             form.ShowDialog();
         }
 
@@ -42,7 +43,7 @@ namespace WorksOrders
         private void btn_update_Click(object sender, EventArgs e)
         {
             var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-            var form = new WorkOrderForm(_repo, order, _isAdmin);
+            var form = new WorkOrderForm(_repo, order, _isAdmin, true);
             form.ShowDialog();
         }
 
@@ -71,6 +72,49 @@ namespace WorksOrders
                     MessageBox.Show("File attached");
                 }
             }
+        }
+
+        private void dataGridView_records_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            var order = dataGridView_records.Rows[e.RowIndex].DataBoundItem as WorkOrder;
+
+            if (order != null)
+                LoadAttachments(order.Id);
+
+        }
+
+        private void LoadAttachments(int workOrderId)
+        {
+            lstbx_attachments.Items.Clear();
+
+            var files = _repo.GetFiles(workOrderId);
+
+            foreach (var f in files)
+            {
+                // Store the whole object so we can open it later
+                lstbx_attachments.Items.Add(f);
+            }
+        }
+
+        private void lstbx_attachments_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstbx_attachments.SelectedItem == null)
+                return;
+
+            var file = lstbx_attachments.SelectedItem as WorkOrderFile;
+
+            if (file != null && File.Exists(file.FilePath))
+            {
+                System.Diagnostics.Process.Start(file.FilePath);
+            }
+            else
+            {
+                MessageBox.Show("File not found.");
+            }
+
         }
     }
 

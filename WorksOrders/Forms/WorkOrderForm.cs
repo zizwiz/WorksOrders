@@ -9,13 +9,15 @@ namespace WorksOrders.Forms
         private readonly WorkOrderRepository _repo;
         private readonly WorkOrder _order;
         private readonly bool _isAdmin;
+        private readonly bool _isUpdate;
 
-        public WorkOrderForm(WorkOrderRepository repo, WorkOrder order, bool isAdmin)
+        public WorkOrderForm(WorkOrderRepository repo, WorkOrder order, bool isAdmin, bool isUpdate)
         {
             InitializeComponent();
             _repo = repo;
             _order = order;
             _isAdmin = isAdmin;
+            _isUpdate = isUpdate;
 
             if (order != null)
             {
@@ -33,7 +35,8 @@ namespace WorksOrders.Forms
                 txtbx_website.Text = order.Website;
             }
 
-            btn_save.Enabled = true;
+            btn_attach_files.Visible = isAdmin && _isUpdate;
+            btn_save.Enabled = isAdmin && !_isUpdate;
             btn_update.Enabled = isAdmin && order != null;
         }
 
@@ -62,6 +65,7 @@ namespace WorksOrders.Forms
         private void btn_update_Click(object sender, EventArgs e)
         {
             if (!_isAdmin) return;
+            
 
             _order.Project = txtbx_project.Text;
             _order.CompanyName = txtbx_company_name.Text;
@@ -81,6 +85,7 @@ namespace WorksOrders.Forms
             Close();
         }
 
+        // Only works when updating a works order
         private void btn_attach_files_Click(object sender, EventArgs e)
         {
             using (var dlg = new OpenFileDialog())

@@ -108,7 +108,7 @@ namespace WorkOrderApp.Data
                 conn.Open();
 
                 string sql = @"UPDATE WorkOrders SET
-                               Project=@Project, CompanyName=@CompanyName, ContactName@ContactName, Address_Line1=@Address_Line1,
+                               Project=@Project, CompanyName=@CompanyName, ContactName=@ContactName, Address_Line1=@Address_Line1,
                                Address_Line2=@Address_Line2, Address_Line3=@Address_Line3, Town=@Town,
                                Postcode=@Postcode, Phone_Mobile=@Phone_Mobile, Phone_Office=@Phone_Office,
                                 Email=@Email, Website=@Website
@@ -200,6 +200,40 @@ namespace WorkOrderApp.Data
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public List<WorkOrderFile> GetFiles(int workOrderId)
+        {
+            var list = new List<WorkOrderFile>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"SELECT Id, FileName, FilePath 
+                       FROM WorkOrderFiles 
+                       WHERE WorkOrderId = @WorkOrderId";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WorkOrderId", workOrderId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var file = new WorkOrderFile();
+                            file.Id = Convert.ToInt32(reader["Id"]);
+                            file.FileName = reader["FileName"].ToString();
+                            file.FilePath = reader["FilePath"].ToString();
+
+                            list.Add(file);
+                        }
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }
