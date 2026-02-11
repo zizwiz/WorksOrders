@@ -11,6 +11,7 @@ namespace WorksOrders
     {
         private readonly WorkOrderRepository _repo;
         private readonly bool _isAdmin;
+        private WorkOrder _order;
 
         public Form1(string dbPath, bool isAdmin)
         {
@@ -27,16 +28,29 @@ namespace WorksOrders
         {
             //LoadSettings(); //load settings from last session
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
+            PopulateGridView();
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
             var form = new WorkOrderForm(_repo, null, _isAdmin, false);
+            form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
             form.ShowDialog();
+        }
+
+        private void WorkOrderForm_WorkOrderFormClosed(object sender, EventArgs e)
+        {
+            PopulateGridView();
         }
 
         private void btn_search_Click(object sender, EventArgs e)
         {
+            PopulateGridView();
+        }
+
+        private void PopulateGridView()
+        {
+            dataGridView_records.DataSource = null;
             dataGridView_records.DataSource = _repo.Search(txtbx_search.Text);
         }
 
@@ -44,6 +58,7 @@ namespace WorksOrders
         {
             var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
             var form = new WorkOrderForm(_repo, order, _isAdmin, true);
+            form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
             form.ShowDialog();
         }
 
@@ -51,10 +66,16 @@ namespace WorksOrders
         {
             var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
             _repo.Delete(order.Id);
+            PopulateGridView();
             MessageBox.Show("Deleted");
         }
 
         private void btn_close_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // this also closes hidden login form
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit(); // this also closes hidden login form
         }
@@ -79,11 +100,13 @@ namespace WorksOrders
             if (e.RowIndex < 0)
                 return;
 
-            var order = dataGridView_records.Rows[e.RowIndex].DataBoundItem as WorkOrder;
+            _order = dataGridView_records.Rows[e.RowIndex].DataBoundItem as WorkOrder;
 
-            if (order != null)
-                LoadAttachments(order.Id);
-
+            if (_order != null)
+            {
+                LoadAttachments(_order.Id);
+                LoadNotes(_order.Id);
+            }
         }
 
         private void LoadAttachments(int workOrderId)
@@ -99,6 +122,7 @@ namespace WorksOrders
             }
         }
 
+        
         private void lstbx_attachments_DoubleClick(object sender, EventArgs e)
         {
             if (lstbx_attachments.SelectedItem == null)
@@ -116,6 +140,48 @@ namespace WorksOrders
             }
 
         }
+
+        private void LoadNotes(int workOrderId)
+        {
+            lstbx_notes.Items.Clear();
+
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+
+            if (!Directory.Exists(orderDir))
+                return;
+
+            string[] files = Directory.GetFiles(orderDir, "*.txt");
+
+            foreach (string file in files)
+            {
+                lstbx_notes.Items.Add(Path.GetFileNameWithoutExtension(file));
+            }
+        }
+
+        private void lstbx_notes_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (lstbx_notes.SelectedItem == null)
+                return;
+
+            string title = lstbx_notes.SelectedItem.ToString();
+            
+
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, _order.Id.ToString());
+            string filePath = Path.Combine(orderDir, title + ".txt");
+
+            if (File.Exists(filePath))
+            {
+                System.Diagnostics.Process.Start("notepad.exe", filePath);
+            }
+            else
+            {
+                MessageBox.Show("Note file not found.");
+            }
+        }
+
     }
 
 }

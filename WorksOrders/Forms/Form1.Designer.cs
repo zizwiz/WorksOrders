@@ -149,6 +149,7 @@ namespace WorksOrders
             this.lstbx_notes.Name = "lstbx_notes";
             this.lstbx_notes.Size = new System.Drawing.Size(275, 244);
             this.lstbx_notes.TabIndex = 21;
+            this.lstbx_notes.DoubleClick += new System.EventHandler(this.lstbx_notes_DoubleClick);
             // 
             // Form1
             // 
@@ -169,6 +170,7 @@ namespace WorksOrders
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Works Orders";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).EndInit();
             this.ResumeLayout(false);

@@ -268,6 +268,7 @@ namespace WorkOrderApp.Data
         // For storing notes
         public void AddNote(int workOrderId, string noteText)
         {
+
             using (var conn = GetConnection())
             {
                 conn.Open();
@@ -279,7 +280,7 @@ namespace WorkOrderApp.Data
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@WorkOrderId", workOrderId);
-                    cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@NoteText", noteText);
 
                     cmd.ExecuteNonQuery();

@@ -63,6 +63,8 @@ namespace WorksOrders.Forms
             this.lbl_notes = new System.Windows.Forms.Label();
             this.btn_add_notes = new System.Windows.Forms.Button();
             this.lstbx_notes = new System.Windows.Forms.ListBox();
+            this.txtbx_notes_title = new System.Windows.Forms.TextBox();
+            this.lbl_notes_title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_website
@@ -305,17 +307,17 @@ namespace WorksOrders.Forms
             // 
             // txtbx_notes
             // 
-            this.txtbx_notes.Location = new System.Drawing.Point(93, 329);
+            this.txtbx_notes.Location = new System.Drawing.Point(12, 358);
             this.txtbx_notes.Multiline = true;
             this.txtbx_notes.Name = "txtbx_notes";
             this.txtbx_notes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbx_notes.Size = new System.Drawing.Size(561, 199);
+            this.txtbx_notes.Size = new System.Drawing.Size(642, 170);
             this.txtbx_notes.TabIndex = 44;
             // 
             // lbl_notes
             // 
             this.lbl_notes.AutoSize = true;
-            this.lbl_notes.Location = new System.Drawing.Point(39, 329);
+            this.lbl_notes.Location = new System.Drawing.Point(12, 329);
             this.lbl_notes.Name = "lbl_notes";
             this.lbl_notes.Size = new System.Drawing.Size(51, 20);
             this.lbl_notes.TabIndex = 45;
@@ -341,11 +343,29 @@ namespace WorksOrders.Forms
             this.lstbx_notes.TabIndex = 47;
             this.lstbx_notes.DoubleClick += new System.EventHandler(this.lstbx_notes_DoubleClick);
             // 
+            // txtbx_notes_title
+            // 
+            this.txtbx_notes_title.Location = new System.Drawing.Point(128, 326);
+            this.txtbx_notes_title.Name = "txtbx_notes_title";
+            this.txtbx_notes_title.Size = new System.Drawing.Size(393, 26);
+            this.txtbx_notes_title.TabIndex = 48;
+            // 
+            // lbl_notes_title
+            // 
+            this.lbl_notes_title.AutoSize = true;
+            this.lbl_notes_title.Location = new System.Drawing.Point(84, 329);
+            this.lbl_notes_title.Name = "lbl_notes_title";
+            this.lbl_notes_title.Size = new System.Drawing.Size(38, 20);
+            this.lbl_notes_title.TabIndex = 49;
+            this.lbl_notes_title.Text = "Title";
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.Controls.Add(this.lbl_notes_title);
+            this.Controls.Add(this.txtbx_notes_title);
             this.Controls.Add(this.lstbx_notes);
             this.Controls.Add(this.btn_add_notes);
             this.Controls.Add(this.lbl_notes);
@@ -382,6 +402,7 @@ namespace WorksOrders.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WorkOrderForm";
             this.Text = "Works Order";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WorkOrderForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -422,5 +443,7 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.Label lbl_notes;
         private System.Windows.Forms.Button btn_add_notes;
         private System.Windows.Forms.ListBox lstbx_notes;
+        private System.Windows.Forms.TextBox txtbx_notes_title;
+        private System.Windows.Forms.Label lbl_notes_title;
     }
 }

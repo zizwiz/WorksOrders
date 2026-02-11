@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using WorkOrderApp.Data;
 
@@ -159,28 +160,99 @@ namespace WorksOrders.Forms
 
         private void btn_add_notes_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtbx_notes.Text))
+            if (string.IsNullOrWhiteSpace(txtbx_notes_title.Text))
             {
-                MessageBox.Show("Please enter a note before saving.");
+                MessageBox.Show("Please enter a note title.");
                 return;
             }
 
-            _repo.AddNote(_order.Id, txtbx_notes.Text);
+            if (string.IsNullOrWhiteSpace(txtbx_notes.Text))
+            {
+                MessageBox.Show("Please enter some note text.");
+                return;
+            }
 
+            SaveNoteToDisk(_order.Id, txtbx_notes_title.Text, txtbx_notes.Text);
+
+            txtbx_notes_title.Clear();
             txtbx_notes.Clear();
-            LoadNotes(_order.Id);
+
+            LoadNotesFromDisk(_order.Id);
+
+            //if (string.IsNullOrWhiteSpace(txtbx_notes.Text))
+            //{
+            //    MessageBox.Show("Please enter a note before saving.");
+            //    return;
+            //}
+
+            //_repo.AddNote(_order.Id, txtbx_notes.Text);
+
+            //txtbx_notes.Clear();
+            //LoadNotes(_order.Id);
+        }
+
+        private void LoadNotesFromDisk(int workOrderId)
+        {
+            lstbx_notes.Items.Clear();
+
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+
+            if (!Directory.Exists(orderDir))
+                return;
+
+            string[] files = Directory.GetFiles(orderDir, "*.txt");
+
+            foreach (string file in files)
+            {
+                lstbx_notes.Items.Add(Path.GetFileNameWithoutExtension(file));
+            }
         }
 
         private void lstbx_notes_DoubleClick(object sender, EventArgs e)
         {
-            var note = lstbx_notes.SelectedItem as WorkOrderNote;
+            if (lstbx_notes.SelectedItem == null)
+                return;
 
-            if (note != null)
+            string title = lstbx_notes.SelectedItem.ToString();
+
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, _order.Id.ToString());
+            string filePath = Path.Combine(orderDir, title + ".txt");
+
+            if (File.Exists(filePath))
             {
-                txtbx_notes.Text = "";
-                txtbx_notes.Text = note.Timestamp.ToString("dd-MMM-yyyy HH:mm") + "\r\n" + note.NoteText;
+                System.Diagnostics.Process.Start("notepad.exe", filePath);
+            }
+            else
+            {
+                MessageBox.Show("Note file not found.");
             }
 
+
+        }
+
+        private void SaveNoteToDisk(int workOrderId, string title, string body)
+        {
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+
+            if (!Directory.Exists(orderDir))
+                Directory.CreateDirectory(orderDir);
+
+            // Clean filename (remove invalid characters)
+            foreach (char c in Path.GetInvalidFileNameChars())
+                title = title.Replace(c.ToString(), "_");
+
+            string filePath = Path.Combine(orderDir, DateTime.Now.ToString("dd_MMM_yyyy_HH_mm") + "__" + title + ".txt");
+
+            File.WriteAllText(filePath, body);
+        }
+
+        public event EventHandler WorkOrderFormClosed;
+        private void WorkOrderForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            WorkOrderFormClosed?.Invoke(this, EventArgs.Empty);
         }
     }
 }
