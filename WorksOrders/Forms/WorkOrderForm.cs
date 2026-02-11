@@ -33,6 +33,29 @@ namespace WorksOrders.Forms
                 txtbx_office_phone.Text = order.Phone_Office;
                 txtbx_email.Text = order.Email;
                 txtbx_website.Text = order.Website;
+
+                if (order.ProjectStartDate.HasValue)
+                {
+                    dtTmPick_project_start.Value = order.ProjectStartDate.Value;
+                    dtTmPick_project_start.Checked = true;
+                }
+                else
+                {
+                   // dtTmPick_project_start.Value = DateTime.Today;
+                    dtTmPick_project_start.Checked = false;
+                }
+
+                if (order.ProjectEndDate.HasValue)
+                {
+                    dtTmPick_project_end.Value = order.ProjectEndDate.Value;
+                    dtTmPick_project_end.Checked = true;
+                }
+                else
+                {
+                    dtTmPick_project_end.Checked = false;
+                }
+
+                txtbx_notes.Text = order.Notes;
             }
 
             btn_attach_files.Visible = isAdmin && _isUpdate;
@@ -56,6 +79,16 @@ namespace WorksOrders.Forms
             order.Phone_Office = txtbx_office_phone.Text;
             order.Email = txtbx_email.Text;
             order.Website = txtbx_website.Text;
+            
+            order.ProjectStartDate = dtTmPick_project_start.Checked
+                ? (DateTime?)dtTmPick_project_start.Value
+                : null;
+
+            order.ProjectEndDate = dtTmPick_project_end.Checked
+                ? (DateTime?)dtTmPick_project_end.Value
+                : null;
+
+            order.Notes = txtbx_notes.Text;
 
             _repo.Add(order);
             MessageBox.Show("Work Order Added");
@@ -80,6 +113,16 @@ namespace WorksOrders.Forms
             _order.Email = txtbx_email.Text;
             _order.Website = txtbx_website.Text;
 
+            _order.ProjectStartDate = dtTmPick_project_start.Checked
+                ? (DateTime?)dtTmPick_project_start.Value
+                : null;
+
+            _order.ProjectEndDate = dtTmPick_project_end.Checked
+                ? (DateTime?)dtTmPick_project_end.Value
+                : null;
+
+            _order.Notes = txtbx_notes.Text;
+
             _repo.Update(_order);
             MessageBox.Show("Updated");
             Close();
@@ -94,7 +137,7 @@ namespace WorksOrders.Forms
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    _repo.AddFile(_order.Id, dlg.FileName);
+                    _repo.AddAttachmentFile(_order.Id, dlg.FileName);
                     MessageBox.Show("File attached");
                 }
             }

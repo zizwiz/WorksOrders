@@ -28,10 +28,11 @@ namespace WorkOrderApp.Data
 
                 string sql = @"INSERT INTO WorkOrders 
                                (Project, OrderNumber, CompanyName, ContactName, Address_Line1, Address_Line2, 
-                                Address_Line3, Town, Postcode, Phone_Mobile, Phone_Office, Email, Website)
+                                Address_Line3, Town, Postcode, Phone_Mobile, Phone_Office, Email, Website,
+                                ProjectStartDate, ProjectEndDate, Notes)
                                VALUES (@Project, @OrderNumber, @CompanyName, @ContactName, @Address_Line1, @Address_Line2,
                                         @Address_Line3, @Town, @Postcode, @Phone_Mobile, @Phone_Office ,@Email, 
-                                        @Website)";
+                                        @Website, @ProjectStartDate, @ProjectEndDate, @Notes)";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -48,6 +49,14 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Phone_Office", order.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", order.Email);
                     cmd.Parameters.AddWithValue("@Website", order.Website);
+
+                    cmd.Parameters.AddWithValue("@ProjectStartDate",
+                        order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("dd-MMM-yyyy") : null);
+
+                    cmd.Parameters.AddWithValue("@ProjectEndDate",
+                        order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("dd-MMM-yyyy") : null);
+
+                    cmd.Parameters.AddWithValue("@Notes", order.Notes);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -66,7 +75,8 @@ namespace WorkOrderApp.Data
                                WHERE Project LIKE @kw OR CompanyName LIKE @kw OR ContactName LIKE @kw 
                                 OR Address_Line1 LIKE @kw OR Address_Line2 LIKE @kw OR Address_Line2 LIKE @kw 
                                 OR Town LIKE @kw OR Postcode LIKE @kw OR Phone_Mobile LIKE @kw 
-                                OR Phone_Office LIKE @kw OR Email LIKE @kw OR Website LIKE @kw";
+                                OR Phone_Office LIKE @kw OR Email LIKE @kw OR Website LIKE @kw
+                                OR ProjectStartDate LIKE @kw OR ProjectEndDate LIKE @kw OR Notes LIKE @kw";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -91,6 +101,14 @@ namespace WorkOrderApp.Data
                             order.Phone_Office = reader["Phone_Office"].ToString();
                             order.Email = reader["Email"].ToString();
                             order.Website = reader["Website"].ToString();
+                            
+                            string start = reader["ProjectStartDate"].ToString();
+                            string end = reader["ProjectEndDate"].ToString();
+
+                            order.ProjectStartDate = string.IsNullOrEmpty(start) ? (DateTime?)null : DateTime.Parse(start);
+                            order.ProjectEndDate = string.IsNullOrEmpty(end) ? (DateTime?)null : DateTime.Parse(end);
+
+                            order.Notes = reader["Notes"].ToString();
 
                             list.Add(order);
                         }
@@ -111,7 +129,8 @@ namespace WorkOrderApp.Data
                                Project=@Project, CompanyName=@CompanyName, ContactName=@ContactName, Address_Line1=@Address_Line1,
                                Address_Line2=@Address_Line2, Address_Line3=@Address_Line3, Town=@Town,
                                Postcode=@Postcode, Phone_Mobile=@Phone_Mobile, Phone_Office=@Phone_Office,
-                                Email=@Email, Website=@Website
+                                Email=@Email, Website=@Website, ProjectStartDate=@ProjectStartDate,
+                                ProjectEndDate=@ProjectEndDate, Notes=@Notes
                                WHERE Id=@Id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -129,13 +148,21 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Phone_Office", order.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", order.Email);
                     cmd.Parameters.AddWithValue("@Website", order.Website);
+                    
+                    cmd.Parameters.AddWithValue("@ProjectStartDate",
+                           order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("dd-MMM-yyyy") : null);
+
+                    cmd.Parameters.AddWithValue("@ProjectEndDate",
+                        order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("dd-MMM-yyyy") : null);
+
+                    cmd.Parameters.AddWithValue("@Notes", order.Notes);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AddFile(int workOrderId, string sourceFilePath)
+        public void AddAttachmentFile(int workOrderId, string sourceFilePath)
         {
             string attachmentsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Attachments");
 
@@ -186,6 +213,7 @@ namespace WorkOrderApp.Data
             }
         }
 
+        //delete record
         public void Delete(int id)
         {
             using (var conn = GetConnection())
@@ -202,6 +230,7 @@ namespace WorkOrderApp.Data
             }
         }
 
+        //List all the attachments
         public List<WorkOrderFile> GetFiles(int workOrderId)
         {
             var list = new List<WorkOrderFile>();

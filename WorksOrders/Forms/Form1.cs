@@ -68,7 +68,7 @@ namespace WorksOrders
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     var currentWorkOrder = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-                    _repo.AddFile(currentWorkOrder.Id, dlg.FileName);
+                    _repo.AddAttachmentFile(currentWorkOrder.Id, dlg.FileName);
                     MessageBox.Show("File attached");
                 }
             }

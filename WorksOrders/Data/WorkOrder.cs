@@ -1,4 +1,6 @@
-﻿namespace WorkOrderApp.Data
+﻿using System;
+
+namespace WorkOrderApp.Data
 {
     public class WorkOrder
     {
@@ -16,5 +18,9 @@
         public string Phone_Office { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public DateTime? ProjectStartDate { get; set; }
+        public DateTime? ProjectEndDate { get; set; }
+        public string Notes { get; set; }
+
     }
 }

@@ -15,6 +15,7 @@ namespace WorkOrderApp.Data
                 {
                     conn.Open();
 
+                    //-------------------------------------------------------------------
                     string sql = @"
                         CREATE TABLE WorkOrders (
                             Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,7 +31,10 @@ namespace WorkOrderApp.Data
                             Phone_Mobile TEXT NOT NULL,
                             Phone_Office TEXT NOT NULL,
                             Email TEXT NOT NULL,
-                            Website TEXT NOT NULL
+                            Website TEXT NOT NULL,
+                            ProjectStartDate TEXT,
+                            ProjectEndDate TEXT,
+                            Notes TEXT
                         );
                     ";
 
@@ -39,6 +43,7 @@ namespace WorkOrderApp.Data
                         cmd.ExecuteNonQuery();
                     }
 
+                   //--------------------------------------------------------------------------------
                    // This is a block from here to marker below. add blocks for new tables
                    // Create WorkOrderFiles table to store files
                    string sqlFiles = @"
@@ -56,6 +61,7 @@ namespace WorkOrderApp.Data
                        cmd.ExecuteNonQuery();
                    }
                    // Bottom of marker
+                   //----------------------------------------------------------------------------------
                 }
             }
         }
