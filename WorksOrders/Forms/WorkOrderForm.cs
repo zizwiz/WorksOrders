@@ -55,12 +55,26 @@ namespace WorksOrders.Forms
                     dtTmPick_project_end.Checked = false;
                 }
 
-                txtbx_notes.Text = order.Notes;
+                LoadNotes(order.Id); //Load any existing stored notes
+                //txtbx_notes.Text = order.Notes;
             }
 
             btn_attach_files.Visible = isAdmin && _isUpdate;
             btn_save.Enabled = isAdmin && !_isUpdate;
+            btn_add_notes.Enabled = isAdmin && order != null;
             btn_update.Enabled = isAdmin && order != null;
+        }
+
+        private void LoadNotes(int workOrderId)
+        {
+            lstbx_notes.Items.Clear();
+
+            var notes = _repo.GetNotes(workOrderId);
+
+            foreach (var n in notes)
+            {
+                lstbx_notes.Items.Add(n);
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -143,6 +157,30 @@ namespace WorksOrders.Forms
             }
         }
 
-       
+        private void btn_add_notes_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtbx_notes.Text))
+            {
+                MessageBox.Show("Please enter a note before saving.");
+                return;
+            }
+
+            _repo.AddNote(_order.Id, txtbx_notes.Text);
+
+            txtbx_notes.Clear();
+            LoadNotes(_order.Id);
+        }
+
+        private void lstbx_notes_DoubleClick(object sender, EventArgs e)
+        {
+            var note = lstbx_notes.SelectedItem as WorkOrderNote;
+
+            if (note != null)
+            {
+                txtbx_notes.Text = "";
+                txtbx_notes.Text = note.Timestamp.ToString("dd-MMM-yyyy HH:mm") + "\r\n" + note.NoteText;
+            }
+
+        }
     }
 }

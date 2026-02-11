@@ -264,5 +264,64 @@ namespace WorkOrderApp.Data
 
             return list;
         }
+
+        // For storing notes
+        public void AddNote(int workOrderId, string noteText)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"INSERT INTO WorkOrderNotes 
+                       (WorkOrderId, Timestamp, NoteText)
+                       VALUES (@WorkOrderId, @Timestamp, @NoteText)";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WorkOrderId", workOrderId);
+                    cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@NoteText", noteText);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //List all the project notes
+        public List<WorkOrderNote> GetNotes(int workOrderId)
+        {
+            var list = new List<WorkOrderNote>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"SELECT Id, WorkOrderId, Timestamp, NoteText
+                       FROM WorkOrderNotes
+                       WHERE WorkOrderId = @WorkOrderId
+                       ORDER BY Timestamp DESC";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WorkOrderId", workOrderId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var note = new WorkOrderNote();
+                            note.Id = Convert.ToInt32(reader["Id"]);
+                            note.WorkOrderId = Convert.ToInt32(reader["WorkOrderId"]);
+                            note.Timestamp = DateTime.Parse(reader["Timestamp"].ToString());
+                            note.NoteText = reader["NoteText"].ToString();
+
+                            list.Add(note);
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
     }
 }

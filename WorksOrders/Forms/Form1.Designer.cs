@@ -40,6 +40,7 @@ namespace WorksOrders
             this.txtbx_search = new System.Windows.Forms.TextBox();
             this.btn_attach_files = new System.Windows.Forms.Button();
             this.lstbx_attachments = new System.Windows.Forms.ListBox();
+            this.lstbx_notes = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,17 +135,27 @@ namespace WorksOrders
             // 
             this.lstbx_attachments.FormattingEnabled = true;
             this.lstbx_attachments.ItemHeight = 20;
-            this.lstbx_attachments.Location = new System.Drawing.Point(503, 26);
+            this.lstbx_attachments.Location = new System.Drawing.Point(778, 32);
             this.lstbx_attachments.Name = "lstbx_attachments";
-            this.lstbx_attachments.Size = new System.Drawing.Size(552, 244);
+            this.lstbx_attachments.Size = new System.Drawing.Size(278, 244);
             this.lstbx_attachments.TabIndex = 20;
             this.lstbx_attachments.DoubleClick += new System.EventHandler(this.lstbx_attachments_DoubleClick);
+            // 
+            // lstbx_notes
+            // 
+            this.lstbx_notes.FormattingEnabled = true;
+            this.lstbx_notes.ItemHeight = 20;
+            this.lstbx_notes.Location = new System.Drawing.Point(479, 32);
+            this.lstbx_notes.Name = "lstbx_notes";
+            this.lstbx_notes.Size = new System.Drawing.Size(275, 244);
+            this.lstbx_notes.TabIndex = 21;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
+            this.Controls.Add(this.lstbx_notes);
             this.Controls.Add(this.lstbx_attachments);
             this.Controls.Add(this.btn_attach_files);
             this.Controls.Add(this.lbl_search);
@@ -177,6 +188,7 @@ namespace WorksOrders
         private System.Windows.Forms.TextBox txtbx_search;
         private System.Windows.Forms.Button btn_attach_files;
         private System.Windows.Forms.ListBox lstbx_attachments;
+        private System.Windows.Forms.ListBox lstbx_notes;
     }
 }
 

@@ -61,6 +61,8 @@ namespace WorksOrders.Forms
             this.dtTmPick_project_end = new System.Windows.Forms.DateTimePicker();
             this.txtbx_notes = new System.Windows.Forms.TextBox();
             this.lbl_notes = new System.Windows.Forms.Label();
+            this.btn_add_notes = new System.Windows.Forms.Button();
+            this.lstbx_notes = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbl_website
@@ -307,7 +309,7 @@ namespace WorksOrders.Forms
             this.txtbx_notes.Multiline = true;
             this.txtbx_notes.Name = "txtbx_notes";
             this.txtbx_notes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbx_notes.Size = new System.Drawing.Size(907, 199);
+            this.txtbx_notes.Size = new System.Drawing.Size(561, 199);
             this.txtbx_notes.TabIndex = 44;
             // 
             // lbl_notes
@@ -319,11 +321,33 @@ namespace WorksOrders.Forms
             this.lbl_notes.TabIndex = 45;
             this.lbl_notes.Text = "Notes";
             // 
+            // btn_add_notes
+            // 
+            this.btn_add_notes.Location = new System.Drawing.Point(128, 546);
+            this.btn_add_notes.Name = "btn_add_notes";
+            this.btn_add_notes.Size = new System.Drawing.Size(110, 44);
+            this.btn_add_notes.TabIndex = 46;
+            this.btn_add_notes.Text = "Add Notes";
+            this.btn_add_notes.UseVisualStyleBackColor = true;
+            this.btn_add_notes.Click += new System.EventHandler(this.btn_add_notes_Click);
+            // 
+            // lstbx_notes
+            // 
+            this.lstbx_notes.FormattingEnabled = true;
+            this.lstbx_notes.ItemHeight = 20;
+            this.lstbx_notes.Location = new System.Drawing.Point(666, 319);
+            this.lstbx_notes.Name = "lstbx_notes";
+            this.lstbx_notes.Size = new System.Drawing.Size(322, 204);
+            this.lstbx_notes.TabIndex = 47;
+            this.lstbx_notes.DoubleClick += new System.EventHandler(this.lstbx_notes_DoubleClick);
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.Controls.Add(this.lstbx_notes);
+            this.Controls.Add(this.btn_add_notes);
             this.Controls.Add(this.lbl_notes);
             this.Controls.Add(this.txtbx_notes);
             this.Controls.Add(this.dtTmPick_project_end);
@@ -396,5 +420,7 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.DateTimePicker dtTmPick_project_end;
         private System.Windows.Forms.TextBox txtbx_notes;
         private System.Windows.Forms.Label lbl_notes;
+        private System.Windows.Forms.Button btn_add_notes;
+        private System.Windows.Forms.ListBox lstbx_notes;
     }
 }

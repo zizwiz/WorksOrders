@@ -45,7 +45,7 @@ namespace WorkOrderApp.Data
 
                    //--------------------------------------------------------------------------------
                    // This is a block from here to marker below. add blocks for new tables
-                   // Create WorkOrderFiles table to store files
+                   // Create WorkOrderFiles table to store attached files
                    string sqlFiles = @"
                         CREATE TABLE WorkOrderFiles (
                             Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -60,8 +60,25 @@ namespace WorkOrderApp.Data
                    {
                        cmd.ExecuteNonQuery();
                    }
-                   // Bottom of marker
-                   //----------------------------------------------------------------------------------
+                    // Bottom of marker
+                    //----------------------------------------------------------------------------------
+                    // Create WorkOrderFiles table to store notes
+                    string sqlNotes = @"
+                        CREATE TABLE WorkOrderNotes (
+                            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            WorkOrderId INTEGER NOT NULL,
+                            Timestamp TEXT NOT NULL,
+                            NoteText TEXT NOT NULL,
+                            FOREIGN KEY (WorkOrderId) REFERENCES WorkOrders(Id)
+                        );
+                    ";
+
+                    using (var cmd = new SQLiteCommand(sqlNotes, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    //------------------------------------------------------------------------------------
                 }
             }
         }
