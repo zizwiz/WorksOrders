@@ -179,16 +179,6 @@ namespace WorksOrders.Forms
 
             LoadNotesFromDisk(_order.Id);
 
-            //if (string.IsNullOrWhiteSpace(txtbx_notes.Text))
-            //{
-            //    MessageBox.Show("Please enter a note before saving.");
-            //    return;
-            //}
-
-            //_repo.AddNote(_order.Id, txtbx_notes.Text);
-
-            //txtbx_notes.Clear();
-            //LoadNotes(_order.Id);
         }
 
         private void LoadNotesFromDisk(int workOrderId)

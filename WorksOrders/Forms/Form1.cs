@@ -22,6 +22,7 @@ namespace WorksOrders
             btn_delete.Enabled = isAdmin;
             btn_update.Enabled = isAdmin;
             btn_add.Enabled = isAdmin;
+            btn_attach_files.Enabled = isAdmin;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -182,6 +183,10 @@ namespace WorksOrders
             }
         }
 
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            PopulateGridView();
+        }
     }
 
 }

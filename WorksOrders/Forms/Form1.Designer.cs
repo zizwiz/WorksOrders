@@ -41,6 +41,7 @@ namespace WorksOrders
             this.btn_attach_files = new System.Windows.Forms.Button();
             this.lstbx_attachments = new System.Windows.Forms.ListBox();
             this.lstbx_notes = new System.Windows.Forms.ListBox();
+            this.btn_refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,11 +152,22 @@ namespace WorksOrders
             this.lstbx_notes.TabIndex = 21;
             this.lstbx_notes.DoubleClick += new System.EventHandler(this.lstbx_notes_DoubleClick);
             // 
+            // btn_refresh
+            // 
+            this.btn_refresh.Location = new System.Drawing.Point(249, 61);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(135, 43);
+            this.btn_refresh.TabIndex = 22;
+            this.btn_refresh.Text = "Refresh";
+            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
+            this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.lstbx_notes);
             this.Controls.Add(this.lstbx_attachments);
             this.Controls.Add(this.btn_attach_files);
@@ -191,6 +203,7 @@ namespace WorksOrders
         private System.Windows.Forms.Button btn_attach_files;
         private System.Windows.Forms.ListBox lstbx_attachments;
         private System.Windows.Forms.ListBox lstbx_notes;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }
 
