@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using CenteredMessagebox;
 using WorkOrderApp.Data;
 using WorksOrders.Forms;
 
@@ -68,7 +70,7 @@ namespace WorksOrders
             var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
             _repo.Delete(order.Id);
             PopulateGridView();
-            MessageBox.Show("Deleted");
+            MsgBox.Show("Row Deleted", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -91,7 +93,7 @@ namespace WorksOrders
                 {
                     var currentWorkOrder = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
                     _repo.AddAttachmentFile(currentWorkOrder.Id, dlg.FileName);
-                    MessageBox.Show("File attached");
+                    MsgBox.Show("File attached: " + dlg.FileName, "Attachments", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -137,7 +139,7 @@ namespace WorksOrders
             }
             else
             {
-                MessageBox.Show("File not found.");
+                MsgBox.Show("File not found.", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -179,7 +181,7 @@ namespace WorksOrders
             }
             else
             {
-                MessageBox.Show("Note file not found.");
+                MsgBox.Show("Note file not found.", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

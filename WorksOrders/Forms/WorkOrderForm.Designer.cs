@@ -65,6 +65,7 @@ namespace WorksOrders.Forms
             this.lstbx_notes = new System.Windows.Forms.ListBox();
             this.txtbx_notes_title = new System.Windows.Forms.TextBox();
             this.lbl_notes_title = new System.Windows.Forms.Label();
+            this.btn_close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_website
@@ -149,7 +150,7 @@ namespace WorksOrders.Forms
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(624, 546);
+            this.btn_save.Location = new System.Drawing.Point(352, 546);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(110, 44);
             this.btn_save.TabIndex = 25;
@@ -159,7 +160,7 @@ namespace WorksOrders.Forms
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(901, 546);
+            this.btn_update.Location = new System.Drawing.Point(619, 546);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(110, 44);
             this.btn_update.TabIndex = 26;
@@ -359,11 +360,22 @@ namespace WorksOrders.Forms
             this.lbl_notes_title.TabIndex = 49;
             this.lbl_notes_title.Text = "Title";
             // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(904, 546);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(110, 44);
+            this.btn_close.TabIndex = 50;
+            this.btn_close.Text = "Close";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.lbl_notes_title);
             this.Controls.Add(this.txtbx_notes_title);
             this.Controls.Add(this.lstbx_notes);
@@ -401,6 +413,7 @@ namespace WorksOrders.Forms
             this.Controls.Add(this.txtbx_company_name);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WorkOrderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Works Order";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WorkOrderForm_FormClosed);
             this.ResumeLayout(false);
@@ -445,5 +458,6 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.ListBox lstbx_notes;
         private System.Windows.Forms.TextBox txtbx_notes_title;
         private System.Windows.Forms.Label lbl_notes_title;
+        private System.Windows.Forms.Button btn_close;
     }
 }

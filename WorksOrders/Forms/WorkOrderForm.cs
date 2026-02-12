@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using CenteredMessagebox;
 using WorkOrderApp.Data;
 
 namespace WorksOrders.Forms
@@ -106,7 +107,7 @@ namespace WorksOrders.Forms
             order.Notes = txtbx_notes.Text;
 
             _repo.Add(order);
-            MessageBox.Show("Work Order Added");
+            MsgBox.Show("Work Order Added", "Order added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
@@ -139,7 +140,7 @@ namespace WorksOrders.Forms
             _order.Notes = txtbx_notes.Text;
 
             _repo.Update(_order);
-            MessageBox.Show("Updated");
+            MsgBox.Show("Record Updated", "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
@@ -153,7 +154,7 @@ namespace WorksOrders.Forms
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     _repo.AddAttachmentFile(_order.Id, dlg.FileName);
-                    MessageBox.Show("File attached");
+                    MsgBox.Show("File attached", "File attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -162,13 +163,13 @@ namespace WorksOrders.Forms
         {
             if (string.IsNullOrWhiteSpace(txtbx_notes_title.Text))
             {
-                MessageBox.Show("Please enter a note title.");
+                MsgBox.Show("Please enter a note title.", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtbx_notes.Text))
             {
-                MessageBox.Show("Please enter some note text.");
+                MsgBox.Show("Please enter some note text.", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -216,7 +217,7 @@ namespace WorksOrders.Forms
             }
             else
             {
-                MessageBox.Show("Note file not found.");
+                MsgBox.Show("Note file not found.", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -243,6 +244,11 @@ namespace WorksOrders.Forms
         private void WorkOrderForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             WorkOrderFormClosed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

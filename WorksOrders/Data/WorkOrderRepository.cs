@@ -191,28 +191,7 @@ namespace WorkOrderApp.Data
             }
         }
 
-        public void OpenFile(int fileId)
-        {
-            using (var conn = GetConnection())
-            {
-                conn.Open();
-
-                string sql = "SELECT FilePath FROM WorkOrderFiles WHERE Id=@Id";
-
-                using (var cmd = new SQLiteCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Id", fileId);
-
-                    string path = cmd.ExecuteScalar().ToString();
-
-                    if (File.Exists(path))
-                        System.Diagnostics.Process.Start(path);
-                    else
-                        MessageBox.Show("File not found.");
-                }
-            }
-        }
-
+      
         //delete record
         public void Delete(int id)
         {
@@ -265,29 +244,7 @@ namespace WorkOrderApp.Data
             return list;
         }
 
-        // For storing notes
-        public void AddNote(int workOrderId, string noteText)
-        {
-
-            using (var conn = GetConnection())
-            {
-                conn.Open();
-
-                string sql = @"INSERT INTO WorkOrderNotes 
-                       (WorkOrderId, Timestamp, NoteText)
-                       VALUES (@WorkOrderId, @Timestamp, @NoteText)";
-
-                using (var cmd = new SQLiteCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@WorkOrderId", workOrderId);
-                    cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@NoteText", noteText);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
+        
         //List all the project notes
         public List<WorkOrderNote> GetNotes(int workOrderId)
         {
