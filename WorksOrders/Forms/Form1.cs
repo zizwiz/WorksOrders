@@ -93,6 +93,7 @@ namespace WorksOrders
                 {
                     var currentWorkOrder = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
                     _repo.AddAttachmentFile(currentWorkOrder.Id, dlg.FileName);
+                    LoadAttachments(currentWorkOrder.Id); 
                     MsgBox.Show("File attached: " + dlg.FileName, "Attachments", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

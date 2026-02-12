@@ -100,7 +100,7 @@ namespace WorksOrders.Forms
             order.Phone_Office = txtbx_office_phone.Text;
             order.Email = txtbx_email.Text;
             order.Website = txtbx_website.Text;
-            
+
             order.ProjectStartDate = dtTmPick_project_start.Checked
                 ? (DateTime?)dtTmPick_project_start.Value
                 : null;
@@ -119,7 +119,7 @@ namespace WorksOrders.Forms
         private void btn_update_Click(object sender, EventArgs e)
         {
             if (!_isAdmin) return;
-            
+
 
             _order.Project = txtbx_project.Text;
             _order.CompanyName = txtbx_company_name.Text;
@@ -283,6 +283,13 @@ namespace WorksOrders.Forms
             string orderDir = Path.Combine(baseDir, _order.Id.ToString());
             string filePath = Path.Combine(orderDir, title + ".txt");
 
+            DialogResult result = MsgBox.Show("Are you sure you want to delete " + title, "Yes or No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
@@ -308,6 +315,13 @@ namespace WorksOrders.Forms
 
             if (file == null)
                 return;
+
+            DialogResult result = MsgBox.Show("Are you sure you want to delete " + file, "Yes or No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                return;
+            }
 
             // Delete file from disk
             if (File.Exists(file.FilePath))
