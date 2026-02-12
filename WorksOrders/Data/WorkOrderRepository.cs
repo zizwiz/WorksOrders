@@ -281,5 +281,22 @@ namespace WorkOrderApp.Data
 
             return list;
         }
+
+        public void DeleteFile(int fileId)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = "DELETE FROM WorkOrderFiles WHERE Id=@Id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", fileId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

@@ -43,7 +43,6 @@ namespace WorksOrders.Forms
                 }
                 else
                 {
-                   // dtTmPick_project_start.Value = DateTime.Today;
                     dtTmPick_project_start.Checked = false;
                 }
 
@@ -58,7 +57,7 @@ namespace WorksOrders.Forms
                 }
 
                 LoadNotes(order.Id); //Load any existing stored notes
-                //txtbx_notes.Text = order.Notes;
+                LoadAttachments(order.Id); //Load any existing attachments
             }
 
             btn_attach_files.Visible = isAdmin && _isUpdate;
@@ -71,11 +70,17 @@ namespace WorksOrders.Forms
         {
             lstbx_notes.Items.Clear();
 
-            var notes = _repo.GetNotes(workOrderId);
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
 
-            foreach (var n in notes)
+            if (!Directory.Exists(orderDir))
+                return;
+
+            string[] files = Directory.GetFiles(orderDir, "*.txt");
+
+            foreach (string file in files)
             {
-                lstbx_notes.Items.Add(n);
+                lstbx_notes.Items.Add(Path.GetFileNameWithoutExtension(file));
             }
         }
 
@@ -249,6 +254,73 @@ namespace WorksOrders.Forms
         private void btn_close_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void LoadAttachments(int workOrderId)
+        {
+            lstbx_attachments.Items.Clear();
+
+            var files = _repo.GetFiles(workOrderId);
+
+            foreach (var f in files)
+            {
+                // Store the whole object so we can open it later
+                lstbx_attachments.Items.Add(f);
+            }
+        }
+
+        private void btn_delete_notes_Click(object sender, EventArgs e)
+        {
+            if (lstbx_notes.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a note to delete.");
+                return;
+            }
+
+            string title = lstbx_notes.SelectedItem.ToString();
+
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(baseDir, _order.Id.ToString());
+            string filePath = Path.Combine(orderDir, title + ".txt");
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+                MsgBox.Show("Note deleted.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MsgBox.Show("Note file not found.", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            LoadNotesFromDisk(_order.Id);
+        }
+
+        private void btn_delete_attachment_Click(object sender, EventArgs e)
+        {
+            if (lstbx_attachments.SelectedItem == null)
+            {
+                MsgBox.Show("Please select an attachment to delete.", "Delete Attachment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var file = lstbx_attachments.SelectedItem as WorkOrderFile;
+
+            if (file == null)
+                return;
+
+            // Delete file from disk
+            if (File.Exists(file.FilePath))
+            {
+                File.Delete(file.FilePath);
+            }
+
+            // Delete DB entry
+            _repo.DeleteFile(file.Id);
+
+            MsgBox.Show("Attachment deleted.", "Delete Attachment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            LoadAttachments(_order.Id);
         }
     }
 }

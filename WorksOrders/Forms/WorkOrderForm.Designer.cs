@@ -66,6 +66,9 @@ namespace WorksOrders.Forms
             this.txtbx_notes_title = new System.Windows.Forms.TextBox();
             this.lbl_notes_title = new System.Windows.Forms.Label();
             this.btn_close = new System.Windows.Forms.Button();
+            this.lstbx_attachments = new System.Windows.Forms.ListBox();
+            this.btn_delete_notes = new System.Windows.Forms.Button();
+            this.btn_delete_attachment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_website
@@ -150,7 +153,7 @@ namespace WorksOrders.Forms
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(352, 546);
+            this.btn_save.Location = new System.Drawing.Point(672, 546);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(110, 44);
             this.btn_save.TabIndex = 25;
@@ -160,7 +163,7 @@ namespace WorksOrders.Forms
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(619, 546);
+            this.btn_update.Location = new System.Drawing.Point(788, 546);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(110, 44);
             this.btn_update.TabIndex = 26;
@@ -340,7 +343,7 @@ namespace WorksOrders.Forms
             this.lstbx_notes.ItemHeight = 20;
             this.lstbx_notes.Location = new System.Drawing.Point(666, 319);
             this.lstbx_notes.Name = "lstbx_notes";
-            this.lstbx_notes.Size = new System.Drawing.Size(322, 204);
+            this.lstbx_notes.Size = new System.Drawing.Size(145, 204);
             this.lstbx_notes.TabIndex = 47;
             this.lstbx_notes.DoubleClick += new System.EventHandler(this.lstbx_notes_DoubleClick);
             // 
@@ -370,11 +373,43 @@ namespace WorksOrders.Forms
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // lstbx_attachments
+            // 
+            this.lstbx_attachments.FormattingEnabled = true;
+            this.lstbx_attachments.ItemHeight = 20;
+            this.lstbx_attachments.Location = new System.Drawing.Point(844, 319);
+            this.lstbx_attachments.Name = "lstbx_attachments";
+            this.lstbx_attachments.Size = new System.Drawing.Size(145, 204);
+            this.lstbx_attachments.TabIndex = 51;
+            // 
+            // btn_delete_notes
+            // 
+            this.btn_delete_notes.Location = new System.Drawing.Point(460, 546);
+            this.btn_delete_notes.Name = "btn_delete_notes";
+            this.btn_delete_notes.Size = new System.Drawing.Size(141, 44);
+            this.btn_delete_notes.TabIndex = 53;
+            this.btn_delete_notes.Text = "Delete Notes";
+            this.btn_delete_notes.UseVisualStyleBackColor = true;
+            this.btn_delete_notes.Click += new System.EventHandler(this.btn_delete_notes_Click);
+            // 
+            // btn_delete_attachment
+            // 
+            this.btn_delete_attachment.Location = new System.Drawing.Point(299, 546);
+            this.btn_delete_attachment.Name = "btn_delete_attachment";
+            this.btn_delete_attachment.Size = new System.Drawing.Size(155, 44);
+            this.btn_delete_attachment.TabIndex = 52;
+            this.btn_delete_attachment.Text = "Delete Attachment";
+            this.btn_delete_attachment.UseVisualStyleBackColor = true;
+            this.btn_delete_attachment.Click += new System.EventHandler(this.btn_delete_attachment_Click);
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.Controls.Add(this.btn_delete_notes);
+            this.Controls.Add(this.btn_delete_attachment);
+            this.Controls.Add(this.lstbx_attachments);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.lbl_notes_title);
             this.Controls.Add(this.txtbx_notes_title);
@@ -459,5 +494,8 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.TextBox txtbx_notes_title;
         private System.Windows.Forms.Label lbl_notes_title;
         private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.ListBox lstbx_attachments;
+        private System.Windows.Forms.Button btn_delete_notes;
+        private System.Windows.Forms.Button btn_delete_attachment;
     }
 }
