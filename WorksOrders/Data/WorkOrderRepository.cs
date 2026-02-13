@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
-using System.Windows.Forms;
 
 namespace WorkOrderApp.Data
 {
@@ -29,10 +28,10 @@ namespace WorkOrderApp.Data
                 string sql = @"INSERT INTO WorkOrders 
                                (Project, OrderNumber, CompanyName, ContactName, Address_Line1, Address_Line2, 
                                 Address_Line3, Town, Postcode, Phone_Mobile, Phone_Office, Email, Website,
-                                ProjectStartDate, ProjectEndDate, Notes)
+                                ProjectStartDate, ProjectEndDate)
                                VALUES (@Project, @OrderNumber, @CompanyName, @ContactName, @Address_Line1, @Address_Line2,
                                         @Address_Line3, @Town, @Postcode, @Phone_Mobile, @Phone_Office ,@Email, 
-                                        @Website, @ProjectStartDate, @ProjectEndDate, @Notes)";
+                                        @Website, @ProjectStartDate, @ProjectEndDate)";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -56,9 +55,7 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@ProjectEndDate",
                         order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("dd-MMM-yyyy") : null);
 
-                    cmd.Parameters.AddWithValue("@Notes", order.Notes);
-
-                    cmd.ExecuteNonQuery();
+                   cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -76,7 +73,7 @@ namespace WorkOrderApp.Data
                                 OR Address_Line1 LIKE @kw OR Address_Line2 LIKE @kw OR Address_Line2 LIKE @kw 
                                 OR Town LIKE @kw OR Postcode LIKE @kw OR Phone_Mobile LIKE @kw 
                                 OR Phone_Office LIKE @kw OR Email LIKE @kw OR Website LIKE @kw
-                                OR ProjectStartDate LIKE @kw OR ProjectEndDate LIKE @kw OR Notes LIKE @kw";
+                                OR ProjectStartDate LIKE @kw OR ProjectEndDate LIKE @kw";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -108,8 +105,6 @@ namespace WorkOrderApp.Data
                             order.ProjectStartDate = string.IsNullOrEmpty(start) ? (DateTime?)null : DateTime.Parse(start);
                             order.ProjectEndDate = string.IsNullOrEmpty(end) ? (DateTime?)null : DateTime.Parse(end);
 
-                            order.Notes = reader["Notes"].ToString();
-
                             list.Add(order);
                         }
                     }
@@ -130,7 +125,7 @@ namespace WorkOrderApp.Data
                                Address_Line2=@Address_Line2, Address_Line3=@Address_Line3, Town=@Town,
                                Postcode=@Postcode, Phone_Mobile=@Phone_Mobile, Phone_Office=@Phone_Office,
                                 Email=@Email, Website=@Website, ProjectStartDate=@ProjectStartDate,
-                                ProjectEndDate=@ProjectEndDate, Notes=@Notes
+                                ProjectEndDate=@ProjectEndDate
                                WHERE Id=@Id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -155,9 +150,7 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@ProjectEndDate",
                         order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("dd-MMM-yyyy") : null);
 
-                    cmd.Parameters.AddWithValue("@Notes", order.Notes);
-
-                    cmd.ExecuteNonQuery();
+                     cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -297,6 +290,5 @@ namespace WorkOrderApp.Data
                 }
             }
         }
-
     }
 }

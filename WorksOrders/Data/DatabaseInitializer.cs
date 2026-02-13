@@ -62,23 +62,6 @@ namespace WorkOrderApp.Data
                    }
                     // Bottom of marker
                     //----------------------------------------------------------------------------------
-                    // Create WorkOrderFiles table to store notes
-                    string sqlNotes = @"
-                        CREATE TABLE WorkOrderNotes (
-                            Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            WorkOrderId INTEGER NOT NULL,
-                            Timestamp TEXT NOT NULL,
-                            NoteText TEXT NOT NULL,
-                            FOREIGN KEY (WorkOrderId) REFERENCES WorkOrders(Id)
-                        );
-                    ";
-
-                    using (var cmd = new SQLiteCommand(sqlNotes, conn))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    //------------------------------------------------------------------------------------
                 }
             }
         }

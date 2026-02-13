@@ -20,7 +20,5 @@ namespace WorkOrderApp.Data
         public string Website { get; set; }
         public DateTime? ProjectStartDate { get; set; }
         public DateTime? ProjectEndDate { get; set; }
-        public string Notes { get; set; }
-
     }
 }

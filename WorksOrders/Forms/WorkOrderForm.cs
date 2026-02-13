@@ -109,8 +109,6 @@ namespace WorksOrders.Forms
                 ? (DateTime?)dtTmPick_project_end.Value
                 : null;
 
-            order.Notes = txtbx_notes.Text;
-
             _repo.Add(order);
             MsgBox.Show("Work Order Added", "Order added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
@@ -141,8 +139,6 @@ namespace WorksOrders.Forms
             _order.ProjectEndDate = dtTmPick_project_end.Checked
                 ? (DateTime?)dtTmPick_project_end.Value
                 : null;
-
-            _order.Notes = txtbx_notes.Text;
 
             _repo.Update(_order);
             MsgBox.Show("Record Updated", "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
