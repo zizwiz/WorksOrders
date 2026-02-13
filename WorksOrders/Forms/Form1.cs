@@ -14,12 +14,14 @@ namespace WorksOrders
         private readonly WorkOrderRepository _repo;
         private readonly bool _isAdmin;
         private WorkOrder _order;
+        private string Database_path;
 
         public Form1(string dbPath, bool isAdmin)
         {
             InitializeComponent();
             _repo = new WorkOrderRepository(dbPath);
             _isAdmin = isAdmin;
+            Database_path = dbPath;
 
             btn_delete.Enabled = isAdmin;
             btn_update.Enabled = isAdmin;
@@ -189,6 +191,12 @@ namespace WorksOrders
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             PopulateGridView();
+        }
+
+        private void btn_create_report_Click(object sender, EventArgs e)
+        {
+            var form = new ProjectReportForm(Database_path);
+            form.ShowDialog();
         }
     }
 

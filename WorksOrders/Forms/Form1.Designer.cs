@@ -42,6 +42,7 @@ namespace WorksOrders
             this.lstbx_attachments = new System.Windows.Forms.ListBox();
             this.lstbx_notes = new System.Windows.Forms.ListBox();
             this.btn_refresh = new System.Windows.Forms.Button();
+            this.btn_create_report = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,11 +163,22 @@ namespace WorksOrders
             this.btn_refresh.UseVisualStyleBackColor = true;
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
+            // btn_create_report
+            // 
+            this.btn_create_report.Location = new System.Drawing.Point(249, 208);
+            this.btn_create_report.Name = "btn_create_report";
+            this.btn_create_report.Size = new System.Drawing.Size(135, 43);
+            this.btn_create_report.TabIndex = 23;
+            this.btn_create_report.Text = "Create Report";
+            this.btn_create_report.UseVisualStyleBackColor = true;
+            this.btn_create_report.Click += new System.EventHandler(this.btn_create_report_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
+            this.Controls.Add(this.btn_create_report);
             this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.lstbx_notes);
             this.Controls.Add(this.lstbx_attachments);
@@ -205,6 +217,7 @@ namespace WorksOrders
         private System.Windows.Forms.ListBox lstbx_attachments;
         private System.Windows.Forms.ListBox lstbx_notes;
         private System.Windows.Forms.Button btn_refresh;
+        private System.Windows.Forms.Button btn_create_report;
     }
 }
 

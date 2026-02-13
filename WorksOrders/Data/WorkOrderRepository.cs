@@ -290,5 +290,55 @@ namespace WorkOrderApp.Data
                 }
             }
         }
+
+        // Used to create reports
+        public List<WorkOrder> GetProjectsBetweenDates(DateTime from, DateTime to)
+        {
+            var list = new List<WorkOrder>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"
+            SELECT * FROM WorkOrders
+            WHERE 
+                (ProjectStartDate IS NOT NULL AND ProjectStartDate >= @From AND ProjectStartDate <= @To)
+                OR
+                (ProjectEndDate IS NOT NULL AND ProjectEndDate >= @From AND ProjectEndDate <= @To)
+        ";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@From", from.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@To", to.ToString("yyyy-MM-dd"));
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var order = new WorkOrder();
+
+                            order.Id = Convert.ToInt32(reader["Id"]);
+                            order.OrderNumber = reader["OrderNumber"].ToString();
+                            order.CompanyName = reader["CompanyName"].ToString();
+                            order.ContactName = reader["ContactName"].ToString();
+                            order.Town = reader["Town"].ToString();
+                            order.Postcode = reader["Postcode"].ToString();
+
+                            string start = reader["ProjectStartDate"].ToString();
+                            string end = reader["ProjectEndDate"].ToString();
+
+                            order.ProjectStartDate = string.IsNullOrEmpty(start) ? (DateTime?)null : DateTime.Parse(start);
+                            order.ProjectEndDate = string.IsNullOrEmpty(end) ? (DateTime?)null : DateTime.Parse(end);
+
+                            list.Add(order);
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
     }
 }
