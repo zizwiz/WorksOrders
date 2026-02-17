@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WorkOrderApp.Data;
 
@@ -17,7 +12,6 @@ namespace WorksOrders.Forms
         private readonly WorkOrderRepository _repo;
         private PrintDocument printDoc = new PrintDocument();
         private List<WorkOrder> reportData;
-
 
         public ProjectReportForm(string dbPath)
         {
@@ -38,6 +32,7 @@ namespace WorksOrders.Forms
             var results = _repo.GetProjectsBetweenDates(from, to);
 
             datagridview_report.DataSource = results;
+            reportData = results;
         }
 
         private void btn_print_report_Click(object sender, EventArgs e)

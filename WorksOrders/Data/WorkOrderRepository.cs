@@ -50,12 +50,12 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Website", order.Website);
 
                     cmd.Parameters.AddWithValue("@ProjectStartDate",
-                        order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("dd-MMM-yyyy") : null);
+                        order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("yyyy-MM-dd") : null);
 
                     cmd.Parameters.AddWithValue("@ProjectEndDate",
-                        order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("dd-MMM-yyyy") : null);
+                        order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("yyyy-MM-dd") : null);
 
-                   cmd.ExecuteNonQuery();
+cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -143,14 +143,14 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Phone_Office", order.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", order.Email);
                     cmd.Parameters.AddWithValue("@Website", order.Website);
-                    
+
                     cmd.Parameters.AddWithValue("@ProjectStartDate",
-                           order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("dd-MMM-yyyy") : null);
+                        order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("yyyy-MM-dd") : null);
 
                     cmd.Parameters.AddWithValue("@ProjectEndDate",
-                        order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("dd-MMM-yyyy") : null);
+                        order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("yyyy-MM-dd") : null);
 
-                     cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -301,18 +301,17 @@ namespace WorkOrderApp.Data
                 conn.Open();
 
                 string sql = @"
-            SELECT * FROM WorkOrders
-            WHERE 
-                (ProjectStartDate IS NOT NULL AND ProjectStartDate >= @From AND ProjectStartDate <= @To)
-                OR
-                (ProjectEndDate IS NOT NULL AND ProjectEndDate >= @From AND ProjectEndDate <= @To)
-        ";
+                SELECT * FROM WorkOrders
+                WHERE 
+                    (ProjectStartDate IS NOT NULL AND ProjectStartDate >= @From AND ProjectStartDate <= @To)
+                    OR
+                    (ProjectEndDate IS NOT NULL AND ProjectEndDate >= @From AND ProjectEndDate <= @To)";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@From", from.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@To", to.ToString("yyyy-MM-dd"));
-
+                    
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
