@@ -221,5 +221,41 @@ namespace WorkOrderApp.Data
 
             MessageBox.Show("Attachment added.");
         }
+
+        //List all the attachments
+        public List<SupplierAttachment> GetFiles(int Id)
+        {
+            var list = new List<SupplierAttachment>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"SELECT Id, FileName, FilePath 
+                       FROM Suppliers 
+                       WHERE Id = @Id
+";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var file = new SupplierAttachment();
+                            file.FileName = reader["FileName"].ToString();
+                            file.FilePath = reader["FilePath"].ToString();
+
+                            list.Add(file);
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
     }
 }

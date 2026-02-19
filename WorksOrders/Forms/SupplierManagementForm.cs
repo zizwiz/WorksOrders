@@ -226,7 +226,7 @@ namespace WorksOrders.Forms
             }
         }
 
-        private void btn_delete_supplier_attachment_Click(object sender, EventArgs e)
+       private void btn_delete_supplier_attachment_Click(object sender, EventArgs e)
         {
             var att = lstbx_supplier_attachments.SelectedItem as SupplierAttachment;
 
@@ -243,8 +243,6 @@ namespace WorksOrders.Forms
 
         }
 
-        
-
         private void LoadSupplierAttachments(int supplierId)
         {
             lstbx_supplier_attachments.Items.Clear();
@@ -257,14 +255,24 @@ namespace WorksOrders.Forms
 
             foreach (string file in Directory.GetFiles(supplierDir))
             {
+                string fullName = Path.GetFileName(file);
+
+                // Remove the GUID prefix before the underscore
+                string displayName = fullName;
+                int underscoreIndex = fullName.IndexOf('_');
+                if (underscoreIndex >= 0 && underscoreIndex < fullName.Length - 1)
+                {
+                    displayName = fullName.Substring(underscoreIndex + 1);
+                }
+
                 lstbx_supplier_attachments.Items.Add(new SupplierAttachment
                 {
-                    FileName = Path.GetFileName(file),
-                    FilePath = file
+                    FileName = fullName,
+                    FilePath = file,
+                    DisplayName = displayName
                 });
             }
         }
-
         private void lstbx_supplier_attachments_DoubleClick(object sender, EventArgs e)
         {
             var att = lstbx_supplier_attachments.SelectedItem as SupplierAttachment;

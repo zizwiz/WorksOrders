@@ -63,18 +63,24 @@ namespace WorksOrders
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-            var form = new WorkOrderForm(_repo, _supplierRepo, order, _isAdmin, true);
-            form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
-            form.ShowDialog();
+            if (dataGridView_records.RowCount > 0)
+            {
+                var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
+                var form = new WorkOrderForm(_repo, _supplierRepo, order, _isAdmin, true);
+                form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
+                form.ShowDialog();
+            }
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-            _repo.Delete(order.Id);
-            PopulateGridView();
-            MsgBox.Show("Row Deleted", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (dataGridView_records.RowCount > 0)
+            {
+                var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
+                _repo.Delete(order.Id);
+                PopulateGridView();
+                MsgBox.Show("Row Deleted", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btn_close_Click(object sender, EventArgs e)

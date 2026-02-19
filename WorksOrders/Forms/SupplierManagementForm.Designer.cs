@@ -64,6 +64,7 @@ namespace WorksOrders.Forms
             this.lstbx_supplier_attachments = new System.Windows.Forms.ListBox();
             this.btn_add_supplier_attachment = new System.Windows.Forms.Button();
             this.btn_delete_supplier_attachment = new System.Windows.Forms.Button();
+            this.lstbx_attachments = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_suppliers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -332,9 +333,9 @@ namespace WorksOrders.Forms
             // 
             this.lstbx_supplier_attachments.FormattingEnabled = true;
             this.lstbx_supplier_attachments.ItemHeight = 20;
-            this.lstbx_supplier_attachments.Location = new System.Drawing.Point(638, 308);
+            this.lstbx_supplier_attachments.Location = new System.Drawing.Point(638, 408);
             this.lstbx_supplier_attachments.Name = "lstbx_supplier_attachments";
-            this.lstbx_supplier_attachments.Size = new System.Drawing.Size(317, 164);
+            this.lstbx_supplier_attachments.Size = new System.Drawing.Size(317, 64);
             this.lstbx_supplier_attachments.TabIndex = 68;
             this.lstbx_supplier_attachments.DoubleClick += new System.EventHandler(this.lstbx_supplier_attachments_DoubleClick);
             // 
@@ -358,11 +359,21 @@ namespace WorksOrders.Forms
             this.btn_delete_supplier_attachment.UseVisualStyleBackColor = true;
             this.btn_delete_supplier_attachment.Click += new System.EventHandler(this.btn_delete_supplier_attachment_Click);
             // 
+            // lstbx_attachments
+            // 
+            this.lstbx_attachments.FormattingEnabled = true;
+            this.lstbx_attachments.ItemHeight = 20;
+            this.lstbx_attachments.Location = new System.Drawing.Point(638, 302);
+            this.lstbx_attachments.Name = "lstbx_attachments";
+            this.lstbx_attachments.Size = new System.Drawing.Size(278, 84);
+            this.lstbx_attachments.TabIndex = 71;
+            // 
             // SupplierManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 615);
+            this.Controls.Add(this.lstbx_attachments);
             this.Controls.Add(this.btn_delete_supplier_attachment);
             this.Controls.Add(this.btn_add_supplier_attachment);
             this.Controls.Add(this.lstbx_supplier_attachments);
@@ -442,5 +453,6 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.ListBox lstbx_supplier_attachments;
         private System.Windows.Forms.Button btn_add_supplier_attachment;
         private System.Windows.Forms.Button btn_delete_supplier_attachment;
+        private System.Windows.Forms.ListBox lstbx_attachments;
     }
 }
