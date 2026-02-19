@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DatabaseInitializer.cs" />
+    <Compile Include="Data\Supplier.cs" />
+    <Compile Include="Data\SupplierRepository.cs" />
     <Compile Include="Data\WorkOrder.cs" />
     <Compile Include="Data\WorkOrderFile.cs" />
     <Compile Include="Data\WorkOrderNote.cs" />
@@ -73,6 +75,12 @@
     <Compile Include="Forms\ProjectReportForm.Designer.cs">
       <DependentUpon>ProjectReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SupplierManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierManagementForm.Designer.cs">
+      <DependentUpon>SupplierManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WorkOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProjectReportForm.resx">
       <DependentUpon>ProjectReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SupplierManagementForm.resx">
+      <DependentUpon>SupplierManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WorkOrderForm.resx">
       <DependentUpon>WorkOrderForm.cs</DependentUpon>

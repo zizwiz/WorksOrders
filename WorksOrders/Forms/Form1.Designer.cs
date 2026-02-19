@@ -30,61 +30,62 @@ namespace WorksOrders
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btn_add = new System.Windows.Forms.Button();
-            this.btn_update = new System.Windows.Forms.Button();
-            this.btn_delete = new System.Windows.Forms.Button();
-            this.btn_search = new System.Windows.Forms.Button();
+            this.btn_add_project = new System.Windows.Forms.Button();
+            this.btn_update_project = new System.Windows.Forms.Button();
+            this.btn_delete_project = new System.Windows.Forms.Button();
+            this.btn_search_project = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
             this.dataGridView_records = new System.Windows.Forms.DataGridView();
             this.lbl_search = new System.Windows.Forms.Label();
             this.txtbx_search = new System.Windows.Forms.TextBox();
-            this.btn_attach_files = new System.Windows.Forms.Button();
+            this.btn_attach_project_files = new System.Windows.Forms.Button();
             this.lstbx_attachments = new System.Windows.Forms.ListBox();
             this.lstbx_notes = new System.Windows.Forms.ListBox();
-            this.btn_refresh = new System.Windows.Forms.Button();
+            this.btn_refresh_projects = new System.Windows.Forms.Button();
             this.btn_create_report = new System.Windows.Forms.Button();
+            this.btn_add_supplier = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_add
+            // btn_add_project
             // 
-            this.btn_add.Location = new System.Drawing.Point(50, 12);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(135, 43);
-            this.btn_add.TabIndex = 0;
-            this.btn_add.Text = "Add";
-            this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            this.btn_add_project.Location = new System.Drawing.Point(50, 12);
+            this.btn_add_project.Name = "btn_add_project";
+            this.btn_add_project.Size = new System.Drawing.Size(135, 43);
+            this.btn_add_project.TabIndex = 0;
+            this.btn_add_project.Text = "Add Project";
+            this.btn_add_project.UseVisualStyleBackColor = true;
+            this.btn_add_project.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // btn_update
+            // btn_update_project
             // 
-            this.btn_update.Location = new System.Drawing.Point(50, 61);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(135, 43);
-            this.btn_update.TabIndex = 1;
-            this.btn_update.Text = "Update";
-            this.btn_update.UseVisualStyleBackColor = true;
-            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+            this.btn_update_project.Location = new System.Drawing.Point(50, 61);
+            this.btn_update_project.Name = "btn_update_project";
+            this.btn_update_project.Size = new System.Drawing.Size(135, 43);
+            this.btn_update_project.TabIndex = 1;
+            this.btn_update_project.Text = "Update Project";
+            this.btn_update_project.UseVisualStyleBackColor = true;
+            this.btn_update_project.Click += new System.EventHandler(this.btn_update_Click);
             // 
-            // btn_delete
+            // btn_delete_project
             // 
-            this.btn_delete.Location = new System.Drawing.Point(50, 110);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(135, 43);
-            this.btn_delete.TabIndex = 2;
-            this.btn_delete.Text = "Delete";
-            this.btn_delete.UseVisualStyleBackColor = true;
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            this.btn_delete_project.Location = new System.Drawing.Point(50, 110);
+            this.btn_delete_project.Name = "btn_delete_project";
+            this.btn_delete_project.Size = new System.Drawing.Size(135, 43);
+            this.btn_delete_project.TabIndex = 2;
+            this.btn_delete_project.Text = "Delete Project";
+            this.btn_delete_project.UseVisualStyleBackColor = true;
+            this.btn_delete_project.Click += new System.EventHandler(this.btn_delete_Click);
             // 
-            // btn_search
+            // btn_search_project
             // 
-            this.btn_search.Location = new System.Drawing.Point(50, 159);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(135, 43);
-            this.btn_search.TabIndex = 3;
-            this.btn_search.Text = "Search";
-            this.btn_search.UseVisualStyleBackColor = true;
-            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
+            this.btn_search_project.Location = new System.Drawing.Point(50, 159);
+            this.btn_search_project.Name = "btn_search_project";
+            this.btn_search_project.Size = new System.Drawing.Size(135, 43);
+            this.btn_search_project.TabIndex = 3;
+            this.btn_search_project.Text = "Search Project";
+            this.btn_search_project.UseVisualStyleBackColor = true;
+            this.btn_search_project.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // btn_close
             // 
@@ -123,15 +124,15 @@ namespace WorksOrders
             this.txtbx_search.Size = new System.Drawing.Size(216, 26);
             this.txtbx_search.TabIndex = 17;
             // 
-            // btn_attach_files
+            // btn_attach_project_files
             // 
-            this.btn_attach_files.Location = new System.Drawing.Point(249, 12);
-            this.btn_attach_files.Name = "btn_attach_files";
-            this.btn_attach_files.Size = new System.Drawing.Size(135, 43);
-            this.btn_attach_files.TabIndex = 19;
-            this.btn_attach_files.Text = "Attach Files";
-            this.btn_attach_files.UseVisualStyleBackColor = true;
-            this.btn_attach_files.Click += new System.EventHandler(this.btn_attach_files_Click);
+            this.btn_attach_project_files.Location = new System.Drawing.Point(249, 12);
+            this.btn_attach_project_files.Name = "btn_attach_project_files";
+            this.btn_attach_project_files.Size = new System.Drawing.Size(175, 43);
+            this.btn_attach_project_files.TabIndex = 19;
+            this.btn_attach_project_files.Text = "Attach Project Files";
+            this.btn_attach_project_files.UseVisualStyleBackColor = true;
+            this.btn_attach_project_files.Click += new System.EventHandler(this.btn_attach_files_Click);
             // 
             // lstbx_attachments
             // 
@@ -153,15 +154,15 @@ namespace WorksOrders
             this.lstbx_notes.TabIndex = 21;
             this.lstbx_notes.DoubleClick += new System.EventHandler(this.lstbx_notes_DoubleClick);
             // 
-            // btn_refresh
+            // btn_refresh_projects
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(249, 61);
-            this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(135, 43);
-            this.btn_refresh.TabIndex = 22;
-            this.btn_refresh.Text = "Refresh";
-            this.btn_refresh.UseVisualStyleBackColor = true;
-            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            this.btn_refresh_projects.Location = new System.Drawing.Point(249, 61);
+            this.btn_refresh_projects.Name = "btn_refresh_projects";
+            this.btn_refresh_projects.Size = new System.Drawing.Size(175, 43);
+            this.btn_refresh_projects.TabIndex = 22;
+            this.btn_refresh_projects.Text = "Refresh Projects";
+            this.btn_refresh_projects.UseVisualStyleBackColor = true;
+            this.btn_refresh_projects.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_create_report
             // 
@@ -173,24 +174,35 @@ namespace WorksOrders
             this.btn_create_report.UseVisualStyleBackColor = true;
             this.btn_create_report.Click += new System.EventHandler(this.btn_create_report_Click);
             // 
+            // btn_add_supplier
+            // 
+            this.btn_add_supplier.Location = new System.Drawing.Point(249, 110);
+            this.btn_add_supplier.Name = "btn_add_supplier";
+            this.btn_add_supplier.Size = new System.Drawing.Size(135, 43);
+            this.btn_add_supplier.TabIndex = 24;
+            this.btn_add_supplier.Text = "Add Supplier";
+            this.btn_add_supplier.UseVisualStyleBackColor = true;
+            this.btn_add_supplier.Click += new System.EventHandler(this.btn_add_supplier_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
+            this.Controls.Add(this.btn_add_supplier);
             this.Controls.Add(this.btn_create_report);
-            this.Controls.Add(this.btn_refresh);
+            this.Controls.Add(this.btn_refresh_projects);
             this.Controls.Add(this.lstbx_notes);
             this.Controls.Add(this.lstbx_attachments);
-            this.Controls.Add(this.btn_attach_files);
+            this.Controls.Add(this.btn_attach_project_files);
             this.Controls.Add(this.lbl_search);
             this.Controls.Add(this.txtbx_search);
             this.Controls.Add(this.dataGridView_records);
             this.Controls.Add(this.btn_close);
-            this.Controls.Add(this.btn_search);
-            this.Controls.Add(this.btn_delete);
-            this.Controls.Add(this.btn_update);
-            this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.btn_search_project);
+            this.Controls.Add(this.btn_delete_project);
+            this.Controls.Add(this.btn_update_project);
+            this.Controls.Add(this.btn_add_project);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -205,19 +217,20 @@ namespace WorksOrders
 
         #endregion
 
-        private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.Button btn_update;
-        private System.Windows.Forms.Button btn_delete;
-        private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.Button btn_add_project;
+        private System.Windows.Forms.Button btn_update_project;
+        private System.Windows.Forms.Button btn_delete_project;
+        private System.Windows.Forms.Button btn_search_project;
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.DataGridView dataGridView_records;
         private System.Windows.Forms.Label lbl_search;
         private System.Windows.Forms.TextBox txtbx_search;
-        private System.Windows.Forms.Button btn_attach_files;
+        private System.Windows.Forms.Button btn_attach_project_files;
         private System.Windows.Forms.ListBox lstbx_attachments;
         private System.Windows.Forms.ListBox lstbx_notes;
-        private System.Windows.Forms.Button btn_refresh;
+        private System.Windows.Forms.Button btn_refresh_projects;
         private System.Windows.Forms.Button btn_create_report;
+        private System.Windows.Forms.Button btn_add_supplier;
     }
 }
 

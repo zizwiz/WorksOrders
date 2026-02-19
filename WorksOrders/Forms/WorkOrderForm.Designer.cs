@@ -69,12 +69,14 @@ namespace WorksOrders.Forms
             this.lstbx_attachments = new System.Windows.Forms.ListBox();
             this.btn_delete_notes = new System.Windows.Forms.Button();
             this.btn_delete_attachment = new System.Windows.Forms.Button();
+            this.cmbobx_supplier = new System.Windows.Forms.ComboBox();
+            this.lbl_supplier = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_website
             // 
             this.lbl_website.AutoSize = true;
-            this.lbl_website.Location = new System.Drawing.Point(553, 279);
+            this.lbl_website.Location = new System.Drawing.Point(553, 337);
             this.lbl_website.Name = "lbl_website";
             this.lbl_website.Size = new System.Drawing.Size(67, 20);
             this.lbl_website.TabIndex = 24;
@@ -83,7 +85,7 @@ namespace WorksOrders.Forms
             // lbl_email
             // 
             this.lbl_email.AutoSize = true;
-            this.lbl_email.Location = new System.Drawing.Point(111, 276);
+            this.lbl_email.Location = new System.Drawing.Point(111, 334);
             this.lbl_email.Name = "lbl_email";
             this.lbl_email.Size = new System.Drawing.Size(48, 20);
             this.lbl_email.TabIndex = 23;
@@ -92,7 +94,7 @@ namespace WorksOrders.Forms
             // lbl__mobile_phone
             // 
             this.lbl__mobile_phone.AutoSize = true;
-            this.lbl__mobile_phone.Location = new System.Drawing.Point(111, 244);
+            this.lbl__mobile_phone.Location = new System.Drawing.Point(111, 302);
             this.lbl__mobile_phone.Name = "lbl__mobile_phone";
             this.lbl__mobile_phone.Size = new System.Drawing.Size(105, 20);
             this.lbl__mobile_phone.TabIndex = 22;
@@ -101,7 +103,7 @@ namespace WorksOrders.Forms
             // lbl__address
             // 
             this.lbl__address.AutoSize = true;
-            this.lbl__address.Location = new System.Drawing.Point(96, 116);
+            this.lbl__address.Location = new System.Drawing.Point(96, 174);
             this.lbl__address.Name = "lbl__address";
             this.lbl__address.Size = new System.Drawing.Size(68, 20);
             this.lbl__address.TabIndex = 21;
@@ -110,7 +112,7 @@ namespace WorksOrders.Forms
             // lbl_company_name
             // 
             this.lbl_company_name.AutoSize = true;
-            this.lbl_company_name.Location = new System.Drawing.Point(96, 84);
+            this.lbl_company_name.Location = new System.Drawing.Point(96, 142);
             this.lbl_company_name.Name = "lbl_company_name";
             this.lbl_company_name.Size = new System.Drawing.Size(122, 20);
             this.lbl_company_name.TabIndex = 20;
@@ -118,42 +120,42 @@ namespace WorksOrders.Forms
             // 
             // txtbx_website
             // 
-            this.txtbx_website.Location = new System.Drawing.Point(666, 276);
+            this.txtbx_website.Location = new System.Drawing.Point(666, 334);
             this.txtbx_website.Name = "txtbx_website";
             this.txtbx_website.Size = new System.Drawing.Size(297, 26);
             this.txtbx_website.TabIndex = 19;
             // 
             // txtbx_email
             // 
-            this.txtbx_email.Location = new System.Drawing.Point(224, 273);
+            this.txtbx_email.Location = new System.Drawing.Point(224, 331);
             this.txtbx_email.Name = "txtbx_email";
             this.txtbx_email.Size = new System.Drawing.Size(297, 26);
             this.txtbx_email.TabIndex = 18;
             // 
             // txtbx_mobile_phone
             // 
-            this.txtbx_mobile_phone.Location = new System.Drawing.Point(224, 241);
+            this.txtbx_mobile_phone.Location = new System.Drawing.Point(224, 299);
             this.txtbx_mobile_phone.Name = "txtbx_mobile_phone";
             this.txtbx_mobile_phone.Size = new System.Drawing.Size(297, 26);
             this.txtbx_mobile_phone.TabIndex = 17;
             // 
             // txtbx_address_line1
             // 
-            this.txtbx_address_line1.Location = new System.Drawing.Point(224, 113);
+            this.txtbx_address_line1.Location = new System.Drawing.Point(224, 171);
             this.txtbx_address_line1.Name = "txtbx_address_line1";
             this.txtbx_address_line1.Size = new System.Drawing.Size(739, 26);
             this.txtbx_address_line1.TabIndex = 16;
             // 
             // txtbx_company_name
             // 
-            this.txtbx_company_name.Location = new System.Drawing.Point(224, 81);
+            this.txtbx_company_name.Location = new System.Drawing.Point(224, 139);
             this.txtbx_company_name.Name = "txtbx_company_name";
             this.txtbx_company_name.Size = new System.Drawing.Size(297, 26);
             this.txtbx_company_name.TabIndex = 15;
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(672, 546);
+            this.btn_save.Location = new System.Drawing.Point(672, 604);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(110, 44);
             this.btn_save.TabIndex = 25;
@@ -163,7 +165,7 @@ namespace WorksOrders.Forms
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(788, 546);
+            this.btn_update.Location = new System.Drawing.Point(788, 604);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(110, 44);
             this.btn_update.TabIndex = 26;
@@ -174,7 +176,7 @@ namespace WorksOrders.Forms
             // lbl_office_phone
             // 
             this.lbl_office_phone.AutoSize = true;
-            this.lbl_office_phone.Location = new System.Drawing.Point(553, 247);
+            this.lbl_office_phone.Location = new System.Drawing.Point(553, 305);
             this.lbl_office_phone.Name = "lbl_office_phone";
             this.lbl_office_phone.Size = new System.Drawing.Size(101, 20);
             this.lbl_office_phone.TabIndex = 28;
@@ -182,7 +184,7 @@ namespace WorksOrders.Forms
             // 
             // txtbx_office_phone
             // 
-            this.txtbx_office_phone.Location = new System.Drawing.Point(666, 244);
+            this.txtbx_office_phone.Location = new System.Drawing.Point(666, 302);
             this.txtbx_office_phone.Name = "txtbx_office_phone";
             this.txtbx_office_phone.Size = new System.Drawing.Size(297, 26);
             this.txtbx_office_phone.TabIndex = 27;
@@ -190,7 +192,7 @@ namespace WorksOrders.Forms
             // lbl_contact
             // 
             this.lbl_contact.AutoSize = true;
-            this.lbl_contact.Location = new System.Drawing.Point(538, 84);
+            this.lbl_contact.Location = new System.Drawing.Point(538, 142);
             this.lbl_contact.Name = "lbl_contact";
             this.lbl_contact.Size = new System.Drawing.Size(111, 20);
             this.lbl_contact.TabIndex = 30;
@@ -198,35 +200,35 @@ namespace WorksOrders.Forms
             // 
             // txtbx_contact_name
             // 
-            this.txtbx_contact_name.Location = new System.Drawing.Point(666, 81);
+            this.txtbx_contact_name.Location = new System.Drawing.Point(666, 139);
             this.txtbx_contact_name.Name = "txtbx_contact_name";
             this.txtbx_contact_name.Size = new System.Drawing.Size(297, 26);
             this.txtbx_contact_name.TabIndex = 29;
             // 
             // txtbx_address_line2
             // 
-            this.txtbx_address_line2.Location = new System.Drawing.Point(224, 145);
+            this.txtbx_address_line2.Location = new System.Drawing.Point(224, 203);
             this.txtbx_address_line2.Name = "txtbx_address_line2";
             this.txtbx_address_line2.Size = new System.Drawing.Size(739, 26);
             this.txtbx_address_line2.TabIndex = 31;
             // 
             // txtbx_address_line3
             // 
-            this.txtbx_address_line3.Location = new System.Drawing.Point(224, 177);
+            this.txtbx_address_line3.Location = new System.Drawing.Point(224, 235);
             this.txtbx_address_line3.Name = "txtbx_address_line3";
             this.txtbx_address_line3.Size = new System.Drawing.Size(739, 26);
             this.txtbx_address_line3.TabIndex = 32;
             // 
             // txtbx_town
             // 
-            this.txtbx_town.Location = new System.Drawing.Point(224, 209);
+            this.txtbx_town.Location = new System.Drawing.Point(224, 267);
             this.txtbx_town.Name = "txtbx_town";
             this.txtbx_town.Size = new System.Drawing.Size(297, 26);
             this.txtbx_town.TabIndex = 33;
             // 
             // txtbx_postcode
             // 
-            this.txtbx_postcode.Location = new System.Drawing.Point(666, 209);
+            this.txtbx_postcode.Location = new System.Drawing.Point(666, 267);
             this.txtbx_postcode.Name = "txtbx_postcode";
             this.txtbx_postcode.Size = new System.Drawing.Size(297, 26);
             this.txtbx_postcode.TabIndex = 34;
@@ -234,7 +236,7 @@ namespace WorksOrders.Forms
             // lbl_postcode
             // 
             this.lbl_postcode.AutoSize = true;
-            this.lbl_postcode.Location = new System.Drawing.Point(553, 212);
+            this.lbl_postcode.Location = new System.Drawing.Point(553, 270);
             this.lbl_postcode.Name = "lbl_postcode";
             this.lbl_postcode.Size = new System.Drawing.Size(76, 20);
             this.lbl_postcode.TabIndex = 35;
@@ -243,7 +245,7 @@ namespace WorksOrders.Forms
             // lbl_town
             // 
             this.lbl_town.AutoSize = true;
-            this.lbl_town.Location = new System.Drawing.Point(111, 215);
+            this.lbl_town.Location = new System.Drawing.Point(111, 273);
             this.lbl_town.Name = "lbl_town";
             this.lbl_town.Size = new System.Drawing.Size(47, 20);
             this.lbl_town.TabIndex = 36;
@@ -251,7 +253,7 @@ namespace WorksOrders.Forms
             // 
             // btn_attach_files
             // 
-            this.btn_attach_files.Location = new System.Drawing.Point(12, 546);
+            this.btn_attach_files.Location = new System.Drawing.Point(12, 604);
             this.btn_attach_files.Name = "btn_attach_files";
             this.btn_attach_files.Size = new System.Drawing.Size(110, 44);
             this.btn_attach_files.TabIndex = 37;
@@ -311,7 +313,7 @@ namespace WorksOrders.Forms
             // 
             // txtbx_notes
             // 
-            this.txtbx_notes.Location = new System.Drawing.Point(12, 358);
+            this.txtbx_notes.Location = new System.Drawing.Point(12, 416);
             this.txtbx_notes.Multiline = true;
             this.txtbx_notes.Name = "txtbx_notes";
             this.txtbx_notes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -321,7 +323,7 @@ namespace WorksOrders.Forms
             // lbl_notes
             // 
             this.lbl_notes.AutoSize = true;
-            this.lbl_notes.Location = new System.Drawing.Point(12, 329);
+            this.lbl_notes.Location = new System.Drawing.Point(12, 387);
             this.lbl_notes.Name = "lbl_notes";
             this.lbl_notes.Size = new System.Drawing.Size(51, 20);
             this.lbl_notes.TabIndex = 45;
@@ -329,7 +331,7 @@ namespace WorksOrders.Forms
             // 
             // btn_add_notes
             // 
-            this.btn_add_notes.Location = new System.Drawing.Point(128, 546);
+            this.btn_add_notes.Location = new System.Drawing.Point(128, 604);
             this.btn_add_notes.Name = "btn_add_notes";
             this.btn_add_notes.Size = new System.Drawing.Size(110, 44);
             this.btn_add_notes.TabIndex = 46;
@@ -341,7 +343,7 @@ namespace WorksOrders.Forms
             // 
             this.lstbx_notes.FormattingEnabled = true;
             this.lstbx_notes.ItemHeight = 20;
-            this.lstbx_notes.Location = new System.Drawing.Point(666, 319);
+            this.lstbx_notes.Location = new System.Drawing.Point(666, 377);
             this.lstbx_notes.Name = "lstbx_notes";
             this.lstbx_notes.Size = new System.Drawing.Size(145, 204);
             this.lstbx_notes.TabIndex = 47;
@@ -349,7 +351,7 @@ namespace WorksOrders.Forms
             // 
             // txtbx_notes_title
             // 
-            this.txtbx_notes_title.Location = new System.Drawing.Point(128, 326);
+            this.txtbx_notes_title.Location = new System.Drawing.Point(128, 384);
             this.txtbx_notes_title.Name = "txtbx_notes_title";
             this.txtbx_notes_title.Size = new System.Drawing.Size(393, 26);
             this.txtbx_notes_title.TabIndex = 48;
@@ -357,7 +359,7 @@ namespace WorksOrders.Forms
             // lbl_notes_title
             // 
             this.lbl_notes_title.AutoSize = true;
-            this.lbl_notes_title.Location = new System.Drawing.Point(84, 329);
+            this.lbl_notes_title.Location = new System.Drawing.Point(84, 387);
             this.lbl_notes_title.Name = "lbl_notes_title";
             this.lbl_notes_title.Size = new System.Drawing.Size(38, 20);
             this.lbl_notes_title.TabIndex = 49;
@@ -365,7 +367,7 @@ namespace WorksOrders.Forms
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(904, 546);
+            this.btn_close.Location = new System.Drawing.Point(904, 604);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(110, 44);
             this.btn_close.TabIndex = 50;
@@ -377,14 +379,14 @@ namespace WorksOrders.Forms
             // 
             this.lstbx_attachments.FormattingEnabled = true;
             this.lstbx_attachments.ItemHeight = 20;
-            this.lstbx_attachments.Location = new System.Drawing.Point(844, 319);
+            this.lstbx_attachments.Location = new System.Drawing.Point(844, 377);
             this.lstbx_attachments.Name = "lstbx_attachments";
             this.lstbx_attachments.Size = new System.Drawing.Size(145, 204);
             this.lstbx_attachments.TabIndex = 51;
             // 
             // btn_delete_notes
             // 
-            this.btn_delete_notes.Location = new System.Drawing.Point(460, 546);
+            this.btn_delete_notes.Location = new System.Drawing.Point(460, 604);
             this.btn_delete_notes.Name = "btn_delete_notes";
             this.btn_delete_notes.Size = new System.Drawing.Size(141, 44);
             this.btn_delete_notes.TabIndex = 53;
@@ -394,7 +396,7 @@ namespace WorksOrders.Forms
             // 
             // btn_delete_attachment
             // 
-            this.btn_delete_attachment.Location = new System.Drawing.Point(299, 546);
+            this.btn_delete_attachment.Location = new System.Drawing.Point(299, 604);
             this.btn_delete_attachment.Name = "btn_delete_attachment";
             this.btn_delete_attachment.Size = new System.Drawing.Size(155, 44);
             this.btn_delete_attachment.TabIndex = 52;
@@ -402,11 +404,31 @@ namespace WorksOrders.Forms
             this.btn_delete_attachment.UseVisualStyleBackColor = true;
             this.btn_delete_attachment.Click += new System.EventHandler(this.btn_delete_attachment_Click);
             // 
+            // cmbobx_supplier
+            // 
+            this.cmbobx_supplier.FormattingEnabled = true;
+            this.cmbobx_supplier.Location = new System.Drawing.Point(224, 97);
+            this.cmbobx_supplier.Name = "cmbobx_supplier";
+            this.cmbobx_supplier.Size = new System.Drawing.Size(739, 28);
+            this.cmbobx_supplier.TabIndex = 54;
+            this.cmbobx_supplier.SelectedIndexChanged += new System.EventHandler(this.cmbobx_supplier_SelectedIndexChanged);
+            // 
+            // lbl_supplier
+            // 
+            this.lbl_supplier.AutoSize = true;
+            this.lbl_supplier.Location = new System.Drawing.Point(96, 100);
+            this.lbl_supplier.Name = "lbl_supplier";
+            this.lbl_supplier.Size = new System.Drawing.Size(67, 20);
+            this.lbl_supplier.TabIndex = 55;
+            this.lbl_supplier.Text = "Supplier";
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 602);
+            this.ClientSize = new System.Drawing.Size(1026, 662);
+            this.Controls.Add(this.lbl_supplier);
+            this.Controls.Add(this.cmbobx_supplier);
             this.Controls.Add(this.btn_delete_notes);
             this.Controls.Add(this.btn_delete_attachment);
             this.Controls.Add(this.lstbx_attachments);
@@ -497,5 +519,7 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.ListBox lstbx_attachments;
         private System.Windows.Forms.Button btn_delete_notes;
         private System.Windows.Forms.Button btn_delete_attachment;
+        private System.Windows.Forms.ComboBox cmbobx_supplier;
+        private System.Windows.Forms.Label lbl_supplier;
     }
 }

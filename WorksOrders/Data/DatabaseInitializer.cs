@@ -62,6 +62,27 @@ namespace WorkOrderApp.Data
                    }
                     // Bottom of marker
                     //----------------------------------------------------------------------------------
+                    string sqlSuppliers = @"
+                            CREATE TABLE Suppliers (
+                                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                CompanyName TEXT NOT NULL,
+                                ContactName TEXT,
+                                Address_Line1 TEXT,
+                                Address_Line2 TEXT,
+                                Address_Line3 TEXT,
+                                Town TEXT,
+                                Postcode TEXT,
+                                Phone_Mobile TEXT,
+                                Phone_Office TEXT,
+                                Email TEXT,
+                                Website TEXT
+                            );
+                        ";
+
+                    using (var cmd = new SQLiteCommand(sqlSuppliers, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
         }

@@ -12,6 +12,7 @@ namespace WorksOrders
     public partial class Form1 : Form
     {
         private readonly WorkOrderRepository _repo;
+        private readonly SupplierRepository _supplierRepo;
         private readonly bool _isAdmin;
         private WorkOrder _order;
         private string Database_path;
@@ -20,13 +21,14 @@ namespace WorksOrders
         {
             InitializeComponent();
             _repo = new WorkOrderRepository(dbPath);
+            _supplierRepo = new SupplierRepository(dbPath);
             _isAdmin = isAdmin;
             Database_path = dbPath;
 
-            btn_delete.Enabled = isAdmin;
-            btn_update.Enabled = isAdmin;
-            btn_add.Enabled = isAdmin;
-            btn_attach_files.Enabled = isAdmin;
+            btn_delete_project.Enabled = isAdmin;
+            btn_update_project.Enabled = isAdmin;
+            btn_add_project.Enabled = isAdmin;
+            btn_attach_project_files.Enabled = isAdmin;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace WorksOrders
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            var form = new WorkOrderForm(_repo, null, _isAdmin, false);
+            var form = new WorkOrderForm(_repo, _supplierRepo, null, _isAdmin, false);
             form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
             form.ShowDialog();
         }
@@ -62,7 +64,7 @@ namespace WorksOrders
         private void btn_update_Click(object sender, EventArgs e)
         {
             var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-            var form = new WorkOrderForm(_repo, order, _isAdmin, true);
+            var form = new WorkOrderForm(_repo, _supplierRepo, order, _isAdmin, true);
             form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
             form.ShowDialog();
         }
@@ -196,6 +198,12 @@ namespace WorksOrders
         private void btn_create_report_Click(object sender, EventArgs e)
         {
             var form = new ProjectReportForm(Database_path);
+            form.ShowDialog();
+        }
+
+        private void btn_add_supplier_Click(object sender, EventArgs e)
+        {
+            var form = new SupplierManagementForm(_supplierRepo, null, true);
             form.ShowDialog();
         }
     }

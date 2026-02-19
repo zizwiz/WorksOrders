@@ -3,20 +3,23 @@ using System.IO;
 using System.Windows.Forms;
 using CenteredMessagebox;
 using WorkOrderApp.Data;
+using WorksOrders.Data;
 
 namespace WorksOrders.Forms
 {
     public partial class WorkOrderForm : Form
     {
         private readonly WorkOrderRepository _repo;
+        private readonly SupplierRepository _srepo;
         private readonly WorkOrder _order;
         private readonly bool _isAdmin;
         private readonly bool _isUpdate;
 
-        public WorkOrderForm(WorkOrderRepository repo, WorkOrder order, bool isAdmin, bool isUpdate)
+        public WorkOrderForm(WorkOrderRepository repo, SupplierRepository srepo,  WorkOrder order, bool isAdmin, bool isUpdate)
         {
             InitializeComponent();
             _repo = repo;
+            _srepo = srepo;
             _order = order;
             _isAdmin = isAdmin;
             _isUpdate = isUpdate;
@@ -58,7 +61,10 @@ namespace WorksOrders.Forms
 
                 LoadNotes(order.Id); //Load any existing stored notes
                 LoadAttachments(order.Id); //Load any existing attachments
+                
             }
+
+            LoadSuppliers(); //Load all existing suppliers
 
             btn_attach_files.Visible = isAdmin && _isUpdate;
             btn_save.Enabled = isAdmin && !_isUpdate;
@@ -331,6 +337,33 @@ namespace WorksOrders.Forms
             MsgBox.Show("Attachment deleted.", "Delete Attachment", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             LoadAttachments(_order.Id);
+        }
+
+        private void LoadSuppliers()
+        {
+            cmbobx_supplier.DataSource = _srepo.GetSuppliers();
+            cmbobx_supplier.DisplayMember = "CompanyName";
+            cmbobx_supplier.ValueMember = "Id";
+        }
+
+        private void cmbobx_supplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var s = cmbobx_supplier.SelectedItem as Supplier;
+
+            if (s == null)
+                return;
+
+            txtbx_company_name.Text = s.CompanyName;
+            txtbx_contact_name.Text = s.ContactName;
+            txtbx_address_line1.Text = s.Address_Line1;
+            txtbx_address_line2.Text = s.Address_Line2;
+            txtbx_address_line3.Text = s.Address_Line3;
+            txtbx_town.Text = s.Town;
+            txtbx_postcode.Text = s.Postcode;
+            txtbx_mobile_phone.Text = s.Phone_Mobile;
+            txtbx_office_phone.Text = s.Phone_Office;
+            txtbx_email.Text = s.Email;
+            txtbx_website.Text = s.Website;
         }
     }
 }
