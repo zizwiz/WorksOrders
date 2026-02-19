@@ -43,7 +43,7 @@ namespace WorksOrders
             this.lstbx_notes = new System.Windows.Forms.ListBox();
             this.btn_refresh_projects = new System.Windows.Forms.Button();
             this.btn_create_report = new System.Windows.Forms.Button();
-            this.btn_add_supplier = new System.Windows.Forms.Button();
+            this.btn_suppliers = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,22 +174,22 @@ namespace WorksOrders
             this.btn_create_report.UseVisualStyleBackColor = true;
             this.btn_create_report.Click += new System.EventHandler(this.btn_create_report_Click);
             // 
-            // btn_add_supplier
+            // btn_suppliers
             // 
-            this.btn_add_supplier.Location = new System.Drawing.Point(249, 110);
-            this.btn_add_supplier.Name = "btn_add_supplier";
-            this.btn_add_supplier.Size = new System.Drawing.Size(135, 43);
-            this.btn_add_supplier.TabIndex = 24;
-            this.btn_add_supplier.Text = "Add Supplier";
-            this.btn_add_supplier.UseVisualStyleBackColor = true;
-            this.btn_add_supplier.Click += new System.EventHandler(this.btn_add_supplier_Click);
+            this.btn_suppliers.Location = new System.Drawing.Point(249, 110);
+            this.btn_suppliers.Name = "btn_suppliers";
+            this.btn_suppliers.Size = new System.Drawing.Size(135, 43);
+            this.btn_suppliers.TabIndex = 24;
+            this.btn_suppliers.Text = "Suppliers";
+            this.btn_suppliers.UseVisualStyleBackColor = true;
+            this.btn_suppliers.Click += new System.EventHandler(this.btn_add_supplier_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 645);
-            this.Controls.Add(this.btn_add_supplier);
+            this.Controls.Add(this.btn_suppliers);
             this.Controls.Add(this.btn_create_report);
             this.Controls.Add(this.btn_refresh_projects);
             this.Controls.Add(this.lstbx_notes);
@@ -230,7 +230,7 @@ namespace WorksOrders
         private System.Windows.Forms.ListBox lstbx_notes;
         private System.Windows.Forms.Button btn_refresh_projects;
         private System.Windows.Forms.Button btn_create_report;
-        private System.Windows.Forms.Button btn_add_supplier;
+        private System.Windows.Forms.Button btn_suppliers;
     }
 }
 

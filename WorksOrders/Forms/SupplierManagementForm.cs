@@ -32,6 +32,7 @@ namespace WorksOrders.Forms
                 txtbx_office_phone.Text = _supplier.Phone_Office;
                 txtbx_email.Text = _supplier.Email;
                 txtbx_website.Text = _supplier.Website;
+                cmbobx_category.Text = _supplier.Category;
             }
 
             btn_delete.Enabled = isAdmin && _supplier != null;
@@ -39,6 +40,7 @@ namespace WorksOrders.Forms
             btn_update.Enabled = isAdmin && _supplier != null;
 
             PopulateGridView();
+            LoadCategories();
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -60,6 +62,7 @@ namespace WorksOrders.Forms
             supplier.Phone_Office = txtbx_office_phone.Text;
             supplier.Email = txtbx_email.Text;
             supplier.Website = txtbx_website.Text;
+            supplier.Category = cmbobx_category.Text;
 
             _repo.AddSupplier(supplier);
             MsgBox.Show("Work Order Added", "Order added", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -93,7 +96,8 @@ namespace WorksOrders.Forms
                 supplier.Phone_Office = txtbx_office_phone.Text;
                 supplier.Email = txtbx_email.Text;
                 supplier.Website = txtbx_website.Text;
-                
+                supplier.Category = cmbobx_category.Text;
+
                 _repo.UpdateSupplier(supplier);
                 PopulateGridView();
                 MsgBox.Show("Record Updated", "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -137,6 +141,7 @@ namespace WorksOrders.Forms
             txtbx_office_phone.Text = supplier.Phone_Office;
             txtbx_email.Text = supplier.Email;
             txtbx_website.Text = supplier.Website;
+            cmbobx_category.Text = supplier.Category;
 
             if (dataGridView_suppliers.RowCount > 0)
             {
@@ -152,5 +157,55 @@ namespace WorksOrders.Forms
             dataGridView_suppliers.DataSource = _repo.GetSuppliers();
         }
 
+        private void btn_search_supplier_Click(object sender, EventArgs e)
+        {
+            var results = _repo.SearchSuppliers(txtbx_search.Text);
+            dataGridView_suppliers.DataSource = results;
+
+        }
+
+        private void LoadCategories()
+        {
+            cmbobx_category.Items.Clear();
+            cmbobx_category.Items.Add("General Maintenance");
+            cmbobx_category.Items.Add("Electrical");
+            cmbobx_category.Items.Add("Plumbing");
+            cmbobx_category.Items.Add("Heating");
+            cmbobx_category.Items.Add("Painting");
+            cmbobx_category.Items.Add("Carpentry");
+            cmbobx_category.Items.Add("Materials");
+            cmbobx_category.Items.Add("Groundworks");
+            cmbobx_category.Items.Add("Gardening");
+            cmbobx_category.Items.Add("Window Cleaning");
+            cmbobx_category.Items.Add("Fire");
+            cmbobx_category.Items.Add("Supplies");
+            cmbobx_category.Items.Add("Specialist Services");
+            cmbobx_category.Items.Add("Other");
+            cmbobx_category.SelectedIndex = 0;
+
+            cmbobx_filter.Items.Clear();
+            cmbobx_filter.Items.Add("General Maintenance");
+            cmbobx_filter.Items.Add("Electrical");
+            cmbobx_filter.Items.Add("Plumbing");
+            cmbobx_filter.Items.Add("Heating");
+            cmbobx_filter.Items.Add("Painting");
+            cmbobx_filter.Items.Add("Carpentry");
+            cmbobx_filter.Items.Add("Materials");
+            cmbobx_filter.Items.Add("Groundworks");
+            cmbobx_filter.Items.Add("Gardening");
+            cmbobx_filter.Items.Add("Window Cleaning");
+            cmbobx_filter.Items.Add("Fire");
+            cmbobx_filter.Items.Add("Supplies");
+            cmbobx_filter.Items.Add("Specialist Services");
+            cmbobx_filter.Items.Add("Other");
+            cmbobx_filter.Text = "Filter by Category";
+        }
+
+        private void cmbobx_filter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string cat = cmbobx_filter.SelectedItem.ToString();
+            var results = _repo.SearchSuppliers(cat);
+            dataGridView_suppliers.DataSource = results;
+        }
     }
 }

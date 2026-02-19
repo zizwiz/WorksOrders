@@ -14,6 +14,7 @@
         public string Phone_Office { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public string Category { get; set; }
 
         public override string ToString()
         {

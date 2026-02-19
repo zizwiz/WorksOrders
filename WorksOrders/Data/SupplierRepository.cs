@@ -47,6 +47,7 @@ namespace WorkOrderApp.Data
                         s.Phone_Office = reader["Phone_Office"].ToString();
                         s.Email = reader["Email"].ToString();
                         s.Website = reader["Website"].ToString();
+                        s.Category = reader["Category"].ToString();
 
                         list.Add(s);
                     }
@@ -66,10 +67,10 @@ namespace WorkOrderApp.Data
                 string sql = @"
             INSERT INTO Suppliers
             (CompanyName, ContactName, Address_Line1, Address_Line2, Address_Line3,
-             Town, Postcode, Phone_Mobile, Phone_Office, Email, Website)
+             Town, Postcode, Phone_Mobile, Phone_Office, Email, Website, Category)
             VALUES
             (@CompanyName, @ContactName, @Address_Line1, @Address_Line2, @Address_Line3,
-             @Town, @Postcode, @Phone_Mobile, @Phone_Office, @Email, @Website)
+             @Town, @Postcode, @Phone_Mobile, @Phone_Office, @Email, @Website, @Category)
         ";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -85,6 +86,7 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Phone_Office", s.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", s.Email);
                     cmd.Parameters.AddWithValue("@Website", s.Website);
+                    cmd.Parameters.AddWithValue("@Category", s.Category);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -109,7 +111,8 @@ namespace WorkOrderApp.Data
                         Phone_Mobile=@Phone_Mobile,
                         Phone_Office=@Phone_Office,
                         Email=@Email,
-                        Website=@Website
+                        Website=@Website,
+                        Category=@Category
                     WHERE Id=@Id
                 ";
 
@@ -127,6 +130,7 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Phone_Office", s.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", s.Email);
                     cmd.Parameters.AddWithValue("@Website", s.Website);
+                    cmd.Parameters.AddWithValue("@Category", s.Category);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -147,6 +151,57 @@ namespace WorkOrderApp.Data
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public List<Supplier> SearchSuppliers(string keyword)
+        {
+            var list = new List<Supplier>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"
+                    SELECT * FROM Suppliers
+                    WHERE CompanyName LIKE @kw
+                       OR ContactName LIKE @kw
+                       OR Town LIKE @kw
+                       OR Postcode LIKE @kw
+                       OR Email LIKE @kw
+                        OR Category LIKE @kw
+                    ORDER BY CompanyName
+                ";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var s = new Supplier();
+                            s.Id = Convert.ToInt32(reader["Id"]);
+                            s.CompanyName = reader["CompanyName"].ToString();
+                            s.ContactName = reader["ContactName"].ToString();
+                            s.Address_Line1 = reader["Address_Line1"].ToString();
+                            s.Address_Line2 = reader["Address_Line2"].ToString();
+                            s.Address_Line3 = reader["Address_Line3"].ToString();
+                            s.Town = reader["Town"].ToString();
+                            s.Postcode = reader["Postcode"].ToString();
+                            s.Phone_Mobile = reader["Phone_Mobile"].ToString();
+                            s.Phone_Office = reader["Phone_Office"].ToString();
+                            s.Email = reader["Email"].ToString();
+                            s.Website = reader["Website"].ToString();
+                            s.Category = reader["Category"].ToString();
+
+                            list.Add(s);
+                        }
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }

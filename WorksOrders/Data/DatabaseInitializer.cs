@@ -75,7 +75,8 @@ namespace WorkOrderApp.Data
                                 Phone_Mobile TEXT,
                                 Phone_Office TEXT,
                                 Email TEXT,
-                                Website TEXT
+                                Website TEXT,
+                                Category TEXT
                             );
                         ";
 

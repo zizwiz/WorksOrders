@@ -55,6 +55,12 @@ namespace WorksOrders.Forms
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
             this.dataGridView_suppliers = new System.Windows.Forms.DataGridView();
+            this.txtbx_search = new System.Windows.Forms.TextBox();
+            this.btn_search_supplier = new System.Windows.Forms.Button();
+            this.cmbobx_category = new System.Windows.Forms.ComboBox();
+            this.lbl_category = new System.Windows.Forms.Label();
+            this.lbl_filter = new System.Windows.Forms.Label();
+            this.cmbobx_filter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_suppliers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -218,7 +224,7 @@ namespace WorksOrders.Forms
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(98, 556);
+            this.btn_add.Location = new System.Drawing.Point(12, 556);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(141, 47);
             this.btn_add.TabIndex = 57;
@@ -228,7 +234,7 @@ namespace WorksOrders.Forms
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(245, 556);
+            this.btn_update.Location = new System.Drawing.Point(159, 556);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(141, 47);
             this.btn_update.TabIndex = 58;
@@ -238,7 +244,7 @@ namespace WorksOrders.Forms
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(392, 556);
+            this.btn_delete.Location = new System.Drawing.Point(306, 556);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(141, 47);
             this.btn_delete.TabIndex = 59;
@@ -248,7 +254,7 @@ namespace WorksOrders.Forms
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(784, 556);
+            this.btn_close.Location = new System.Drawing.Point(814, 558);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(141, 47);
             this.btn_close.TabIndex = 60;
@@ -267,11 +273,69 @@ namespace WorksOrders.Forms
             this.dataGridView_suppliers.TabIndex = 61;
             this.dataGridView_suppliers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_suppliers_CellClick);
             // 
+            // txtbx_search
+            // 
+            this.txtbx_search.Location = new System.Drawing.Point(594, 568);
+            this.txtbx_search.Name = "txtbx_search";
+            this.txtbx_search.Size = new System.Drawing.Size(214, 26);
+            this.txtbx_search.TabIndex = 63;
+            // 
+            // btn_search_supplier
+            // 
+            this.btn_search_supplier.Location = new System.Drawing.Point(453, 558);
+            this.btn_search_supplier.Name = "btn_search_supplier";
+            this.btn_search_supplier.Size = new System.Drawing.Size(135, 43);
+            this.btn_search_supplier.TabIndex = 62;
+            this.btn_search_supplier.Text = "Search";
+            this.btn_search_supplier.UseVisualStyleBackColor = true;
+            this.btn_search_supplier.Click += new System.EventHandler(this.btn_search_supplier_Click);
+            // 
+            // cmbobx_category
+            // 
+            this.cmbobx_category.FormattingEnabled = true;
+            this.cmbobx_category.Location = new System.Drawing.Point(192, 34);
+            this.cmbobx_category.Name = "cmbobx_category";
+            this.cmbobx_category.Size = new System.Drawing.Size(297, 28);
+            this.cmbobx_category.TabIndex = 64;
+            // 
+            // lbl_category
+            // 
+            this.lbl_category.AutoSize = true;
+            this.lbl_category.Location = new System.Drawing.Point(64, 37);
+            this.lbl_category.Name = "lbl_category";
+            this.lbl_category.Size = new System.Drawing.Size(73, 20);
+            this.lbl_category.TabIndex = 65;
+            this.lbl_category.Text = "Catagory";
+            // 
+            // lbl_filter
+            // 
+            this.lbl_filter.AutoSize = true;
+            this.lbl_filter.Location = new System.Drawing.Point(506, 37);
+            this.lbl_filter.Name = "lbl_filter";
+            this.lbl_filter.Size = new System.Drawing.Size(114, 20);
+            this.lbl_filter.TabIndex = 67;
+            this.lbl_filter.Text = "Filter Suppliers";
+            // 
+            // cmbobx_filter
+            // 
+            this.cmbobx_filter.FormattingEnabled = true;
+            this.cmbobx_filter.Location = new System.Drawing.Point(634, 34);
+            this.cmbobx_filter.Name = "cmbobx_filter";
+            this.cmbobx_filter.Size = new System.Drawing.Size(297, 28);
+            this.cmbobx_filter.TabIndex = 66;
+            this.cmbobx_filter.SelectedIndexChanged += new System.EventHandler(this.cmbobx_filter_SelectedIndexChanged);
+            // 
             // SupplierManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 615);
+            this.Controls.Add(this.lbl_filter);
+            this.Controls.Add(this.cmbobx_filter);
+            this.Controls.Add(this.lbl_category);
+            this.Controls.Add(this.cmbobx_category);
+            this.Controls.Add(this.txtbx_search);
+            this.Controls.Add(this.btn_search_supplier);
             this.Controls.Add(this.dataGridView_suppliers);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_delete);
@@ -299,7 +363,7 @@ namespace WorksOrders.Forms
             this.Controls.Add(this.txtbx_company_name);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SupplierManagementForm";
-            this.Text = "SupplierManagementForm";
+            this.Text = "Supplier Management";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_suppliers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -333,5 +397,11 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.DataGridView dataGridView_suppliers;
+        private System.Windows.Forms.TextBox txtbx_search;
+        private System.Windows.Forms.Button btn_search_supplier;
+        private System.Windows.Forms.ComboBox cmbobx_category;
+        private System.Windows.Forms.Label lbl_category;
+        private System.Windows.Forms.Label lbl_filter;
+        private System.Windows.Forms.ComboBox cmbobx_filter;
     }
 }
