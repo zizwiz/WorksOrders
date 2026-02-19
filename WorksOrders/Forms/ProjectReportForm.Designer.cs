@@ -43,14 +43,14 @@ namespace WorksOrders.Forms
             // 
             // datetimtpckr_from
             // 
-            this.datetimtpckr_from.Location = new System.Drawing.Point(125, 34);
+            this.datetimtpckr_from.Location = new System.Drawing.Point(210, 41);
             this.datetimtpckr_from.Name = "datetimtpckr_from";
             this.datetimtpckr_from.Size = new System.Drawing.Size(202, 26);
             this.datetimtpckr_from.TabIndex = 0;
             // 
             // datetimtpckr_to
             // 
-            this.datetimtpckr_to.Location = new System.Drawing.Point(563, 34);
+            this.datetimtpckr_to.Location = new System.Drawing.Point(648, 41);
             this.datetimtpckr_to.Name = "datetimtpckr_to";
             this.datetimtpckr_to.Size = new System.Drawing.Size(213, 26);
             this.datetimtpckr_to.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace WorksOrders.Forms
             // lbl_date_from
             // 
             this.lbl_date_from.AutoSize = true;
-            this.lbl_date_from.Location = new System.Drawing.Point(36, 39);
+            this.lbl_date_from.Location = new System.Drawing.Point(121, 46);
             this.lbl_date_from.Name = "lbl_date_from";
             this.lbl_date_from.Size = new System.Drawing.Size(83, 20);
             this.lbl_date_from.TabIndex = 2;
@@ -67,7 +67,7 @@ namespace WorksOrders.Forms
             // lbl_date_to
             // 
             this.lbl_date_to.AutoSize = true;
-            this.lbl_date_to.Location = new System.Drawing.Point(480, 39);
+            this.lbl_date_to.Location = new System.Drawing.Point(565, 46);
             this.lbl_date_to.Name = "lbl_date_to";
             this.lbl_date_to.Size = new System.Drawing.Size(77, 20);
             this.lbl_date_to.TabIndex = 3;

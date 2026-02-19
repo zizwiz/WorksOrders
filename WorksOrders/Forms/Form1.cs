@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -35,7 +34,7 @@ namespace WorksOrders
         {
             //LoadSettings(); //load settings from last session
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
-            PopulateGridView();
+            PopulateGridView("");
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -47,18 +46,60 @@ namespace WorksOrders
 
         private void WorkOrderForm_WorkOrderFormClosed(object sender, EventArgs e)
         {
-            PopulateGridView();
+            PopulateGridView("");
         }
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            PopulateGridView();
+            PopulateGridView(txtbx_search.Text);
         }
 
-        private void PopulateGridView()
+        private void PopulateGridView(string myString)
         {
             dataGridView_records.DataSource = null;
-            dataGridView_records.DataSource = _repo.Search(txtbx_search.Text);
+            lstbx_attachments.Items.Clear();
+            lstbx_notes.Items.Clear();
+
+            dataGridView_records.DataSource = _repo.Search(myString);
+
+            //If we have data in database then once populated show any notes and attachments
+            if (dataGridView_records.RowCount > 0)
+            {
+                _order = dataGridView_records.Rows[0].DataBoundItem as WorkOrder;
+                LoadAttachments(int.Parse(dataGridView_records.CurrentCell.Value.ToString()));
+                LoadNotes(int.Parse(dataGridView_records.CurrentCell.Value.ToString()));
+                DisplayItems(true);
+            }
+            else
+            {
+                DisplayItems(false); //empty gridview so do not show items that cannot be used
+            }
+        }
+
+        private void DisplayItems(bool displayFlag)
+        {
+            // what will we show
+            btn_search_project.Visible = displayFlag;
+            txtbx_search.Visible = displayFlag;
+            btn_delete_project.Visible = displayFlag;
+            btn_update_project.Visible = displayFlag;
+            btn_create_report.Visible = displayFlag;
+            btn_refresh_projects.Visible = displayFlag;
+            btn_attach_project_files.Visible = displayFlag;
+        }
+
+        private void DisplayAttachmentItems(bool displayFlag)
+        {
+            // what will we show
+            lstbx_attachments.Visible = displayFlag;
+            lbl_project_attachments.Visible = displayFlag;
+        }
+
+        private void DisplayNotesItems(bool displayFlag)
+        {
+            // what will we show
+            lstbx_notes.Visible = displayFlag;
+            lbl_project_notes.Visible = displayFlag;
         }
 
         private void btn_update_Click(object sender, EventArgs e)
@@ -78,7 +119,7 @@ namespace WorksOrders
             {
                 var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
                 _repo.Delete(order.Id);
-                PopulateGridView();
+                PopulateGridView("");
                 MsgBox.Show("Row Deleted", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -125,6 +166,8 @@ namespace WorksOrders
 
         private void LoadAttachments(int workOrderId)
         {
+            DisplayAttachmentItems(true); //show items
+
             lstbx_attachments.Items.Clear();
 
             var files = _repo.GetFiles(workOrderId);
@@ -134,6 +177,12 @@ namespace WorksOrders
                 // Store the whole object so we can open it later
                 lstbx_attachments.Items.Add(f);
             }
+
+            if (lstbx_attachments.Items.Count == 0)
+            {
+                DisplayAttachmentItems(false);
+            }
+
         }
 
         
@@ -157,13 +206,18 @@ namespace WorksOrders
 
         private void LoadNotes(int workOrderId)
         {
+            DisplayNotesItems(true);
+
             lstbx_notes.Items.Clear();
 
             string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
             string orderDir = Path.Combine(baseDir, workOrderId.ToString());
 
             if (!Directory.Exists(orderDir))
+            {
+                DisplayNotesItems(false);
                 return;
+            }
 
             string[] files = Directory.GetFiles(orderDir, "*.txt");
 
@@ -198,7 +252,14 @@ namespace WorksOrders
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            PopulateGridView();
+            dataGridView_records.DataSource = null;
+            dataGridView_records.DataSource = _repo.Search("");
+
+            if (dataGridView_records.RowCount > 0)
+            {
+                LoadAttachments(int.Parse(dataGridView_records.CurrentCell.Value.ToString()));
+                LoadNotes(int.Parse(dataGridView_records.CurrentCell.Value.ToString()));
+            }
         }
 
         private void btn_create_report_Click(object sender, EventArgs e)

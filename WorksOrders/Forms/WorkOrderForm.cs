@@ -161,6 +161,7 @@ namespace WorksOrders.Forms
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     _repo.AddAttachmentFile(_order.Id, dlg.FileName);
+                    LoadAttachments(_order.Id);
                     MsgBox.Show("File attached", "File attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
