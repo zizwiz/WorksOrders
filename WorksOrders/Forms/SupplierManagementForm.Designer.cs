@@ -61,6 +61,9 @@ namespace WorksOrders.Forms
             this.lbl_category = new System.Windows.Forms.Label();
             this.lbl_filter = new System.Windows.Forms.Label();
             this.cmbobx_filter = new System.Windows.Forms.ComboBox();
+            this.lstbx_supplier_attachments = new System.Windows.Forms.ListBox();
+            this.btn_add_supplier_attachment = new System.Windows.Forms.Button();
+            this.btn_delete_supplier_attachment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_suppliers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,7 +272,7 @@ namespace WorksOrders.Forms
             this.dataGridView_suppliers.Name = "dataGridView_suppliers";
             this.dataGridView_suppliers.RowHeadersWidth = 62;
             this.dataGridView_suppliers.RowTemplate.Height = 28;
-            this.dataGridView_suppliers.Size = new System.Drawing.Size(943, 230);
+            this.dataGridView_suppliers.Size = new System.Drawing.Size(620, 230);
             this.dataGridView_suppliers.TabIndex = 61;
             this.dataGridView_suppliers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_suppliers_CellClick);
             // 
@@ -325,11 +328,44 @@ namespace WorksOrders.Forms
             this.cmbobx_filter.TabIndex = 66;
             this.cmbobx_filter.SelectedIndexChanged += new System.EventHandler(this.cmbobx_filter_SelectedIndexChanged);
             // 
+            // lstbx_supplier_attachments
+            // 
+            this.lstbx_supplier_attachments.FormattingEnabled = true;
+            this.lstbx_supplier_attachments.ItemHeight = 20;
+            this.lstbx_supplier_attachments.Location = new System.Drawing.Point(638, 308);
+            this.lstbx_supplier_attachments.Name = "lstbx_supplier_attachments";
+            this.lstbx_supplier_attachments.Size = new System.Drawing.Size(317, 164);
+            this.lstbx_supplier_attachments.TabIndex = 68;
+            this.lstbx_supplier_attachments.DoubleClick += new System.EventHandler(this.lstbx_supplier_attachments_DoubleClick);
+            // 
+            // btn_add_supplier_attachment
+            // 
+            this.btn_add_supplier_attachment.Location = new System.Drawing.Point(638, 485);
+            this.btn_add_supplier_attachment.Name = "btn_add_supplier_attachment";
+            this.btn_add_supplier_attachment.Size = new System.Drawing.Size(155, 47);
+            this.btn_add_supplier_attachment.TabIndex = 69;
+            this.btn_add_supplier_attachment.Text = "Add Attachment";
+            this.btn_add_supplier_attachment.UseVisualStyleBackColor = true;
+            this.btn_add_supplier_attachment.Click += new System.EventHandler(this.btn_add_supplier_attachment_Click);
+            // 
+            // btn_delete_supplier_attachment
+            // 
+            this.btn_delete_supplier_attachment.Location = new System.Drawing.Point(799, 485);
+            this.btn_delete_supplier_attachment.Name = "btn_delete_supplier_attachment";
+            this.btn_delete_supplier_attachment.Size = new System.Drawing.Size(156, 47);
+            this.btn_delete_supplier_attachment.TabIndex = 70;
+            this.btn_delete_supplier_attachment.Text = "Delete Attachment";
+            this.btn_delete_supplier_attachment.UseVisualStyleBackColor = true;
+            this.btn_delete_supplier_attachment.Click += new System.EventHandler(this.btn_delete_supplier_attachment_Click);
+            // 
             // SupplierManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 615);
+            this.Controls.Add(this.btn_delete_supplier_attachment);
+            this.Controls.Add(this.btn_add_supplier_attachment);
+            this.Controls.Add(this.lstbx_supplier_attachments);
             this.Controls.Add(this.lbl_filter);
             this.Controls.Add(this.cmbobx_filter);
             this.Controls.Add(this.lbl_category);
@@ -403,5 +439,8 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.Label lbl_category;
         private System.Windows.Forms.Label lbl_filter;
         private System.Windows.Forms.ComboBox cmbobx_filter;
+        private System.Windows.Forms.ListBox lstbx_supplier_attachments;
+        private System.Windows.Forms.Button btn_add_supplier_attachment;
+        private System.Windows.Forms.Button btn_delete_supplier_attachment;
     }
 }

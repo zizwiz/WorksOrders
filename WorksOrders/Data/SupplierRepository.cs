@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
+using System.Windows.Forms;
 using WorksOrders.Data;
 
 namespace WorkOrderApp.Data
@@ -202,6 +204,22 @@ namespace WorkOrderApp.Data
             }
 
             return list;
+        }
+
+        public void AddSupplierAttachment(int supplierId, string sourceFile)
+        {
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SupplierAttachments");
+            string supplierDir = Path.Combine(baseDir, supplierId.ToString());
+
+            if (!Directory.Exists(supplierDir))
+                Directory.CreateDirectory(supplierDir);
+
+            string fileName = Path.GetFileName(sourceFile);
+            string destPath = Path.Combine(supplierDir, Guid.NewGuid() + "_" + fileName);
+
+            File.Copy(sourceFile, destPath);
+
+            MessageBox.Show("Attachment added.");
         }
     }
 }

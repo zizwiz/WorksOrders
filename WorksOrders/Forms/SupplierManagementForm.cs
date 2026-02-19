@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using CenteredMessagebox;
 using WorkOrderApp.Data;
@@ -130,6 +131,8 @@ namespace WorksOrders.Forms
 
             var supplier = dataGridView_suppliers.Rows[e.RowIndex].DataBoundItem as Supplier;
 
+            _supplier = supplier;
+
             txtbx_company_name.Text = supplier.CompanyName;
             txtbx_contact_name.Text = supplier.ContactName;
             txtbx_address_line1.Text = supplier.Address_Line1;
@@ -149,6 +152,7 @@ namespace WorksOrders.Forms
                 btn_update.Enabled = true;
             }
 
+            LoadSupplierAttachments(supplier.Id);
         }
 
         private void PopulateGridView()
@@ -206,6 +210,68 @@ namespace WorksOrders.Forms
             string cat = cmbobx_filter.SelectedItem.ToString();
             var results = _repo.SearchSuppliers(cat);
             dataGridView_suppliers.DataSource = results;
+        }
+
+        private void btn_add_supplier_attachment_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Title = "Select a file to attach";
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    _repo.AddSupplierAttachment(_supplier.Id, dlg.FileName);
+                    LoadSupplierAttachments(_supplier.Id);
+                }
+            }
+        }
+
+        private void btn_delete_supplier_attachment_Click(object sender, EventArgs e)
+        {
+            var att = lstbx_supplier_attachments.SelectedItem as SupplierAttachment;
+
+            if (att == null)
+            {
+                MessageBox.Show("Select an attachment to delete.");
+                return;
+            }
+
+            if (File.Exists(att.FilePath))
+                File.Delete(att.FilePath);
+
+            LoadSupplierAttachments(_supplier.Id);
+
+        }
+
+        
+
+        private void LoadSupplierAttachments(int supplierId)
+        {
+            lstbx_supplier_attachments.Items.Clear();
+
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SupplierAttachments");
+            string supplierDir = Path.Combine(baseDir, supplierId.ToString());
+
+            if (!Directory.Exists(supplierDir))
+                return;
+
+            foreach (string file in Directory.GetFiles(supplierDir))
+            {
+                lstbx_supplier_attachments.Items.Add(new SupplierAttachment
+                {
+                    FileName = Path.GetFileName(file),
+                    FilePath = file
+                });
+            }
+        }
+
+        private void lstbx_supplier_attachments_DoubleClick(object sender, EventArgs e)
+        {
+            var att = lstbx_supplier_attachments.SelectedItem as SupplierAttachment;
+
+            if (att != null && File.Exists(att.FilePath))
+                System.Diagnostics.Process.Start(att.FilePath);
+
         }
     }
 }

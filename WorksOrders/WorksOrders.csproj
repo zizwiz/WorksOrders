@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\Supplier.cs" />
+    <Compile Include="Data\SupplierAttachment.cs" />
     <Compile Include="Data\SupplierRepository.cs" />
     <Compile Include="Data\WorkOrder.cs" />
     <Compile Include="Data\WorkOrderFile.cs" />
