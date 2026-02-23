@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DatabaseInitializer.cs" />
+    <Compile Include="Data\SortableBindingList.cs" />
     <Compile Include="Data\Supplier.cs" />
     <Compile Include="Data\SupplierAttachment.cs" />
     <Compile Include="Data\SupplierRepository.cs" />

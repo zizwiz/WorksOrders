@@ -28,6 +28,7 @@ namespace WorksOrders
             btn_update_project.Enabled = isAdmin;
             btn_add_project.Enabled = isAdmin;
             btn_attach_project_files.Enabled = isAdmin;
+            btn_suppliers.Enabled = isAdmin;
         }
 
         private void Form1_Load(object sender, EventArgs e)

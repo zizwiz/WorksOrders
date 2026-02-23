@@ -275,6 +275,7 @@ namespace WorksOrders.Forms
             this.dataGridView_suppliers.Size = new System.Drawing.Size(1433, 275);
             this.dataGridView_suppliers.TabIndex = 61;
             this.dataGridView_suppliers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_suppliers_CellClick);
+            this.dataGridView_suppliers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_suppliers_ColumnHeaderMouseClick);
             // 
             // txtbx_search
             // 

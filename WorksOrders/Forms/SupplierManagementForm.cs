@@ -158,7 +158,11 @@ namespace WorksOrders.Forms
         private void PopulateGridView()
         {
             dataGridView_suppliers.DataSource = null;
-            dataGridView_suppliers.DataSource = _repo.GetSuppliers();
+            //dataGridView_suppliers.DataSource = _repo.GetSuppliers();
+
+            var suppliers = _repo.GetSuppliers();
+            dataGridView_suppliers.DataSource = new SortableBindingList<Supplier>(suppliers);
+
         }
 
         private void btn_search_supplier_Click(object sender, EventArgs e)
@@ -280,6 +284,11 @@ namespace WorksOrders.Forms
             if (att != null && File.Exists(att.FilePath))
                 System.Diagnostics.Process.Start(att.FilePath);
 
+        }
+
+        private void dataGridView_suppliers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dataGridView_suppliers.Refresh();
         }
     }
 }
