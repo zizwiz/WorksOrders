@@ -1,5 +1,6 @@
 ﻿using System.Data.SQLite;
 using System.IO;
+using WorksOrders.Data;
 
 namespace WorkOrderApp.Data
 {
@@ -38,15 +39,15 @@ namespace WorkOrderApp.Data
                         );
                     ";
 
-                   using (var cmd = new SQLiteCommand(sql, conn))
+                    using (var cmd = new SQLiteCommand(sql, conn))
                     {
                         cmd.ExecuteNonQuery();
                     }
 
-                   //--------------------------------------------------------------------------------
-                   // This is a block from here to marker below. add blocks for new tables
-                   // Create WorkOrderFiles table to store attached files
-                   string sqlFiles = @"
+                    //--------------------------------------------------------------------------------
+                    // This is a block from here to marker below. add blocks for new tables
+                    // Create WorkOrderFiles table to store attached files
+                    string sqlFiles = @"
                         CREATE TABLE WorkOrderFiles (
                             Id INTEGER PRIMARY KEY AUTOINCREMENT,
                             WorkOrderId INTEGER NOT NULL,
@@ -56,10 +57,11 @@ namespace WorkOrderApp.Data
                         );
                     ";
 
-                   using (var cmd = new SQLiteCommand(sqlFiles, conn))
-                   {
-                       cmd.ExecuteNonQuery();
-                   }
+                    using (var cmd = new SQLiteCommand(sqlFiles, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+
                     // Bottom of marker
                     //----------------------------------------------------------------------------------
                     string sqlSuppliers = @"
@@ -84,6 +86,47 @@ namespace WorkOrderApp.Data
                     {
                         cmd.ExecuteNonQuery();
                     }
+
+                    //---------------------------------------------------------------------------
+
+                    string sqlUsers = @"
+                           CREATE TABLE Users (
+                            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            Username TEXT NOT NULL UNIQUE,
+                            PasswordHash TEXT NOT NULL,
+                            Role TEXT NOT NULL
+                            );
+                    ";
+
+                    using (var cmd = new SQLiteCommand(sqlUsers, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    //passwords stored as SHA256 this is simple and secure for this type of app.
+
+                    string sqlCheck = "SELECT COUNT(*) FROM Users";
+
+                    using (var cmd = new SQLiteCommand(sqlCheck, conn))
+                    {
+                        long count = (long)cmd.ExecuteScalar();
+
+                        if (count == 0)
+                        {
+                            string defaultPass = UserRepository.HashPassword("admin");
+                            string sqlInsert = @"INSERT INTO Users (Username, PasswordHash, Role)
+                             VALUES ('superuser', @PasswordHash, 'Superuser')";
+
+                            using (var cmd2 = new SQLiteCommand(sqlInsert, conn))
+                            {
+                                cmd2.Parameters.AddWithValue("@PasswordHash", defaultPass);
+                                cmd2.ExecuteNonQuery();
+                            }
+                        }
+                    }
+
+                    //---------------------------------------------------------------------------
+                    
                 }
             }
         }

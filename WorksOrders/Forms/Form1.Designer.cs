@@ -45,6 +45,7 @@ namespace WorksOrders
             this.btn_suppliers = new System.Windows.Forms.Button();
             this.lbl_project_notes = new System.Windows.Forms.Label();
             this.lbl_project_attachments = new System.Windows.Forms.Label();
+            this.btn_ManageUsers = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_records)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,6 +109,7 @@ namespace WorksOrders
             this.dataGridView_records.Size = new System.Drawing.Size(1443, 381);
             this.dataGridView_records.TabIndex = 15;
             this.dataGridView_records.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_records_CellClick);
+            this.dataGridView_records.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_records_ColumnHeaderMouseClick);
             // 
             // txtbx_search
             // 
@@ -194,11 +196,22 @@ namespace WorksOrders
             this.lbl_project_attachments.TabIndex = 26;
             this.lbl_project_attachments.Text = "Project Attachments";
             // 
+            // btn_ManageUsers
+            // 
+            this.btn_ManageUsers.Location = new System.Drawing.Point(513, 708);
+            this.btn_ManageUsers.Name = "btn_ManageUsers";
+            this.btn_ManageUsers.Size = new System.Drawing.Size(167, 43);
+            this.btn_ManageUsers.TabIndex = 27;
+            this.btn_ManageUsers.Text = "Manage users";
+            this.btn_ManageUsers.UseVisualStyleBackColor = true;
+            this.btn_ManageUsers.Click += new System.EventHandler(this.btn_ManageUsers_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1466, 758);
+            this.Controls.Add(this.btn_ManageUsers);
             this.Controls.Add(this.lbl_project_attachments);
             this.Controls.Add(this.lbl_project_notes);
             this.Controls.Add(this.btn_suppliers);
@@ -243,6 +256,7 @@ namespace WorksOrders
         private System.Windows.Forms.Button btn_suppliers;
         private System.Windows.Forms.Label lbl_project_notes;
         private System.Windows.Forms.Label lbl_project_attachments;
+        private System.Windows.Forms.Button btn_ManageUsers;
     }
 }
 

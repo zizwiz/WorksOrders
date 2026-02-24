@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using CenteredMessagebox;
 using WorkOrderApp.Data;
+using WorksOrders.Data;
 using WorksOrders.Forms;
 
 namespace WorksOrders
@@ -12,16 +13,27 @@ namespace WorksOrders
     {
         private readonly WorkOrderRepository _repo;
         private readonly SupplierRepository _supplierRepo;
+        private readonly UserRepository _userRepo;
         private readonly bool _isAdmin;
         private WorkOrder _order;
         private string Database_path;
 
-        public Form1(string dbPath, bool isAdmin)
+        private bool isAdmin = true;
+        private AppUser _currentUser;
+
+        
+        //public Form1(string dbPath, bool isAdmin)
+        public Form1(string dbPath, AppUser user)
         {
             InitializeComponent();
+            _currentUser = user;
+
+            if (_currentUser.Role == "User") isAdmin = false; // Users only have read rights.
+
+            ApplyPermissions();
             _repo = new WorkOrderRepository(dbPath);
             _supplierRepo = new SupplierRepository(dbPath);
-            _isAdmin = isAdmin;
+            _userRepo = new UserRepository(dbPath);
             Database_path = dbPath;
 
             btn_delete_project.Enabled = isAdmin;
@@ -29,6 +41,9 @@ namespace WorksOrders
             btn_add_project.Enabled = isAdmin;
             btn_attach_project_files.Enabled = isAdmin;
             btn_suppliers.Enabled = isAdmin;
+
+            if (_currentUser.Role == "Admin") isAdmin = false; // Admin cannot add users, can add suppliers and works orders.
+            btn_ManageUsers.Enabled = isAdmin;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,7 +76,17 @@ namespace WorksOrders
             lstbx_attachments.Items.Clear();
             lstbx_notes.Items.Clear();
 
-            dataGridView_records.DataSource = _repo.Search(myString);
+           // dataGridView_records.DataSource = _repo.Search(myString); //no sorting of columns
+
+            var workorders = _repo.Search(myString);
+
+            if (workorders.Count == 0) 
+            { 
+                DisplayItems(false); 
+                return;
+            }
+
+            dataGridView_records.DataSource = new SortableBindingList<WorkOrder>(workorders); //Allows sorting of columns
 
             //If we have data in database then once populated show any notes and attachments
             if (dataGridView_records.RowCount > 0)
@@ -70,6 +95,7 @@ namespace WorksOrders
                 LoadAttachments(int.Parse(dataGridView_records.CurrentCell.Value.ToString()));
                 LoadNotes(int.Parse(dataGridView_records.CurrentCell.Value.ToString()));
                 DisplayItems(true);
+
             }
             else
             {
@@ -173,6 +199,8 @@ namespace WorksOrders
 
             var files = _repo.GetFiles(workOrderId);
 
+            if (files.Count == 0) return;
+
             foreach (var f in files)
             {
                 // Store the whole object so we can open it later
@@ -221,6 +249,8 @@ namespace WorksOrders
             }
 
             string[] files = Directory.GetFiles(orderDir, "*.txt");
+
+            if (files.Length == 0) return;
 
             foreach (string file in files)
             {
@@ -272,6 +302,39 @@ namespace WorksOrders
         private void btn_add_supplier_Click(object sender, EventArgs e)
         {
             var form = new SupplierManagementForm(_supplierRepo, null, true);
+            form.ShowDialog();
+        }
+
+        private void dataGridView_records_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dataGridView_records.Refresh();
+        }
+
+        private void ApplyPermissions()
+        {
+            if (_currentUser.Role == "Superuser")
+            {
+                btn_ManageUsers.Visible = true;
+            }
+            else if (_currentUser.Role == "User")
+            {
+                btn_add_project.Enabled = false;
+                btn_update_project.Enabled = false;
+                btn_delete_project.Enabled = false;
+
+                btn_suppliers.Enabled = false;
+                btn_attach_project_files.Enabled = false;
+                btn_delete_project.Enabled = false;
+            }
+            else if (_currentUser.Role == "Admin")
+            {
+                btn_ManageUsers.Enabled = false; // only superuser can manage users
+            }
+        }
+
+        private void btn_ManageUsers_Click(object sender, EventArgs e)
+        {
+            var form = new UserManagerForm(_userRepo);
             form.ShowDialog();
         }
     }

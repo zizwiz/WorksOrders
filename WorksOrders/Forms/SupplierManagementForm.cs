@@ -105,6 +105,7 @@ namespace WorksOrders.Forms
             }
             catch (Exception exception)
             {
+                var notused = exception; //does nothing just makes compile happy
                 MsgBox.Show("Please add some suppliers", "Empty supplier list", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
