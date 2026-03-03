@@ -49,6 +49,47 @@ namespace WorksOrders.Data
             }
         }
 
+        public void UpdateUser(AppUser user)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = @"
+                    UPDATE Users SET
+                        Username=@Username,
+                        PasswordHash=@PasswordHash,
+                        Role=@Role
+                    WHERE Id=@Id
+                ";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", user.Id);
+                    cmd.Parameters.AddWithValue("@Username", user.Username);
+                    cmd.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
+                    cmd.Parameters.AddWithValue("@Role", user.Role);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                string sql = "DELETE FROM Users WHERE Id=@Id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public AppUser ValidateLogin(string username, string password)
         {
             using (var conn = GetConnection())

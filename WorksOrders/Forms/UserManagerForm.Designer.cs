@@ -85,6 +85,8 @@ namespace WorksOrders.Forms
             this.dataGridView_Users.RowTemplate.Height = 28;
             this.dataGridView_Users.Size = new System.Drawing.Size(1006, 467);
             this.dataGridView_Users.TabIndex = 26;
+            this.dataGridView_Users.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Users_CellContentClick);
+            this.dataGridView_Users.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_Users_RowHeaderMouseClick);
             // 
             // cmbobx_role
             // 
@@ -125,6 +127,7 @@ namespace WorksOrders.Forms
             this.btn_update_User.TabIndex = 30;
             this.btn_update_User.Text = "Update";
             this.btn_update_User.UseVisualStyleBackColor = true;
+            this.btn_update_User.Click += new System.EventHandler(this.btn_update_User_Click);
             // 
             // btn_delete_user
             // 
@@ -134,6 +137,7 @@ namespace WorksOrders.Forms
             this.btn_delete_user.TabIndex = 31;
             this.btn_delete_user.Text = "Delete";
             this.btn_delete_user.UseVisualStyleBackColor = true;
+            this.btn_delete_user.Click += new System.EventHandler(this.btn_delete_user_Click);
             // 
             // btn_close
             // 
