@@ -16,7 +16,13 @@ namespace WorksOrders.Forms
 
         public void btn_login_Click(object sender, EventArgs e)
         {
-            var repo = new UserRepository(_dbPath);
+            LogIn();
+        }
+
+
+        public void LogIn()
+        {
+        var repo = new UserRepository(_dbPath);
 
             var user = repo.ValidateLogin(txtbx_UserName.Text, txtbx_password.Text);
 
@@ -31,6 +37,15 @@ namespace WorksOrders.Forms
             main.Show();
             Hide();
 
+        }
+
+        private void txtbx_password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //stops ding
+                LogIn();
+            }
         }
     }
 }

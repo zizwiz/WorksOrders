@@ -68,8 +68,13 @@ namespace WorksOrders.Forms
 
             btn_attach_files.Visible = isAdmin && _isUpdate;
             btn_save.Enabled = isAdmin && !_isUpdate;
-            btn_add_notes.Enabled = isAdmin && order != null;
-            btn_update.Enabled = isAdmin && order != null;
+
+            if (order != null)
+            {
+                //we have some orders
+                btn_add_notes.Enabled = isAdmin;
+                btn_update.Enabled = isAdmin;
+            }
         }
 
         private void LoadNotes(int workOrderId)

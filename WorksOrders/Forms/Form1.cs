@@ -6,6 +6,7 @@ using CenteredMessagebox;
 using WorkOrderApp.Data;
 using WorksOrders.Data;
 using WorksOrders.Forms;
+using WorksOrders.Properties;
 
 namespace WorksOrders
 {
@@ -21,7 +22,7 @@ namespace WorksOrders
         private bool isAdmin = true;
         private AppUser _currentUser;
 
-        
+
         //public Form1(string dbPath, bool isAdmin)
         public Form1(string dbPath, AppUser user)
         {
@@ -51,11 +52,15 @@ namespace WorksOrders
             //LoadSettings(); //load settings from last session
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
             PopulateGridView("");
+
+            LoadSettings(); //load all file paths
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            var form = new WorkOrderForm(_repo, _supplierRepo, null, _isAdmin, false);
+            if (_currentUser.Role != "User") isAdmin = true; // User only has read rights.
+
+            var form = new WorkOrderForm(_repo, _supplierRepo, null, isAdmin, false);
             form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
             form.ShowDialog();
         }
@@ -76,13 +81,13 @@ namespace WorksOrders
             lstbx_attachments.Items.Clear();
             lstbx_notes.Items.Clear();
 
-           // dataGridView_records.DataSource = _repo.Search(myString); //no sorting of columns
+            // dataGridView_records.DataSource = _repo.Search(myString); //no sorting of columns
 
             var workorders = _repo.Search(myString);
 
-            if (workorders.Count == 0) 
-            { 
-                DisplayItems(false); 
+            if (workorders.Count == 0)
+            {
+                DisplayItems(false);
                 return;
             }
 
@@ -134,7 +139,7 @@ namespace WorksOrders
             if (dataGridView_records.RowCount > 0)
             {
                 var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-                var form = new WorkOrderForm(_repo, _supplierRepo, order, _isAdmin, true);
+                var form = new WorkOrderForm(_repo, _supplierRepo, order, isAdmin, true);
                 form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
                 form.ShowDialog();
             }
@@ -153,11 +158,13 @@ namespace WorksOrders
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+            SaveSettings();
             Application.Exit(); // this also closes hidden login form
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            SaveSettings();
             Application.Exit(); // this also closes hidden login form
         }
 
@@ -171,7 +178,7 @@ namespace WorksOrders
                 {
                     var currentWorkOrder = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
                     _repo.AddAttachmentFile(currentWorkOrder.Id, dlg.FileName);
-                    LoadAttachments(currentWorkOrder.Id); 
+                    LoadAttachments(currentWorkOrder.Id);
                     MsgBox.Show("File attached: " + dlg.FileName, "Attachments", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -214,7 +221,7 @@ namespace WorksOrders
 
         }
 
-        
+
         private void lstbx_attachments_DoubleClick(object sender, EventArgs e)
         {
             if (lstbx_attachments.SelectedItem == null)
@@ -265,7 +272,7 @@ namespace WorksOrders
                 return;
 
             string title = lstbx_notes.SelectedItem.ToString();
-            
+
 
             string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
             string orderDir = Path.Combine(baseDir, _order.Id.ToString());
@@ -337,6 +344,66 @@ namespace WorksOrders
             var form = new UserManagerForm(_userRepo);
             form.ShowDialog();
         }
-    }
 
+        private void LoadSettings()
+        {
+            lbl_db_file_path.Text = Settings.Default.db_path_and_name;
+        }
+
+        private void SaveSettings()
+        {
+            Settings.Default.db_path_and_name = lbl_db_file_path.Text;
+
+            Settings.Default.Save();
+        }
+
+        private void btn_database_file_path_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+                {
+                    fbd.Description = "Select folder for database and associated items";
+                    fbd.ShowNewFolderButton = true; //Allow a new folder to be created
+
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        lbl_db_file_path.Text = fbd.SelectedPath + "\\workorders.db";
+
+                        if (!Directory.Exists(fbd.SelectedPath))
+                        {
+                            Directory.CreateDirectory(fbd.SelectedPath);
+                        }
+
+                        SaveSettings();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                MsgBox.Show($"Error Creating Folder: {exception.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_restart_Click(object sender, EventArgs e)
+        {
+            var myResult = MsgBox.Show("Are you sure you want to restart the app?", "Restart Request",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (myResult == DialogResult.Yes)
+            {
+                try
+                {
+                    SaveSettings();
+                    Application.Restart();
+                    Environment.Exit(0); //Ensure we exit current instance
+                }
+                catch (Exception exception)
+                {
+                    MsgBox.Show($"Error exiting app: {exception.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+    }
 }

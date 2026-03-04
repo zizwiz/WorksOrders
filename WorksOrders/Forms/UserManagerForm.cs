@@ -73,9 +73,14 @@ namespace WorksOrders.Forms
                 var user = dataGridView_Users.CurrentRow.DataBoundItem as AppUser;
 
                 user.Username = txtbx_UserName.Text;
-                user.PasswordHash = UserRepository.HashPassword(txtbx_password.Text);
                 user.Role = cmbobx_role.Text;
-
+                
+                if (!string.IsNullOrWhiteSpace(txtbx_password.Text))
+                {
+                    // User entered a new password, leave blank to keep existing one
+                    user.PasswordHash = UserRepository.HashPassword(txtbx_password.Text);
+                }
+                
                 _repo.UpdateUser(user);
                 MsgBox.Show("User Updated", "User updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 PopulateGridView();
