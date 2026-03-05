@@ -64,6 +64,7 @@ namespace WorksOrders.Forms
             foreach (var order in reportData)
             {
                 string line =
+                    order.Project + "   " +
                     order.OrderNumber + "   " +
                     order.CompanyName + "   " +
                     (order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToShortDateString() : "-") + "   " +

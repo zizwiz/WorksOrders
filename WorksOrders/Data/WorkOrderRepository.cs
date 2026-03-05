@@ -319,6 +319,7 @@ cmd.ExecuteNonQuery();
                             var order = new WorkOrder();
 
                             order.Id = Convert.ToInt32(reader["Id"]);
+                            order.Project = reader["Project"].ToString();
                             order.OrderNumber = reader["OrderNumber"].ToString();
                             order.CompanyName = reader["CompanyName"].ToString();
                             order.ContactName = reader["ContactName"].ToString();

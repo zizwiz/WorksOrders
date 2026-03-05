@@ -54,6 +54,7 @@ namespace WorksOrders
             this.lbl_db_file_path = new System.Windows.Forms.Label();
             this.btn_ManageUsers = new System.Windows.Forms.Button();
             this.btn_suppliers = new System.Windows.Forms.Button();
+            this.lbl_databse_location = new System.Windows.Forms.Label();
             this.tabCntrl_form1.SuspendLayout();
             this.form1_tab_main.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -257,6 +258,7 @@ namespace WorksOrders
             // form1_file_paths_panel
             // 
             this.form1_file_paths_panel.AutoSize = true;
+            this.form1_file_paths_panel.Controls.Add(this.lbl_databse_location);
             this.form1_file_paths_panel.Controls.Add(this.btn_ManageUsers);
             this.form1_file_paths_panel.Controls.Add(this.btn_suppliers);
             this.form1_file_paths_panel.Controls.Add(this.btn_restart);
@@ -291,7 +293,7 @@ namespace WorksOrders
             // lbl_db_file_path
             // 
             this.lbl_db_file_path.AutoSize = true;
-            this.lbl_db_file_path.Location = new System.Drawing.Point(99, 34);
+            this.lbl_db_file_path.Location = new System.Drawing.Point(257, 34);
             this.lbl_db_file_path.Name = "lbl_db_file_path";
             this.lbl_db_file_path.Size = new System.Drawing.Size(145, 20);
             this.lbl_db_file_path.TabIndex = 1;
@@ -316,6 +318,15 @@ namespace WorksOrders
             this.btn_suppliers.Text = "Supplier Management";
             this.btn_suppliers.UseVisualStyleBackColor = true;
             this.btn_suppliers.Click += new System.EventHandler(this.btn_add_supplier_Click);
+            // 
+            // lbl_databse_location
+            // 
+            this.lbl_databse_location.AutoSize = true;
+            this.lbl_databse_location.Location = new System.Drawing.Point(99, 34);
+            this.lbl_databse_location.Name = "lbl_databse_location";
+            this.lbl_databse_location.Size = new System.Drawing.Size(152, 20);
+            this.lbl_databse_location.TabIndex = 46;
+            this.lbl_databse_location.Text = "Database Location: ";
             // 
             // Form1
             // 
@@ -368,6 +379,7 @@ namespace WorksOrders
         private System.Windows.Forms.Button btn_restart;
         private System.Windows.Forms.Button btn_ManageUsers;
         private System.Windows.Forms.Button btn_suppliers;
+        private System.Windows.Forms.Label lbl_databse_location;
     }
 }
 

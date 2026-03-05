@@ -300,7 +300,7 @@ namespace WorksOrders
         }
 
         private void btn_create_report_Click(object sender, EventArgs e)
-        {
+        { 
             var form = new ProjectReportForm(_dbPath);
             form.ShowDialog();
         }
@@ -346,7 +346,7 @@ namespace WorksOrders
 
         private void LoadSettings()
         {
-            lbl_db_file_path.Text = "Database location: " + Settings.Default.db_path_and_name;
+            lbl_db_file_path.Text = Settings.Default.db_path_and_name;
         }
 
         private void SaveSettings()
@@ -374,6 +374,7 @@ namespace WorksOrders
                         {
                             Directory.CreateDirectory(dir);
                         }
+
 
                         lbl_db_file_path.Text = dbPath;
 
