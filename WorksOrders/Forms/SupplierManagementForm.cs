@@ -10,15 +10,17 @@ namespace WorksOrders.Forms
     public partial class SupplierManagementForm : Form
     {
         private readonly SupplierRepository _repo;
+        private readonly string _dbPath;
         private Supplier _supplier;
         private bool _isAdmin;
 
-        public SupplierManagementForm(SupplierRepository repo, Supplier supplier, bool isAdmin)
+        public SupplierManagementForm(SupplierRepository repo, Supplier supplier, bool isAdmin, string dbPath)
         {
             InitializeComponent();
             _repo = repo;
             _supplier = supplier;
             _isAdmin = isAdmin;
+            _dbPath = dbPath;
 
             if (_supplier != null)
             {
@@ -161,11 +163,9 @@ namespace WorksOrders.Forms
 
         private void PopulateGridView()
         {
-            dataGridView_suppliers.DataSource = null;
-            //dataGridView_suppliers.DataSource = _repo.GetSuppliers();
-
-            var suppliers = _repo.GetSuppliers();
-            dataGridView_suppliers.DataSource = new SortableBindingList<Supplier>(suppliers);
+            dataGridView_suppliers.DataSource = null; //Clear the grid
+            
+            dataGridView_suppliers.DataSource = new SortableBindingList<Supplier>(_repo.GetSuppliers());//populate the grid
 
         }
 
@@ -211,6 +211,7 @@ namespace WorksOrders.Forms
             cmbobx_filter.Items.Add("Specialist Services");
             cmbobx_filter.Items.Add("Other");
             cmbobx_filter.Text = "Filter by Category";
+            
         }
 
         private void cmbobx_filter_SelectedIndexChanged(object sender, EventArgs e)
@@ -218,6 +219,23 @@ namespace WorksOrders.Forms
             string cat = cmbobx_filter.SelectedItem.ToString();
             var results = _repo.SearchSuppliers(cat);
             dataGridView_suppliers.DataSource = results;
+            ClearData();
+        }
+
+        private void ClearData()
+        {
+            txtbx_company_name.Text = "";
+            txtbx_contact_name.Text = "";
+            txtbx_address_line1.Text = "";
+            txtbx_address_line2.Text = "";
+            txtbx_address_line3.Text = "";
+            txtbx_town.Text = "";
+            txtbx_postcode.Text = "";
+            txtbx_mobile_phone.Text = "";
+            txtbx_office_phone.Text = "";
+            txtbx_email.Text = "";
+            txtbx_website.Text = "";
+            lstbx_supplier_attachments.Items.Clear();
         }
 
         private void btn_add_supplier_attachment_Click(object sender, EventArgs e)
@@ -228,7 +246,7 @@ namespace WorksOrders.Forms
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    _repo.AddSupplierAttachment(_supplier.Id, dlg.FileName);
+                    _repo.AddSupplierAttachment(_supplier.Id, dlg.FileName, _dbPath);
                     LoadSupplierAttachments(_supplier.Id);
                 }
             }
@@ -255,7 +273,7 @@ namespace WorksOrders.Forms
         {
             lstbx_supplier_attachments.Items.Clear();
 
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SupplierAttachments");
+            string baseDir = Path.Combine(Path.GetDirectoryName(_dbPath), "SupplierAttachments");
             string supplierDir = Path.Combine(baseDir, supplierId.ToString());
 
             if (!Directory.Exists(supplierDir))
@@ -293,6 +311,12 @@ namespace WorksOrders.Forms
         private void dataGridView_suppliers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dataGridView_suppliers.Refresh();
+        }
+
+        private void btn_clear_data_Click(object sender, EventArgs e)
+        {
+            ClearData();
+            PopulateGridView();
         }
     }
 }

@@ -64,6 +64,7 @@ namespace WorksOrders.Forms
             this.lstbx_supplier_attachments = new System.Windows.Forms.ListBox();
             this.btn_add_supplier_attachment = new System.Windows.Forms.Button();
             this.btn_delete_supplier_attachment = new System.Windows.Forms.Button();
+            this.btn_clear_data = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_suppliers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,7 +228,7 @@ namespace WorksOrders.Forms
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(293, 309);
+            this.btn_add.Location = new System.Drawing.Point(220, 305);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(141, 47);
             this.btn_add.TabIndex = 57;
@@ -237,7 +238,7 @@ namespace WorksOrders.Forms
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(440, 309);
+            this.btn_update.Location = new System.Drawing.Point(367, 305);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(141, 47);
             this.btn_update.TabIndex = 58;
@@ -247,7 +248,7 @@ namespace WorksOrders.Forms
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(587, 309);
+            this.btn_delete.Location = new System.Drawing.Point(514, 305);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(141, 47);
             this.btn_delete.TabIndex = 59;
@@ -359,11 +360,22 @@ namespace WorksOrders.Forms
             this.btn_delete_supplier_attachment.UseVisualStyleBackColor = true;
             this.btn_delete_supplier_attachment.Click += new System.EventHandler(this.btn_delete_supplier_attachment_Click);
             // 
+            // btn_clear_data
+            // 
+            this.btn_clear_data.Location = new System.Drawing.Point(661, 305);
+            this.btn_clear_data.Name = "btn_clear_data";
+            this.btn_clear_data.Size = new System.Drawing.Size(141, 47);
+            this.btn_clear_data.TabIndex = 71;
+            this.btn_clear_data.Text = "Clear Data";
+            this.btn_clear_data.UseVisualStyleBackColor = true;
+            this.btn_clear_data.Click += new System.EventHandler(this.btn_clear_data_Click);
+            // 
             // SupplierManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1457, 745);
+            this.Controls.Add(this.btn_clear_data);
             this.Controls.Add(this.btn_delete_supplier_attachment);
             this.Controls.Add(this.btn_add_supplier_attachment);
             this.Controls.Add(this.lstbx_supplier_attachments);
@@ -443,5 +455,6 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.ListBox lstbx_supplier_attachments;
         private System.Windows.Forms.Button btn_add_supplier_attachment;
         private System.Windows.Forms.Button btn_delete_supplier_attachment;
+        private System.Windows.Forms.Button btn_clear_data;
     }
 }

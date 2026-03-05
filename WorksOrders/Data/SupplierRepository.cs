@@ -206,9 +206,10 @@ namespace WorkOrderApp.Data
             return list;
         }
 
-        public void AddSupplierAttachment(int supplierId, string sourceFile)
+        public void AddSupplierAttachment(int supplierId, string sourceFile, string _dbPath)
         {
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SupplierAttachments");
+
+            string baseDir = Path.Combine(Path.GetDirectoryName(_dbPath), "SupplierAttachments");
             string supplierDir = Path.Combine(baseDir, supplierId.ToString());
 
             if (!Directory.Exists(supplierDir))

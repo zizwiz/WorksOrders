@@ -307,7 +307,7 @@ namespace WorksOrders
 
         private void btn_add_supplier_Click(object sender, EventArgs e)
         {
-            var form = new SupplierManagementForm(_supplierRepo, null, true);
+            var form = new SupplierManagementForm(_supplierRepo, null, true, _dbPath);
             form.ShowDialog();
         }
 
