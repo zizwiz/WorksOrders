@@ -5,8 +5,5 @@
     <Setting Name="db_path_and_name" Type="System.String" Scope="User">
       <Value Profile="(Default)">workorders.db</Value>
     </Setting>
-    <Setting Name="WorksOrdersNotesPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\WorkOrderNotes</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

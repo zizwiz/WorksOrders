@@ -346,14 +346,12 @@ namespace WorksOrders
 
         private void LoadSettings()
         {
-            lbl_db_file_path.Text = Settings.Default.db_path_and_name;
-            lbl_worksorders_notes_path.Text = Settings.Default.WorksOrdersNotesPath;
+            lbl_db_file_path.Text = "Database location: " + Settings.Default.db_path_and_name;
         }
 
         private void SaveSettings()
         {
             Settings.Default.db_path_and_name = lbl_db_file_path.Text;
-            Settings.Default.WorksOrdersNotesPath = lbl_worksorders_notes_path.Text;
             Settings.Default.Save();
         }
 
@@ -369,7 +367,6 @@ namespace WorksOrders
                     if (fbd.ShowDialog() == DialogResult.OK)
                     {
                         string dir = fbd.SelectedPath;
-                        string notesPath = Path.Combine(dir, "WorkOrderNotes");
                         string dbPath = dir + "\\workorders.db";
 
                         
@@ -378,13 +375,7 @@ namespace WorksOrders
                             Directory.CreateDirectory(dir);
                         }
 
-                        if (!Directory.Exists(notesPath))
-                        {
-                            Directory.CreateDirectory(notesPath);
-                        }
-
                         lbl_db_file_path.Text = dbPath;
-                        lbl_worksorders_notes_path.Text = notesPath;
 
                         SaveSettings();
                     }
