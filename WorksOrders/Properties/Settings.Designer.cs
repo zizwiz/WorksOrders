@@ -34,5 +34,17 @@ namespace WorksOrders.Properties {
                 this["db_path_and_name"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\WorkOrderNotes")]
+        public string WorksOrdersNotesPath {
+            get {
+                return ((string)(this["WorksOrdersNotesPath"]));
+            }
+            set {
+                this["WorksOrdersNotesPath"] = value;
+            }
+        }
     }
 }

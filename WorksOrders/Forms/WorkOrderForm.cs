@@ -14,8 +14,9 @@ namespace WorksOrders.Forms
         private readonly WorkOrder _order;
         private readonly bool _isAdmin;
         private readonly bool _isUpdate;
+        private readonly string _baseDir;
 
-        public WorkOrderForm(WorkOrderRepository repo, SupplierRepository srepo,  WorkOrder order, bool isAdmin, bool isUpdate)
+        public WorkOrderForm(WorkOrderRepository repo, SupplierRepository srepo,  WorkOrder order, bool isAdmin, bool isUpdate, string baseDir)
         {
             InitializeComponent();
             _repo = repo;
@@ -23,6 +24,7 @@ namespace WorksOrders.Forms
             _order = order;
             _isAdmin = isAdmin;
             _isUpdate = isUpdate;
+            _baseDir = baseDir;
 
             if (order != null)
             {
@@ -81,8 +83,8 @@ namespace WorksOrders.Forms
         {
             lstbx_notes.Items.Clear();
 
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
-            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+            //string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(_baseDir, workOrderId.ToString());
 
             if (!Directory.Exists(orderDir))
                 return;
@@ -199,8 +201,8 @@ namespace WorksOrders.Forms
         {
             lstbx_notes.Items.Clear();
 
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
-            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+           // string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(_baseDir, workOrderId.ToString());
 
             if (!Directory.Exists(orderDir))
                 return;
@@ -220,8 +222,8 @@ namespace WorksOrders.Forms
 
             string title = lstbx_notes.SelectedItem.ToString();
 
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
-            string orderDir = Path.Combine(baseDir, _order.Id.ToString());
+           // string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(_baseDir, _order.Id.ToString());
             string filePath = Path.Combine(orderDir, title + ".txt");
 
             if (File.Exists(filePath))
@@ -238,8 +240,8 @@ namespace WorksOrders.Forms
 
         private void SaveNoteToDisk(int workOrderId, string title, string body)
         {
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
-            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+           // string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(_baseDir, workOrderId.ToString());
 
             if (!Directory.Exists(orderDir))
                 Directory.CreateDirectory(orderDir);
@@ -287,8 +289,8 @@ namespace WorksOrders.Forms
 
             string title = lstbx_notes.SelectedItem.ToString();
 
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
-            string orderDir = Path.Combine(baseDir, _order.Id.ToString());
+           // string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
+            string orderDir = Path.Combine(_baseDir, _order.Id.ToString());
             string filePath = Path.Combine(orderDir, title + ".txt");
 
             DialogResult result = MsgBox.Show("Are you sure you want to delete " + title, "Yes or No", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

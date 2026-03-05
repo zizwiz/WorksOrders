@@ -36,9 +36,12 @@ namespace WorksOrders.Forms
                 cmbobx_category.Text = _supplier.Category;
             }
 
-            btn_delete.Enabled = isAdmin && _supplier != null;
-            btn_add.Enabled = isAdmin != null;
-            btn_update.Enabled = isAdmin && _supplier != null;
+            if (_supplier != null)
+            {
+                btn_delete.Enabled = isAdmin;
+                btn_add.Enabled = isAdmin;
+                btn_update.Enabled = isAdmin;
+            }
 
             PopulateGridView();
             LoadCategories();

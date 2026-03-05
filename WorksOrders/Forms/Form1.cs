@@ -15,9 +15,8 @@ namespace WorksOrders
         private readonly WorkOrderRepository _repo;
         private readonly SupplierRepository _supplierRepo;
         private readonly UserRepository _userRepo;
-        private readonly bool _isAdmin;
         private WorkOrder _order;
-        private string Database_path;
+        private readonly string _dbPath;
 
         private bool isAdmin = true;
         private AppUser _currentUser;
@@ -35,7 +34,7 @@ namespace WorksOrders
             _repo = new WorkOrderRepository(dbPath);
             _supplierRepo = new SupplierRepository(dbPath);
             _userRepo = new UserRepository(dbPath);
-            Database_path = dbPath;
+            _dbPath = dbPath;
 
             btn_delete_project.Enabled = isAdmin;
             btn_update_project.Enabled = isAdmin;
@@ -60,7 +59,7 @@ namespace WorksOrders
         {
             if (_currentUser.Role != "User") isAdmin = true; // User only has read rights.
 
-            var form = new WorkOrderForm(_repo, _supplierRepo, null, isAdmin, false);
+            var form = new WorkOrderForm(_repo, _supplierRepo, null, isAdmin, false, _dbPath);
             form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
             form.ShowDialog();
         }
@@ -139,7 +138,7 @@ namespace WorksOrders
             if (dataGridView_records.RowCount > 0)
             {
                 var order = dataGridView_records.CurrentRow.DataBoundItem as WorkOrder;
-                var form = new WorkOrderForm(_repo, _supplierRepo, order, isAdmin, true);
+                var form = new WorkOrderForm(_repo, _supplierRepo, order, isAdmin, true, _dbPath);
                 form.WorkOrderFormClosed += WorkOrderForm_WorkOrderFormClosed; //update datagridview when closed
                 form.ShowDialog();
             }
@@ -246,8 +245,8 @@ namespace WorksOrders
 
             lstbx_notes.Items.Clear();
 
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorkOrderNotes");
-            string orderDir = Path.Combine(baseDir, workOrderId.ToString());
+            string orderDir = Path.Combine(Path.GetDirectoryName(_dbPath), "WorkOrderNotes");
+            orderDir = Path.Combine(orderDir, workOrderId.ToString());
 
             if (!Directory.Exists(orderDir))
             {
@@ -302,7 +301,7 @@ namespace WorksOrders
 
         private void btn_create_report_Click(object sender, EventArgs e)
         {
-            var form = new ProjectReportForm(Database_path);
+            var form = new ProjectReportForm(_dbPath);
             form.ShowDialog();
         }
 
@@ -348,12 +347,13 @@ namespace WorksOrders
         private void LoadSettings()
         {
             lbl_db_file_path.Text = Settings.Default.db_path_and_name;
+            lbl_worksorders_notes_path.Text = Settings.Default.WorksOrdersNotesPath;
         }
 
         private void SaveSettings()
         {
             Settings.Default.db_path_and_name = lbl_db_file_path.Text;
-
+            Settings.Default.WorksOrdersNotesPath = lbl_worksorders_notes_path.Text;
             Settings.Default.Save();
         }
 
@@ -368,12 +368,23 @@ namespace WorksOrders
 
                     if (fbd.ShowDialog() == DialogResult.OK)
                     {
-                        lbl_db_file_path.Text = fbd.SelectedPath + "\\workorders.db";
+                        string dir = fbd.SelectedPath;
+                        string notesPath = Path.Combine(dir, "WorkOrderNotes");
+                        string dbPath = dir + "\\workorders.db";
 
-                        if (!Directory.Exists(fbd.SelectedPath))
+                        
+                        if (!Directory.Exists(dir))
                         {
-                            Directory.CreateDirectory(fbd.SelectedPath);
+                            Directory.CreateDirectory(dir);
                         }
+
+                        if (!Directory.Exists(notesPath))
+                        {
+                            Directory.CreateDirectory(notesPath);
+                        }
+
+                        lbl_db_file_path.Text = dbPath;
+                        lbl_worksorders_notes_path.Text = notesPath;
 
                         SaveSettings();
                     }

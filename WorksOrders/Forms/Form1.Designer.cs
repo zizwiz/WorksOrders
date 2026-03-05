@@ -54,6 +54,7 @@ namespace WorksOrders
             this.lbl_db_file_path = new System.Windows.Forms.Label();
             this.btn_database_file_path = new System.Windows.Forms.Button();
             this.btn_restart = new System.Windows.Forms.Button();
+            this.lbl_worksorders_notes_path = new System.Windows.Forms.Label();
             this.tabCntrl_form1.SuspendLayout();
             this.form1_tab_main.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -279,6 +280,7 @@ namespace WorksOrders
             // form1_file_paths_panel
             // 
             this.form1_file_paths_panel.AutoSize = true;
+            this.form1_file_paths_panel.Controls.Add(this.lbl_worksorders_notes_path);
             this.form1_file_paths_panel.Controls.Add(this.btn_restart);
             this.form1_file_paths_panel.Controls.Add(this.btn_database_file_path);
             this.form1_file_paths_panel.Controls.Add(this.lbl_db_file_path);
@@ -316,6 +318,15 @@ namespace WorksOrders
             this.btn_restart.Text = "Restart";
             this.btn_restart.UseVisualStyleBackColor = true;
             this.btn_restart.Click += new System.EventHandler(this.btn_restart_Click);
+            // 
+            // lbl_worksorders_notes_path
+            // 
+            this.lbl_worksorders_notes_path.AutoSize = true;
+            this.lbl_worksorders_notes_path.Location = new System.Drawing.Point(99, 76);
+            this.lbl_worksorders_notes_path.Name = "lbl_worksorders_notes_path";
+            this.lbl_worksorders_notes_path.Size = new System.Drawing.Size(214, 20);
+            this.lbl_worksorders_notes_path.TabIndex = 4;
+            this.lbl_worksorders_notes_path.Text = "WorksOrders Notes File Path";
             // 
             // Form1
             // 
@@ -368,6 +379,7 @@ namespace WorksOrders
         private System.Windows.Forms.Label lbl_db_file_path;
         private System.Windows.Forms.Button btn_database_file_path;
         private System.Windows.Forms.Button btn_restart;
+        private System.Windows.Forms.Label lbl_worksorders_notes_path;
     }
 }
 
