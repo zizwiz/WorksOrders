@@ -33,10 +33,8 @@ namespace WorksOrders
             this.tabCntrl_form1 = new System.Windows.Forms.TabControl();
             this.form1_tab_main = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_ManageUsers = new System.Windows.Forms.Button();
             this.lbl_project_attachments = new System.Windows.Forms.Label();
             this.lbl_project_notes = new System.Windows.Forms.Label();
-            this.btn_suppliers = new System.Windows.Forms.Button();
             this.btn_create_report = new System.Windows.Forms.Button();
             this.btn_refresh_projects = new System.Windows.Forms.Button();
             this.lstbx_notes = new System.Windows.Forms.ListBox();
@@ -51,10 +49,12 @@ namespace WorksOrders
             this.btn_add_project = new System.Windows.Forms.Button();
             this.form1_tab_admin = new System.Windows.Forms.TabPage();
             this.form1_file_paths_panel = new System.Windows.Forms.Panel();
-            this.lbl_db_file_path = new System.Windows.Forms.Label();
-            this.btn_database_file_path = new System.Windows.Forms.Button();
-            this.btn_restart = new System.Windows.Forms.Button();
             this.lbl_worksorders_notes_path = new System.Windows.Forms.Label();
+            this.btn_restart = new System.Windows.Forms.Button();
+            this.btn_database_file_path = new System.Windows.Forms.Button();
+            this.lbl_db_file_path = new System.Windows.Forms.Label();
+            this.btn_ManageUsers = new System.Windows.Forms.Button();
+            this.btn_suppliers = new System.Windows.Forms.Button();
             this.tabCntrl_form1.SuspendLayout();
             this.form1_tab_main.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -87,10 +87,8 @@ namespace WorksOrders
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btn_ManageUsers);
             this.panel1.Controls.Add(this.lbl_project_attachments);
             this.panel1.Controls.Add(this.lbl_project_notes);
-            this.panel1.Controls.Add(this.btn_suppliers);
             this.panel1.Controls.Add(this.btn_create_report);
             this.panel1.Controls.Add(this.btn_refresh_projects);
             this.panel1.Controls.Add(this.lstbx_notes);
@@ -109,16 +107,6 @@ namespace WorksOrders
             this.panel1.Size = new System.Drawing.Size(1452, 743);
             this.panel1.TabIndex = 0;
             // 
-            // btn_ManageUsers
-            // 
-            this.btn_ManageUsers.Location = new System.Drawing.Point(506, 686);
-            this.btn_ManageUsers.Name = "btn_ManageUsers";
-            this.btn_ManageUsers.Size = new System.Drawing.Size(167, 43);
-            this.btn_ManageUsers.TabIndex = 43;
-            this.btn_ManageUsers.Text = "Manage users";
-            this.btn_ManageUsers.UseVisualStyleBackColor = true;
-            this.btn_ManageUsers.Click += new System.EventHandler(this.btn_ManageUsers_Click);
-            // 
             // lbl_project_attachments
             // 
             this.lbl_project_attachments.AutoSize = true;
@@ -136,16 +124,6 @@ namespace WorksOrders
             this.lbl_project_notes.Size = new System.Drawing.Size(104, 20);
             this.lbl_project_notes.TabIndex = 41;
             this.lbl_project_notes.Text = "Project Notes";
-            // 
-            // btn_suppliers
-            // 
-            this.btn_suppliers.Location = new System.Drawing.Point(268, 681);
-            this.btn_suppliers.Name = "btn_suppliers";
-            this.btn_suppliers.Size = new System.Drawing.Size(192, 43);
-            this.btn_suppliers.TabIndex = 40;
-            this.btn_suppliers.Text = "Supplier Management";
-            this.btn_suppliers.UseVisualStyleBackColor = true;
-            this.btn_suppliers.Click += new System.EventHandler(this.btn_add_supplier_Click);
             // 
             // btn_create_report
             // 
@@ -280,6 +258,8 @@ namespace WorksOrders
             // form1_file_paths_panel
             // 
             this.form1_file_paths_panel.AutoSize = true;
+            this.form1_file_paths_panel.Controls.Add(this.btn_ManageUsers);
+            this.form1_file_paths_panel.Controls.Add(this.btn_suppliers);
             this.form1_file_paths_panel.Controls.Add(this.lbl_worksorders_notes_path);
             this.form1_file_paths_panel.Controls.Add(this.btn_restart);
             this.form1_file_paths_panel.Controls.Add(this.btn_database_file_path);
@@ -290,24 +270,14 @@ namespace WorksOrders
             this.form1_file_paths_panel.Size = new System.Drawing.Size(1452, 743);
             this.form1_file_paths_panel.TabIndex = 0;
             // 
-            // lbl_db_file_path
+            // lbl_worksorders_notes_path
             // 
-            this.lbl_db_file_path.AutoSize = true;
-            this.lbl_db_file_path.Location = new System.Drawing.Point(99, 34);
-            this.lbl_db_file_path.Name = "lbl_db_file_path";
-            this.lbl_db_file_path.Size = new System.Drawing.Size(145, 20);
-            this.lbl_db_file_path.TabIndex = 1;
-            this.lbl_db_file_path.Text = "Database File Path";
-            // 
-            // btn_database_file_path
-            // 
-            this.btn_database_file_path.Location = new System.Drawing.Point(43, 30);
-            this.btn_database_file_path.Name = "btn_database_file_path";
-            this.btn_database_file_path.Size = new System.Drawing.Size(50, 29);
-            this.btn_database_file_path.TabIndex = 2;
-            this.btn_database_file_path.Text = "...";
-            this.btn_database_file_path.UseVisualStyleBackColor = true;
-            this.btn_database_file_path.Click += new System.EventHandler(this.btn_database_file_path_Click);
+            this.lbl_worksorders_notes_path.AutoSize = true;
+            this.lbl_worksorders_notes_path.Location = new System.Drawing.Point(99, 76);
+            this.lbl_worksorders_notes_path.Name = "lbl_worksorders_notes_path";
+            this.lbl_worksorders_notes_path.Size = new System.Drawing.Size(214, 20);
+            this.lbl_worksorders_notes_path.TabIndex = 4;
+            this.lbl_worksorders_notes_path.Text = "WorksOrders Notes File Path";
             // 
             // btn_restart
             // 
@@ -319,14 +289,44 @@ namespace WorksOrders
             this.btn_restart.UseVisualStyleBackColor = true;
             this.btn_restart.Click += new System.EventHandler(this.btn_restart_Click);
             // 
-            // lbl_worksorders_notes_path
+            // btn_database_file_path
             // 
-            this.lbl_worksorders_notes_path.AutoSize = true;
-            this.lbl_worksorders_notes_path.Location = new System.Drawing.Point(99, 76);
-            this.lbl_worksorders_notes_path.Name = "lbl_worksorders_notes_path";
-            this.lbl_worksorders_notes_path.Size = new System.Drawing.Size(214, 20);
-            this.lbl_worksorders_notes_path.TabIndex = 4;
-            this.lbl_worksorders_notes_path.Text = "WorksOrders Notes File Path";
+            this.btn_database_file_path.Location = new System.Drawing.Point(43, 30);
+            this.btn_database_file_path.Name = "btn_database_file_path";
+            this.btn_database_file_path.Size = new System.Drawing.Size(50, 29);
+            this.btn_database_file_path.TabIndex = 2;
+            this.btn_database_file_path.Text = "...";
+            this.btn_database_file_path.UseVisualStyleBackColor = true;
+            this.btn_database_file_path.Click += new System.EventHandler(this.btn_database_file_path_Click);
+            // 
+            // lbl_db_file_path
+            // 
+            this.lbl_db_file_path.AutoSize = true;
+            this.lbl_db_file_path.Location = new System.Drawing.Point(99, 34);
+            this.lbl_db_file_path.Name = "lbl_db_file_path";
+            this.lbl_db_file_path.Size = new System.Drawing.Size(145, 20);
+            this.lbl_db_file_path.TabIndex = 1;
+            this.lbl_db_file_path.Text = "Database File Path";
+            // 
+            // btn_ManageUsers
+            // 
+            this.btn_ManageUsers.Location = new System.Drawing.Point(103, 403);
+            this.btn_ManageUsers.Name = "btn_ManageUsers";
+            this.btn_ManageUsers.Size = new System.Drawing.Size(192, 43);
+            this.btn_ManageUsers.TabIndex = 45;
+            this.btn_ManageUsers.Text = "User Management";
+            this.btn_ManageUsers.UseVisualStyleBackColor = true;
+            this.btn_ManageUsers.Click += new System.EventHandler(this.btn_ManageUsers_Click);
+            // 
+            // btn_suppliers
+            // 
+            this.btn_suppliers.Location = new System.Drawing.Point(103, 326);
+            this.btn_suppliers.Name = "btn_suppliers";
+            this.btn_suppliers.Size = new System.Drawing.Size(192, 43);
+            this.btn_suppliers.TabIndex = 44;
+            this.btn_suppliers.Text = "Supplier Management";
+            this.btn_suppliers.UseVisualStyleBackColor = true;
+            this.btn_suppliers.Click += new System.EventHandler(this.btn_add_supplier_Click);
             // 
             // Form1
             // 
@@ -358,10 +358,8 @@ namespace WorksOrders
         private System.Windows.Forms.TabControl tabCntrl_form1;
         private System.Windows.Forms.TabPage form1_tab_main;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btn_ManageUsers;
         private System.Windows.Forms.Label lbl_project_attachments;
         private System.Windows.Forms.Label lbl_project_notes;
-        private System.Windows.Forms.Button btn_suppliers;
         private System.Windows.Forms.Button btn_create_report;
         private System.Windows.Forms.Button btn_refresh_projects;
         private System.Windows.Forms.ListBox lstbx_notes;
@@ -380,6 +378,8 @@ namespace WorksOrders
         private System.Windows.Forms.Button btn_database_file_path;
         private System.Windows.Forms.Button btn_restart;
         private System.Windows.Forms.Label lbl_worksorders_notes_path;
+        private System.Windows.Forms.Button btn_ManageUsers;
+        private System.Windows.Forms.Button btn_suppliers;
     }
 }
 
