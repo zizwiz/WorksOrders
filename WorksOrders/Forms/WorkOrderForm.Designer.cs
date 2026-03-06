@@ -71,6 +71,8 @@ namespace WorksOrders.Forms
             this.btn_delete_attachment = new System.Windows.Forms.Button();
             this.cmbobx_supplier = new System.Windows.Forms.ComboBox();
             this.lbl_supplier = new System.Windows.Forms.Label();
+            this.lbl_final_cost = new System.Windows.Forms.Label();
+            this.txtbx_final_cost = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbl_website
@@ -280,7 +282,7 @@ namespace WorksOrders.Forms
             // lbl_project_start
             // 
             this.lbl_project_start.AutoSize = true;
-            this.lbl_project_start.Location = new System.Drawing.Point(96, 51);
+            this.lbl_project_start.Location = new System.Drawing.Point(96, 60);
             this.lbl_project_start.Name = "lbl_project_start";
             this.lbl_project_start.Size = new System.Drawing.Size(97, 20);
             this.lbl_project_start.TabIndex = 40;
@@ -289,15 +291,15 @@ namespace WorksOrders.Forms
             // lbl_project_end
             // 
             this.lbl_project_end.AutoSize = true;
-            this.lbl_project_end.Location = new System.Drawing.Point(538, 54);
+            this.lbl_project_end.Location = new System.Drawing.Point(430, 60);
             this.lbl_project_end.Name = "lbl_project_end";
-            this.lbl_project_end.Size = new System.Drawing.Size(91, 20);
+            this.lbl_project_end.Size = new System.Drawing.Size(38, 20);
             this.lbl_project_end.TabIndex = 41;
-            this.lbl_project_end.Text = "Project End";
+            this.lbl_project_end.Text = "End";
             // 
             // dtTmPick_project_start
             // 
-            this.dtTmPick_project_start.Location = new System.Drawing.Point(224, 49);
+            this.dtTmPick_project_start.Location = new System.Drawing.Point(224, 55);
             this.dtTmPick_project_start.Name = "dtTmPick_project_start";
             this.dtTmPick_project_start.ShowCheckBox = true;
             this.dtTmPick_project_start.Size = new System.Drawing.Size(200, 26);
@@ -305,7 +307,7 @@ namespace WorksOrders.Forms
             // 
             // dtTmPick_project_end
             // 
-            this.dtTmPick_project_end.Location = new System.Drawing.Point(666, 49);
+            this.dtTmPick_project_end.Location = new System.Drawing.Point(474, 55);
             this.dtTmPick_project_end.Name = "dtTmPick_project_end";
             this.dtTmPick_project_end.ShowCheckBox = true;
             this.dtTmPick_project_end.Size = new System.Drawing.Size(200, 26);
@@ -422,11 +424,32 @@ namespace WorksOrders.Forms
             this.lbl_supplier.TabIndex = 55;
             this.lbl_supplier.Text = "Supplier";
             // 
+            // lbl_final_cost
+            // 
+            this.lbl_final_cost.AutoSize = true;
+            this.lbl_final_cost.Location = new System.Drawing.Point(680, 60);
+            this.lbl_final_cost.Name = "lbl_final_cost";
+            this.lbl_final_cost.Size = new System.Drawing.Size(42, 20);
+            this.lbl_final_cost.TabIndex = 56;
+            this.lbl_final_cost.Text = "Cost";
+            // 
+            // txtbx_final_cost
+            // 
+            this.txtbx_final_cost.Location = new System.Drawing.Point(728, 57);
+            this.txtbx_final_cost.Name = "txtbx_final_cost";
+            this.txtbx_final_cost.Size = new System.Drawing.Size(235, 26);
+            this.txtbx_final_cost.TabIndex = 57;
+            this.txtbx_final_cost.Enter += new System.EventHandler(this.txtbx_final_cost_Enter);
+            this.txtbx_final_cost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_final_cost_KeyPress);
+            this.txtbx_final_cost.Leave += new System.EventHandler(this.txtbx_final_cost_Leave);
+            // 
             // WorkOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 662);
+            this.Controls.Add(this.txtbx_final_cost);
+            this.Controls.Add(this.lbl_final_cost);
             this.Controls.Add(this.lbl_supplier);
             this.Controls.Add(this.cmbobx_supplier);
             this.Controls.Add(this.btn_delete_notes);
@@ -521,5 +544,7 @@ namespace WorksOrders.Forms
         private System.Windows.Forms.Button btn_delete_attachment;
         private System.Windows.Forms.ComboBox cmbobx_supplier;
         private System.Windows.Forms.Label lbl_supplier;
+        private System.Windows.Forms.Label lbl_final_cost;
+        private System.Windows.Forms.TextBox txtbx_final_cost;
     }
 }

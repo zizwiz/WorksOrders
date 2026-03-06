@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using CenteredMessagebox;
@@ -372,6 +373,47 @@ namespace WorksOrders.Forms
             txtbx_office_phone.Text = s.Phone_Office;
             txtbx_email.Text = s.Email;
             txtbx_website.Text = s.Website;
+        }
+
+        private void txtbx_final_cost_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != decimalSeparator)
+            {
+                e.Handled = true; // Block invalid characters
+            }
+
+            // Allow only one decimal separator
+            if (e.KeyChar == decimalSeparator &&
+                ((sender as TextBox).Text.IndexOf(decimalSeparator) > -1))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtbx_final_cost_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtbx_final_cost.Text, out decimal value))
+            {
+                txtbx_final_cost.Text = value.ToString("C", CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                txtbx_final_cost.Text = 0m.ToString("C", CultureInfo.CurrentCulture);
+            }
+        }
+
+        private void txtbx_final_cost_Enter(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtbx_final_cost.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal value))
+            {
+                txtbx_final_cost.Text = value.ToString("0.##");
+            }
+
         }
     }
 }
