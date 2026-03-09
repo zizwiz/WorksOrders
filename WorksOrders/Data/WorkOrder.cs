@@ -18,6 +18,7 @@ namespace WorkOrderApp.Data
         public string Phone_Office { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public string Cost { get; set; }
         public DateTime? ProjectStartDate { get; set; }
         public DateTime? ProjectEndDate { get; set; }
     }

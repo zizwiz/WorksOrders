@@ -41,6 +41,7 @@ namespace WorksOrders.Forms
                 txtbx_office_phone.Text = order.Phone_Office;
                 txtbx_email.Text = order.Email;
                 txtbx_website.Text = order.Website;
+                txtbx_final_cost.Text = order.Cost;
 
                 if (order.ProjectStartDate.HasValue)
                 {
@@ -114,6 +115,7 @@ namespace WorksOrders.Forms
             order.Phone_Office = txtbx_office_phone.Text;
             order.Email = txtbx_email.Text;
             order.Website = txtbx_website.Text;
+            order.Cost = txtbx_final_cost.Text;
 
             order.ProjectStartDate = dtTmPick_project_start.Checked
                 ? (DateTime?)dtTmPick_project_start.Value
@@ -145,6 +147,7 @@ namespace WorksOrders.Forms
             _order.Phone_Office = txtbx_office_phone.Text;
             _order.Email = txtbx_email.Text;
             _order.Website = txtbx_website.Text;
+            _order.Cost = txtbx_final_cost.Text;
 
             _order.ProjectStartDate = dtTmPick_project_start.Checked
                 ? (DateTime?)dtTmPick_project_start.Value
@@ -375,6 +378,7 @@ namespace WorksOrders.Forms
             txtbx_website.Text = s.Website;
         }
 
+        // A section to input the final cost and format it into currency when you leave the textbox
         private void txtbx_final_cost_KeyPress(object sender, KeyPressEventArgs e)
         {
             char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);

@@ -35,7 +35,7 @@ namespace WorkOrderApp.Data
                             Website TEXT NOT NULL,
                             ProjectStartDate TEXT,
                             ProjectEndDate TEXT,
-                            Notes TEXT
+                            Cost TEXT
                         );
                     ";
 

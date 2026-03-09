@@ -28,10 +28,10 @@ namespace WorkOrderApp.Data
                 string sql = @"INSERT INTO WorkOrders 
                                (Project, OrderNumber, CompanyName, ContactName, Address_Line1, Address_Line2, 
                                 Address_Line3, Town, Postcode, Phone_Mobile, Phone_Office, Email, Website,
-                                ProjectStartDate, ProjectEndDate)
+                                ProjectStartDate, ProjectEndDate, Cost)
                                VALUES (@Project, @OrderNumber, @CompanyName, @ContactName, @Address_Line1, @Address_Line2,
                                         @Address_Line3, @Town, @Postcode, @Phone_Mobile, @Phone_Office ,@Email, 
-                                        @Website, @ProjectStartDate, @ProjectEndDate)";
+                                        @Website, @ProjectStartDate, @ProjectEndDate, @Cost)";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -48,6 +48,7 @@ namespace WorkOrderApp.Data
                     cmd.Parameters.AddWithValue("@Phone_Office", order.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", order.Email);
                     cmd.Parameters.AddWithValue("@Website", order.Website);
+                    cmd.Parameters.AddWithValue("@Cost", order.Cost);
 
                     cmd.Parameters.AddWithValue("@ProjectStartDate",
                         order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("yyyy-MM-dd") : null);
@@ -73,7 +74,8 @@ cmd.ExecuteNonQuery();
                                 OR Address_Line1 LIKE @kw OR Address_Line2 LIKE @kw OR Address_Line2 LIKE @kw 
                                 OR Town LIKE @kw OR Postcode LIKE @kw OR Phone_Mobile LIKE @kw 
                                 OR Phone_Office LIKE @kw OR Email LIKE @kw OR Website LIKE @kw
-                                OR ProjectStartDate LIKE @kw OR ProjectEndDate LIKE @kw";
+                                OR ProjectStartDate LIKE @kw OR ProjectEndDate LIKE @kw 
+                                OR Cost LIKE @kw";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -98,7 +100,8 @@ cmd.ExecuteNonQuery();
                             order.Phone_Office = reader["Phone_Office"].ToString();
                             order.Email = reader["Email"].ToString();
                             order.Website = reader["Website"].ToString();
-                            
+                            order.Cost = reader["Cost"].ToString();
+
                             string start = reader["ProjectStartDate"].ToString();
                             string end = reader["ProjectEndDate"].ToString();
 
@@ -125,7 +128,7 @@ cmd.ExecuteNonQuery();
                                Address_Line2=@Address_Line2, Address_Line3=@Address_Line3, Town=@Town,
                                Postcode=@Postcode, Phone_Mobile=@Phone_Mobile, Phone_Office=@Phone_Office,
                                 Email=@Email, Website=@Website, ProjectStartDate=@ProjectStartDate,
-                                ProjectEndDate=@ProjectEndDate
+                                ProjectEndDate=@ProjectEndDate, Cost=@Cost
                                WHERE Id=@Id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -143,6 +146,7 @@ cmd.ExecuteNonQuery();
                     cmd.Parameters.AddWithValue("@Phone_Office", order.Phone_Office);
                     cmd.Parameters.AddWithValue("@Email", order.Email);
                     cmd.Parameters.AddWithValue("@Website", order.Website);
+                    cmd.Parameters.AddWithValue("@Cost", order.Cost);
 
                     cmd.Parameters.AddWithValue("@ProjectStartDate",
                         order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("yyyy-MM-dd") : null);
@@ -323,8 +327,25 @@ cmd.ExecuteNonQuery();
                             order.OrderNumber = reader["OrderNumber"].ToString();
                             order.CompanyName = reader["CompanyName"].ToString();
                             order.ContactName = reader["ContactName"].ToString();
+                            order.Address_Line1 = reader["Address_Line1"].ToString();
+                            order.Address_Line2 = reader["Address_Line2"].ToString();
+                            order.Address_Line3 = reader["Address_Line3"].ToString();
                             order.Town = reader["Town"].ToString();
                             order.Postcode = reader["Postcode"].ToString();
+                            order.Phone_Mobile = reader["Phone_Mobile"].ToString();
+                            order.Phone_Office = reader["Phone_Office"].ToString();
+                            order.Email = reader["Email"].ToString();
+                            order.Website = reader["Website"].ToString();
+                            order.Cost = reader["Cost"].ToString();
+
+                            cmd.Parameters.AddWithValue("@ProjectStartDate",
+                                order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToString("yyyy-MM-dd") : null);
+
+                            cmd.Parameters.AddWithValue("@ProjectEndDate",
+                                order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToString("yyyy-MM-dd") : null);
+
+
+
 
                             string start = reader["ProjectStartDate"].ToString();
                             string end = reader["ProjectEndDate"].ToString();
