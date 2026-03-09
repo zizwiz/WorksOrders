@@ -301,7 +301,7 @@ namespace WorksOrders
 
         private void btn_create_report_Click(object sender, EventArgs e)
         { 
-            var form = new ProjectReportForm(_dbPath);
+            var form = new ProjectReportForm(_dbPath, Resources.worksOrder);
             form.ShowDialog();
         }
 

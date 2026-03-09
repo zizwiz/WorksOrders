@@ -12,11 +12,13 @@ namespace WorksOrders.Forms
         private readonly WorkOrderRepository _repo;
         private PrintDocument printDoc = new PrintDocument();
         private List<WorkOrder> reportData;
+        private readonly Icon _myIcon;
 
-        public ProjectReportForm(string dbPath)
+        public ProjectReportForm(string dbPath, Icon myIcon)
         {
             InitializeComponent();
             _repo = new WorkOrderRepository(dbPath);
+            _myIcon = myIcon;
             printDoc.DefaultPageSettings.Landscape = true; //print in landscape only
         }
 
@@ -48,84 +50,11 @@ namespace WorksOrders.Forms
 
             PrintPreviewDialog dlg = new PrintPreviewDialog();
             dlg.Document = printDoc;
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.Icon = _myIcon;
             dlg.ShowDialog();
 
         }
-
-        /*
-        private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
-        {
-           int y = 50;
-            int lineHeight = 25;
-
-            Font font = new Font("Arial", 10);
-            Font boldFont = new Font("Arial", 10, FontStyle.Bold);
-
-            // Column positions
-            int colProject = 50;
-            int colOrderNo = 150;
-            int colCompany = 300;
-            int colStart = 500;
-            int colEnd = 600;
-            int colCost = 700;
-
-            // Title
-            e.Graphics.DrawString("Project Report", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, 50, y);
-            y += 40;
-
-            // Header row
-            e.Graphics.DrawString("Project", boldFont, Brushes.Black, colProject, y);
-            e.Graphics.DrawString("Order No", boldFont, Brushes.Black, colOrderNo, y);
-            e.Graphics.DrawString("Company", boldFont, Brushes.Black, colCompany, y);
-            e.Graphics.DrawString("Start", boldFont, Brushes.Black, colStart, y);
-            e.Graphics.DrawString("End", boldFont, Brushes.Black, colEnd, y);
-            e.Graphics.DrawString("Cost", boldFont, Brushes.Black, colCost, y);
-
-            y += lineHeight;
-
-            int rowIndex = 0;
-
-            // Data rows
-            foreach (var order in reportData)
-            {
-                // Light grey background for alternating rows
-                if ((rowIndex % 2) == 1)
-                {
-                    e.Graphics.FillRectangle(
-                        Brushes.LightGray,
-                        new Rectangle(40, y, e.MarginBounds.Width, lineHeight)
-                    );
-                }
-
-                rowIndex++;
-
-                e.Graphics.DrawString(order.Project, font, Brushes.Black, colProject, y);
-                e.Graphics.DrawString(order.OrderNumber, font, Brushes.Black, colOrderNo, y);
-                e.Graphics.DrawString(order.CompanyName, font, Brushes.Black, colCompany, y);
-
-                e.Graphics.DrawString(
-                    order.ProjectStartDate.HasValue ? order.ProjectStartDate.Value.ToShortDateString() : "-",
-                    font, Brushes.Black, colStart, y);
-
-                e.Graphics.DrawString(
-                    order.ProjectEndDate.HasValue ? order.ProjectEndDate.Value.ToShortDateString() : "-",
-                    font, Brushes.Black, colEnd, y);
-
-                e.Graphics.DrawString(order.Cost, font, Brushes.Black, colCost, y);
-
-                y += lineHeight;
-
-                // Page break
-                if (y > e.MarginBounds.Bottom)
-                {
-                    e.HasMorePages = true;
-                    return;
-                }
-            }
-
-            e.HasMorePages = false;
-        }
-        */
 
         private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
