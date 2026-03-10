@@ -70,8 +70,8 @@ namespace WorksOrders.Forms
 
             LoadSuppliers(); //Load all existing suppliers
 
-            btn_attach_files.Visible = isAdmin && _isUpdate;
-            btn_save.Enabled = isAdmin && !_isUpdate;
+            btn_attach_files.Visible = _isAdmin && !_isUpdate;
+            btn_save.Enabled = _isAdmin && !_isUpdate;
 
             if (order != null)
             {
