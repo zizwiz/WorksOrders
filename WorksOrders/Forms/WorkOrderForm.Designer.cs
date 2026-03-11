@@ -74,6 +74,7 @@ namespace WorksOrders.Forms
             this.lbl_final_cost = new System.Windows.Forms.Label();
             this.txtbx_final_cost = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel17 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -88,8 +89,11 @@ namespace WorksOrders.Forms
             this.panel15 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.panel28 = new System.Windows.Forms.Panel();
+            this.panel29 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
@@ -102,10 +106,6 @@ namespace WorksOrders.Forms
             this.panel33 = new System.Windows.Forms.Panel();
             this.panel34 = new System.Windows.Forms.Panel();
             this.panel35 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.panel28 = new System.Windows.Forms.Panel();
-            this.panel29 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -121,6 +121,10 @@ namespace WorksOrders.Forms
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel18.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.panel27.SuspendLayout();
+            this.panel28.SuspendLayout();
+            this.panel29.SuspendLayout();
             this.panel19.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -131,10 +135,6 @@ namespace WorksOrders.Forms
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
             this.panel35.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.panel27.SuspendLayout();
-            this.panel28.SuspendLayout();
-            this.panel29.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -613,6 +613,14 @@ namespace WorksOrders.Forms
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1026, 662);
             this.tableLayoutPanel1.TabIndex = 58;
             // 
+            // panel17
+            // 
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel17.Location = new System.Drawing.Point(3, 3);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(144, 1);
+            this.panel17.TabIndex = 3;
+            // 
             // panel9
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.panel9, 5);
@@ -784,14 +792,6 @@ namespace WorksOrders.Forms
             this.panel16.Size = new System.Drawing.Size(144, 24);
             this.panel16.TabIndex = 2;
             // 
-            // panel17
-            // 
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(3, 3);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(144, 1);
-            this.panel17.TabIndex = 3;
-            // 
             // panel18
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.panel18, 5);
@@ -801,6 +801,56 @@ namespace WorksOrders.Forms
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(1020, 29);
             this.panel18.TabIndex = 4;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 6;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.Controls.Add(this.txtbx_final_cost, 5, 0);
+            this.tableLayoutPanel7.Controls.Add(this.dtTmPick_project_end, 3, 0);
+            this.tableLayoutPanel7.Controls.Add(this.dtTmPick_project_start, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel27, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel28, 2, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel29, 4, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1020, 29);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // panel27
+            // 
+            this.panel27.Controls.Add(this.lbl_project_start);
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel27.Location = new System.Drawing.Point(3, 3);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(104, 23);
+            this.panel27.TabIndex = 58;
+            // 
+            // panel28
+            // 
+            this.panel28.Controls.Add(this.lbl_project_end);
+            this.panel28.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel28.Location = new System.Drawing.Point(376, 3);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(54, 23);
+            this.panel28.TabIndex = 59;
+            // 
+            // panel29
+            // 
+            this.panel29.Controls.Add(this.lbl_final_cost);
+            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel29.Location = new System.Drawing.Point(699, 3);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(54, 23);
+            this.panel29.TabIndex = 60;
             // 
             // panel19
             // 
@@ -908,56 +958,6 @@ namespace WorksOrders.Forms
             this.panel35.Size = new System.Drawing.Size(144, 24);
             this.panel35.TabIndex = 38;
             // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 6;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel7.Controls.Add(this.txtbx_final_cost, 5, 0);
-            this.tableLayoutPanel7.Controls.Add(this.dtTmPick_project_end, 3, 0);
-            this.tableLayoutPanel7.Controls.Add(this.dtTmPick_project_start, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel27, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel28, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel29, 4, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1020, 29);
-            this.tableLayoutPanel7.TabIndex = 0;
-            // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.lbl_project_start);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel27.Location = new System.Drawing.Point(3, 3);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(104, 23);
-            this.panel27.TabIndex = 58;
-            // 
-            // panel28
-            // 
-            this.panel28.Controls.Add(this.lbl_project_end);
-            this.panel28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel28.Location = new System.Drawing.Point(376, 3);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(54, 23);
-            this.panel28.TabIndex = 59;
-            // 
-            // panel29
-            // 
-            this.panel29.Controls.Add(this.lbl_final_cost);
-            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel29.Location = new System.Drawing.Point(699, 3);
-            this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(54, 23);
-            this.panel29.TabIndex = 60;
-            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 15;
@@ -1025,6 +1025,14 @@ namespace WorksOrders.Forms
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             this.panel18.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
+            this.panel28.ResumeLayout(false);
+            this.panel28.PerformLayout();
+            this.panel29.ResumeLayout(false);
+            this.panel29.PerformLayout();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             this.panel20.ResumeLayout(false);
@@ -1045,14 +1053,6 @@ namespace WorksOrders.Forms
             this.panel34.PerformLayout();
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
-            this.panel27.ResumeLayout(false);
-            this.panel27.PerformLayout();
-            this.panel28.ResumeLayout(false);
-            this.panel28.PerformLayout();
-            this.panel29.ResumeLayout(false);
-            this.panel29.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.ResumeLayout(false);
 
